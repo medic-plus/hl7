@@ -1,0 +1,50 @@
+{
+  "name": "medicplus/hl7",
+  "description": "MedicPlus HL7 is a PHP package for importing/exporting medical data to XML",
+  "license": "MIT",
+  "keywords": [
+    "MedicPlus",
+    "HL7"
+  ],
+  "authors": [
+    {
+      "name": "Ivan Vasquez",
+      "email": "ivanvasquezp@outlook.com",
+      "homepage": "http://ivanvasquez.net",
+      "role": "Project Manager / Developer"
+    },
+    {
+      "name": "Omar Acuña",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.3 || ^8.0",
+    "illuminate/config": "^8.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5.0",
+    "mockery/mockery": "^1.5.0",
+    "symfony/var-dumper": "^5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Medicplus\\HL7\\": "src",
+      "Medicplus\\Library\\": "src/library"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Medicplus\\HL7\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "minimum-stability": "stable"
+}
