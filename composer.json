@@ -29,13 +29,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Medicplus\\HL7\\": "src",
-      "Medicplus\\Library\\": "src/library"
+      "MedicPlus\\HL7\\": "src",
+      "MedicPlus\\Library\\": "src/library"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Medicplus\\HL7\\Tests\\": "tests"
+      "MedicPlus\\HL7\\Tests\\": "tests"
     }
   },
   "scripts": {
