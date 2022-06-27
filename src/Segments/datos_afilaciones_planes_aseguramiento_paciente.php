@@ -7,6 +7,10 @@ use DOMDocument;
 class datos_afiliaciones_planos_aseguramiento_paciente {
     private string $datosAfiliaciones;
 
+    public function __construct(string $datosAfiliaciones) {
+        $this->datosAfiliaciones = $datosAfiliaciones;
+    }
+
     public function getDatosAfiliaciones() {
         return $this->datosAfiliaciones;
     }
@@ -15,10 +19,8 @@ class datos_afiliaciones_planos_aseguramiento_paciente {
         $this->datosAfiliaciones = $datosAfiliaciones;
     }
 
-    // public function toXML(DOMDocument $doc, $datosAfiliaciones) {
-    //     $datosAfiliaciones = $doc->createElement($datosAfiliaciones);
-    //     $text = $doc->createTextNode($this->value);
-    //     $datosAfiliaciones->appendChild($text);
-    //     return $datosAfiliaciones;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Datos", $this->datosAfiliaciones);
+        $documento->appendChild($segmento);
+    }
 }

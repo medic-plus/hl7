@@ -8,6 +8,10 @@ class pronosticos_salud_paciente {
 
     private string $pronosticoSalud;
 
+    public function __construct(string $pronosticoSalud) {
+        $this->pronosticoSalud = $pronosticoSalud;
+    }
+
     public function getPronosticoSalud() {
         return $this->pronosticoSalud;
     }
@@ -16,10 +20,8 @@ class pronosticos_salud_paciente {
         $this->pronosticoSalud = $pronosticoSalud;
     }
 
-    // public function toXML(DOMDocument $doc, $pronosticoSalud) {
-    //     $pronosticoSalud = $doc->createElement($pronosticoSalud);
-    //     $text = $doc->createTextNode($this->value);
-    //     $pronosticoSalud->appendChild($text);
-    //     return $pronosticoSalud;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Pronostico", $this->pronosticoSalud);
+        $documento->appendChild($segmento);
+    }
 }

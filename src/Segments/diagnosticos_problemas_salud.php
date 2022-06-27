@@ -4,10 +4,10 @@ namespace Medicplus\HL7\Segments;
 
 use DateTime;
 use DOMDocument;
-use Medicplus\HL7\Catalogos\Diagnostico;
+use Medicplus\HL7\Segments\Catalogos\Diagnostico;
 
 class diagnosticos_problemas_salud {
-    private string $descripcionDiagnosticos;
+    private string $descripcion;
     private ?DateTime $fechaIniProblemaDiagnostico;
     private ?DateTime $fechaFinProblemaDiagnostico;
     private int $identificadorUnicoAfeccion;
@@ -16,12 +16,23 @@ class diagnosticos_problemas_salud {
     private string $descripcionProblemaDiagnosticado;
     private ?Diagnostico $diagnostico;
 
-    public function getDescripcionDiagnosticos() {
-        return $this->descripcionDiagnosticos;
+    public function __construct(string $descripcion, DateTime $fechaIniProblemaDiagnostico = null, DateTime $fechaFinProblemaDiagnostico = null, int $identificadorUnicoAfeccion, float $numeroAfeccion, string $nombreTipoDiagnostico, string $descripcionProblemaDiagnosticado, Diagnostico $diagnostico = null) {
+        $this->descripcion = $descripcion;
+        $this->fechaIniProblemaDiagnostico = $fechaIniProblemaDiagnostico;
+        $this->fechaFinProblemaDiagnostico = $fechaFinProblemaDiagnostico;
+        $this->identificadorUnicoAfeccion = $identificadorUnicoAfeccion;
+        $this->numeroAfeccion = $numeroAfeccion;
+        $this->nombreTipoDiagnostico = $nombreTipoDiagnostico;
+        $this->descripcionProblemaDiagnosticado = $descripcionProblemaDiagnosticado;
+        $this->diagnostico = $diagnostico;
     }
 
-    public function setDescripcionDiagnosticos(string $descripcionDiagnosticos) {
-        $this->descripcionDiagnosticos = $descripcionDiagnosticos;
+    public function getDescripcionDiagnosticos() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionDiagnosticos(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getFechaIniProblemaDiagnostico() {
@@ -80,10 +91,8 @@ class diagnosticos_problemas_salud {
         $this->diagnostico = $diagnostico;
     }
 
-    // public function toXML(DOMDocument $doc, $descripcionDiagnosticos) {
-    //     $descripcionDiagnosticos = $doc->createElement($descripcionDiagnosticos);
-    //     $text = $doc->createTextNode($this->value);
-    //     $descripcionDiagnosticos->appendChild($text);
-    //     return $descripcionDiagnosticos;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
+    }
 }

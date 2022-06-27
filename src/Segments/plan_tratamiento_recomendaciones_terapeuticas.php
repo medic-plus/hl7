@@ -7,6 +7,10 @@ use DOMDocument;
 class plan_tratamiento_recomendaciones_terapeuticas {
     private string $planTratamientoTerapeuticas;
 
+    public function __construct(string $planTratamientoTerapeuticas) {
+        $this->planTratamientoTerapeuticas = $planTratamientoTerapeuticas;
+    }
+
     public function getPlanTratamientoTerapeuticas() {
         return $this->planTratamientoTerapeuticas;
     }
@@ -15,10 +19,8 @@ class plan_tratamiento_recomendaciones_terapeuticas {
         $this->planTratamientoTerapeuticas = $planTratamientoTerapeuticas;
     }
 
-    // public function toXML(DOMDocument $doc, $planTratamientoTerapeuticas) {
-    //     $planTratamientoTerapeuticas = $doc->createElement($planTratamientoTerapeuticas);
-    //     $text = $doc->createTextNode($this->value);
-    //     $planTratamientoTerapeuticas->appendChild($text);
-    //     return $planTratamientoTerapeuticas;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("PlanTratamiento", $this->planTratamientoTerapeuticas);
+        $documento->appendChild($segmento);
+    }
 }

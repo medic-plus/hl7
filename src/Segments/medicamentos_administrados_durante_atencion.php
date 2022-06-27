@@ -3,11 +3,12 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\AdministracionFarmacologica;
-use Medicplus\HL7\Catalogos\Medicamento;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\AdministracionFarmacologica;
+use Medicplus\HL7\Segments\Catalogos\Medicamento;
 
 class medicamentos_administrados_durante_atencion {
-    private string $descripcionMedicamentos;
+    private string $descripcion;
     private string $observacionMedicamento;
     private string $dosisAdministradas;
     private ?DateTime $fechaIniMedicamento;
@@ -16,12 +17,23 @@ class medicamentos_administrados_durante_atencion {
     private ?AdministracionFarmacologica $administracionFarmacologica;
     private ?Medicamento $medicamento;
 
-    public function getDescripcionMedicamento() {
-        return $this->descripcionMedicamentos;
+    public function __construct(string $descripcion, string $observacionMedicamento, string $dosisAdministradas, DateTime $fechaIniMedicamento = null, DateTime $fechaFinMedicamento = null, string $medicamentoAdministrativo, AdministracionFarmacologica $administracionFarmacologica = null, Medicamento $medicamento = null) {
+        $this->descripcion = $descripcion;
+        $this->observacionMedicamento = $observacionMedicamento;
+        $this->dosisAdministradas = $dosisAdministradas;
+        $this->fechaIniMedicamento = $fechaIniMedicamento;
+        $this->fechaFinMedicamento = $fechaFinMedicamento;
+        $this->medicamentoAdministrativo = $medicamentoAdministrativo;
+        $this->administracionFarmacologica = $administracionFarmacologica;
+        $this->medicamento = $medicamento;
     }
 
-    public function setDescripcionMedicamentos(string $descripcionMedicamentos) {
-        $this->descripcionMedicamentos = $descripcionMedicamentos;
+    public function getDescripcionMedicamento() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionMedicamentos(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getObservacionMedicamento() {
@@ -78,5 +90,10 @@ class medicamentos_administrados_durante_atencion {
 
     public function setMedicamento(Medicamento $medicamento) {
         $this->medicamento = $medicamento;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
     }
 }

@@ -7,6 +7,10 @@ use DOMDocument;
 class evolucion_paciente_atencion {
     private string $evolucionPaciente;
 
+    public function __construct(string $evolucionPaciente) {
+        $this->evolucionPaciente = $evolucionPaciente;
+    }
+
     public function getEvolucionPaciente() {
         return $this->evolucionPaciente;
     }
@@ -15,10 +19,8 @@ class evolucion_paciente_atencion {
         $this->evolucionPaciente = $evolucionPaciente;
     }
 
-    // public function toXML(DOMDocument $doc, $evolucionPaciente) {
-    //     $evolucionPaciente = $doc->createElement($evolucionPaciente);
-    //     $text = $doc->createTextNode($this->value);
-    //     $evolucionPaciente->appendChild($text);
-    //     return $evolucionPaciente;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmemto = $documento->createElement("Evolucion", $this->evolucionPaciente);
+        $documento->appendChild($segmemto);
+    }
 }

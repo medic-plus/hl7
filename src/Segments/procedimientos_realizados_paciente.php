@@ -3,8 +3,9 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\Padecimiento;
-use Medicplus\HL7\Catalogos\ServicioProcedimiento;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\Padecimiento;
+use Medicplus\HL7\Segments\Catalogos\ServicioProcedimiento;
 
 class procedicmientos_realizados_paciente {
     private string $descripcionProcedimiento;
@@ -17,6 +18,19 @@ class procedicmientos_realizados_paciente {
     private string $nombreServicioRealizado;
     private ?Padecimiento $padecimiento;
     private ?ServicioProcedimiento $servicioProcedimiento;
+
+    public function __construct(string $descripcionProcedimiento, string $descripcionRealizado, DateTime $fechaProcedimiento = null, int $cedulaProfesionalMedico, string $nombreMedicoResponsable, string $apellidoPaternoMedicoResponsable, string $apellidoMaternoMedicoResponsable, string $nombreServicioRealizado, Padecimiento $padecimiento = null, ServicioProcedimiento $servicioProcedimiento = null) {
+        $this->descripcionProcedimiento = $descripcionProcedimiento;
+        $this->descripcionRealizado = $descripcionRealizado;
+        $this->fechaProcedimiento = $fechaProcedimiento;
+        $this->cedulaProfesionalMedico = $cedulaProfesionalMedico;
+        $this->nombreMedicoResponsable = $nombreMedicoResponsable;
+        $this->apellidoPaternoMedicoResponsable = $apellidoPaternoMedicoResponsable;
+        $this->apellidoMaternoMedicoResponsable = $apellidoMaternoMedicoResponsable;
+        $this->nombreServicioRealizado = $nombreServicioRealizado;
+        $this->padecimiento = $padecimiento;
+        $this->servicioProcedimiento = $servicioProcedimiento;
+    }
 
     public function getDescripcionProcedimiento() {
         return $this->descripcionProcedimiento;
@@ -96,5 +110,10 @@ class procedicmientos_realizados_paciente {
 
     public function setServicioProcedimiento(ServicioProcedimiento $servicioProcedimiento) {
         $this->servicioProcedimiento = $servicioProcedimiento;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcionProcedimiento);
+        $documento->appendChild($segmento);
     }
 }

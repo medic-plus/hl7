@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DateTime;
 use DOMDocument;
-use Medicplus\HL7\Catalogos\TipoSangre;
+use Medicplus\HL7\Segments\Catalogos\TipoSangre;
 
 class antecedentes_personales_no_patologicos_paciente {
     private string $antecedentesPersonales;
@@ -22,6 +22,24 @@ class antecedentes_personales_no_patologicos_paciente {
     private ?DateTime $fechaIniConsumoDrogas;
     private ?DateTime $fechaFinConsumoDrogas;
     private string $consumoDrogasDia;
+
+    public function __construct(string $antecedentesPersonales, DateTime $fechaTipoSangre = null, TipoSangre $tipoSangre = null, bool $identificadorTabaquismo, DateTime $fechaIniTabaquismo = null, DateTime $fechaFinTabaquismo = null, int $cajetillasDia, bool $identificadorAlcoholisnmo, DateTime $fechaIniAlcoholismo = null, DateTime $fechaFinAlcoholismo = null, string $consumoAlcoholDia, bool $identificadorConsumoDrogras, DateTime $fechaIniConsumoDrogas = null, DateTime $fechaFinConsumoDrogas = null, string $consumoDrogasDia) {
+        $this->antecedentesPersonales = $antecedentesPersonales;
+        $this->fechaTipoSangre = $fechaTipoSangre;
+        $this->tipoSangre = $tipoSangre;
+        $this->identificadorTabaquismo = $identificadorTabaquismo;
+        $this->fechaIniTabaquismo = $fechaIniTabaquismo;
+        $this->fechaFinTabaquismo = $fechaFinTabaquismo;
+        $this->cajetillasDia = $cajetillasDia;
+        $this->identificadorAlcoholisnmo = $identificadorAlcoholisnmo;
+        $this->fechaIniAlcoholismo = $fechaIniAlcoholismo;
+        $this->fechaFinAlcoholismo = $fechaFinAlcoholismo;
+        $this->consumoAlcoholDia = $consumoAlcoholDia;
+        $this->identificadorConsumoDrogras = $identificadorConsumoDrogras;
+        $this->fechaIniConsumoDrogas = $fechaIniConsumoDrogas;
+        $this->fechaFinConsumoDrogas = $fechaFinConsumoDrogas;
+        $this->consumoDrogasDia = $consumoDrogasDia;
+    }
 
     public function getAntecendetesPersonales() {
         return $this->antecedentesPersonales;
@@ -143,10 +161,8 @@ class antecedentes_personales_no_patologicos_paciente {
         $this->consumoDrogasDia = $consumoDrogasDia;
     }
 
-    // public function toXML(DOMDocument $doc, $antecedentesPersonales) {
-    //     $antecedentesPersonales = $doc->createElement($antecedentesPersonales);
-    //     $text = $doc->createTextNode($this->value);
-    //     $antecedentesPersonales->appendChild($text);
-    //     return $antecedentesPersonales;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Antecedentes", $this->antecedentesPersonales);
+        $documento->appendChild($segmento);
+    }
 }

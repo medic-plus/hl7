@@ -7,6 +7,10 @@ use DOMDocument;
 class motivo_referencia_contra_referencia {
     private string $motivoReferencia;
 
+    public function __construct(string $motivoReferencia) {
+        $this->motivoReferencia = $motivoReferencia;
+    }
+
     public function getMotivoReferencia() {
         return $this->motivoReferencia;
     }
@@ -15,10 +19,8 @@ class motivo_referencia_contra_referencia {
         $this->motivoReferencia = $motivoReferencia;
     }
 
-    // public function toXML(DOMDocument $doc, $motivoReferencia) {
-    //     $motivoReferencia = $doc->createElement($motivoReferencia);
-    //     $text = $doc->createTextNode($this->value);
-    //     $motivoReferencia->appendChild($text);
-    //     return $motivoReferencia;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Motivo", $this->motivoReferencia);
+        $documento->appendChild($segmento);
+    }
 }

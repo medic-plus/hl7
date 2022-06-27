@@ -3,12 +3,13 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\TipoEstudio;
-use Medicplus\HL7\Catalogos\TipoResultado;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\TipoEstudio;
+use Medicplus\HL7\Segments\Catalogos\TipoResultado;
 
 class resultados_estudios_laboratorios {
 
-    private string $descripcionEstudios;
+    private string $descripcion;
     private string $identificadorEstudios;
     private string $nombreEstudios;
     private string $identificadorResultados;
@@ -20,12 +21,26 @@ class resultados_estudios_laboratorios {
     private ?TipoEstudio $tipoEstudio;
     private ?TipoResultado $tipoResultado;
 
-    public function getDescripcionEstudios() {
-        return $this->descripcionEstudios;
+    public function __construct(string $descripcion, string $identificadorEstudios, string $nombreEstudios, string $identificadorResultados, string $nombreResultados, DateTime $fechaHoraResultado = null, string $valorResultado, string $unidadResultado, string $rangoResultado, TipoEstudio $tipoEstudio = null, TipoResultado $tipoResultado = null) {
+        $this->descripcion = $descripcion;
+        $this->identificadorEstudios = $identificadorEstudios;
+        $this->nombreEstudios = $nombreEstudios;
+        $this->identificadorResultados = $identificadorResultados;
+        $this->nombreResultados = $nombreResultados;
+        $this->fechaHoraResultado = $fechaHoraResultado;
+        $this->valorResultado = $valorResultado;
+        $this->unidadResultado = $unidadResultado;
+        $this->rangoResultado = $rangoResultado;
+        $this->tipoEstudio = $tipoEstudio;
+        $this->tipoResultado = $tipoResultado;
     }
 
-    public function setDescripcionEstudios(string $descripcionEstudios) {
-        $this->descripcionEstudios = $descripcionEstudios;
+    public function getDescripcionEstudios() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionEstudios(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getIdentificadorEstudios() {
@@ -106,5 +121,10 @@ class resultados_estudios_laboratorios {
 
     public function setTipoResultado(TipoResultado $tipoResultado) {
         $this->tipoResultado = $tipoResultado;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
     }
 }

@@ -3,11 +3,12 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\CLUES;
-use Medicplus\HL7\Catalogos\MotivoEgreso;
-use Medicplus\HL7\Catalogos\TipoAsentamiento;
-use Medicplus\HL7\Catalogos\TipoEncuentro;
-use Medicplus\HL7\Catalogos\TipoVialidad;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\CLUES;
+use Medicplus\HL7\Segments\Catalogos\MotivoEgreso;
+use Medicplus\HL7\Segments\Catalogos\TipoAsentamiento;
+use Medicplus\HL7\Segments\Catalogos\TipoEncuentro;
+use Medicplus\HL7\Segments\Catalogos\TipoVialidad;
 
 class encuentro_medico {
     private string $identificadorEncuentro;
@@ -34,6 +35,33 @@ class encuentro_medico {
     private ?CLUES $clues;
     private ?TipoVialidad $tipoVialidad;
     private ?TipoAsentamiento $tipoAsentamiento;
+
+    public function __construct(string $identificadorEncuentro, int $valorIdentificadorEncuentro, DateTime $fechaIniEncuentro = null, DateTime $fechaFinEncuentro = null, int $cedulaProfesionalMedicoConsultorio, string $nombreMedicoConsultorio, string $apellidoPaternoMedicoConsultorio, string $apellidoMaternoMedicoConsultorio, int $organizacionConsultada, string $nombreOrganizacionConsultada, string $licenciaSanitariaConsultorio, string $domicilioEstablecimientoResponsable, string $nombreVialidadConsultorio, float $numeroExteriorDomicilio, string $alfanumericoNumeroExterior, string $parteAlfanumericoExterior, float $numeroInteriorDomicilio, string $parteAlfanumericoInterior, string $asentamientoDomicilio, TipoEncuentro $tipoEncuentro = null, MotivoEgreso $motivoEgreso = null, CLUES $clues = null, TipoVialidad $tipoVialidad = null, TipoAsentamiento $tipoAsentamiento = null) {
+        $this->identificadorEncuentro = $identificadorEncuentro;
+        $this->valorIdentificadorEncuentro = $valorIdentificadorEncuentro;
+        $this->fechaIniEncuentro = $fechaIniEncuentro;
+        $this->fechaFinEncuentro = $fechaFinEncuentro;
+        $this->cedulaProfesionalMedicoConsultorio = $cedulaProfesionalMedicoConsultorio;
+        $this->nombreMedicoConsultorio = $nombreMedicoConsultorio;
+        $this->apellidoPaternoMedicoConsultorio = $apellidoPaternoMedicoConsultorio;
+        $this->apellidoMaternoMedicoConsultorio = $apellidoMaternoMedicoConsultorio;
+        $this->organizacionConsultada = $organizacionConsultada;
+        $this->nombreOrganizacionConsultada = $nombreOrganizacionConsultada;
+        $this->licenciaSanitariaConsultorio = $licenciaSanitariaConsultorio;
+        $this->domicilioEstablecimientoResponsable = $domicilioEstablecimientoResponsable;
+        $this->nombreVialidadConsultorio = $nombreVialidadConsultorio;
+        $this->numeroExteriorDomicilio = $numeroExteriorDomicilio;
+        $this->alfanumericoNumeroExterior = $alfanumericoNumeroExterior;
+        $this->parteAlfanumericoExterior = $parteAlfanumericoExterior;
+        $this->numeroInteriorDomicilio = $numeroInteriorDomicilio;
+        $this->alfanumericoNumeroExterior = $alfanumericoNumeroExterior;
+        $this->asentamientoDomicilio = $asentamientoDomicilio;
+        $this->tipoEncuentro = $tipoEncuentro;
+        $this->motivoEgreso = $motivoEgreso;
+        $this->clues = $clues;
+        $this->tipoVialidad = $tipoVialidad;
+        $this->tipoAsentamiento = $tipoAsentamiento;
+    }
 
     public function getIdentificadorEncuentro() {
         return $this->identificadorEncuentro;
@@ -225,5 +253,10 @@ class encuentro_medico {
 
     public function setTipoAsentamiento(TipoAsentamiento $tipoAsentamiento) {
         $this->tipoAsentamiento = $tipoAsentamiento;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Identificador", $this->identificadorEncuentro);
+        $documento->appendChild($segmento);
     }
 }

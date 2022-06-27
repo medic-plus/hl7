@@ -2,19 +2,26 @@
 
 namespace Medicplus\HL7\Segments;
 
-use Medicplus\HL7\Catalogos\Discapacidad;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\Discapacidad;
 
 class discapacidad_paciente {
-    private string $descripcionDiscapacidades;
+    private string $descripcion;
     private int $identificadorUnicoDiscapacidad;
     private ?Discapacidad $discapacidad;
 
-    public function getDescripcionDiscapacidades() {
-        return $this->descripcionDiscapacidades;
+    public function __construct(string $descripcion, int $identificadorUnicoDiscapacidad, Discapacidad $discapacidad = null) {
+        $this->descripcion = $descripcion;
+        $this->identificadorUnicoDiscapacidad = $identificadorUnicoDiscapacidad;
+        $this->discapacidad = $discapacidad;
     }
 
-    public function setDescripcionDiscapacidades(string $descripcionDiscapacidades) {
-        $this->descripcionDiscapacidades = $descripcionDiscapacidades;
+    public function getDescripcionDiscapacidades() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionDiscapacidades(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getIdentificadorUnicoDiscapacidad() {
@@ -31,5 +38,10 @@ class discapacidad_paciente {
 
     public function setDiscapacidad(Discapacidad $discapacidad) {
         $this->discapacidad = $discapacidad;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
     }
 }

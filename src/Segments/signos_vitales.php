@@ -3,29 +3,38 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\SignoVital;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\SignoVital;
 
 class signos_vitales {
-    private string $descripcionSignosVitales;
-    private string $nombreSignoVital;
+    private string $descripcion;
+    private string $nombre;
     private ?DateTime $fechaSignoVital;
-    private string $resultadoMedicionSignoVital;
+    private string $resultadoMedicion;
     private ?SignoVital $signoVital;
 
-    public function getDescripcionSignosVitales() {
-        return $this->descripcionSignosVitales;
+    public function __construct(string $descripcion, string $nombre, DateTime $fechaSignoVital = null, string $resultadoMedicion, SignoVital $signoVital = null) {
+        $this->descripcion = $descripcion;
+        $this->nombre = $nombre;
+        $this->fechaSignoVital = $fechaSignoVital;
+        $this->resultadoMedicion = $resultadoMedicion;
+        $this->signoVital = $signoVital;
     }
 
-    public function setDescripcionSignosVitales(string $descripcionSignosVitales) {
-        $this->descripcionSignosVitales = $descripcionSignosVitales;
+    public function getDescripcionSignosVitales() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionSignosVitales(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getNombreSignoVital() {
-        return $this->nombreSignoVital;
+        return $this->nombre;
     }
 
-    public function setNombreSignoVital(string $nombreSignoVital) {
-        $this->nombreSignoVital = $nombreSignoVital;
+    public function setNombreSignoVital(string $nombre) {
+        $this->nombre = $nombre;
     }
 
     public function getFechaSignoVital() {
@@ -37,11 +46,11 @@ class signos_vitales {
     }
 
     public function getResultadoMedicionSignoVital() {
-        return $this->resultadoMedicionSignoVital;
+        return $this->resultadoMedicion;
     }
 
-    public function setResultadoMedicionSignoVital(string $resultadoMedicionSignoVital) {
-        $this->resultadoMedicionSignoVital = $resultadoMedicionSignoVital;
+    public function setResultadoMedicionSignoVital(string $resultadoMedicion) {
+        $this->resultadoMedicion = $resultadoMedicion;
     }
 
     public function getSignoVital() {
@@ -50,5 +59,10 @@ class signos_vitales {
 
     public function setSignoVital(SignoVital $signoVital) {
         $this->signoVital = $signoVital;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
     }
 }

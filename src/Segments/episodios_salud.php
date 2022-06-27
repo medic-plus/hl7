@@ -3,10 +3,11 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\CLUES;
-use Medicplus\HL7\Catalogos\TipoAsentamiento;
-use Medicplus\HL7\Catalogos\TipoEpisodio;
-use Medicplus\HL7\Catalogos\TipoVialidad;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\CLUES;
+use Medicplus\HL7\Segments\Catalogos\TipoAsentamiento;
+use Medicplus\HL7\Segments\Catalogos\TipoEpisodio;
+use Medicplus\HL7\Segments\Catalogos\TipoVialidad;
 
 class episodios_salud {
     private string $identificadorEpisodio;
@@ -33,6 +34,33 @@ class episodios_salud {
     private ?CLUES $clues;
     private ?TipoVialidad $tipoVialidad;
     private ?TipoAsentamiento $tipoAsentamiento;
+
+    public function __construct(string $identificadorEpisodio, int $nombreEpisodio, DateTime $fechaIniEpisodio = null, DateTime $fechaFinEpisodio = null, int $cedulaProfesionalEpisodio, string $nombreMedicoEpisodio, string $apellidoPaternoMedico, string $apellidoMaternoMedico, string $licenciaEpisodio, string $nombreEstablecimiento, int $telefonoEstablecimiento, string $correoEstablecimiento, string $domicilioEstablecimiento, string $nombreVialidadEpisodio, float $numeroExteriorEstablecimiento, string $alfanumericoExterior, float $numeroInteriorEstablecimiento, string $alfanumericoInterior, string $asentamientoDomicilio, string $paisEpisodio, TipoEpisodio $tipoEpisodio = null, CLUES $clues = null, TipoVialidad $tipoVialidad = null, TipoAsentamiento $tipoAsentamiento = null) {
+        $this->identificadorEpisodio = $identificadorEpisodio;
+        $this->nombreEpisodio = $nombreEpisodio;
+        $this->fechaIniEpisodio = $fechaIniEpisodio;
+        $this->fechaFinEpisodio = $fechaFinEpisodio;
+        $this->cedulaProfesionalEpisodio = $cedulaProfesionalEpisodio;
+        $this->nombreMedicoEpisodio = $nombreMedicoEpisodio;
+        $this->apellidoPaternoMedico = $apellidoPaternoMedico;
+        $this->apellidoMaternoMedico = $apellidoMaternoMedico;
+        $this->licenciaEpisodio = $licenciaEpisodio;
+        $this->nombreEstablecimiento = $nombreEstablecimiento;
+        $this->telefonoEstablecimiento = $telefonoEstablecimiento;
+        $this->correoEstablecimiento = $correoEstablecimiento;
+        $this->domicilioEstablecimiento = $domicilioEstablecimiento;
+        $this->nombreVialidadEpisodio = $nombreVialidadEpisodio;
+        $this->numeroExteriorEstablecimiento = $numeroExteriorEstablecimiento;
+        $this->alfanumericoExterior = $alfanumericoExterior;
+        $this->numeroInteriorEstablecimiento = $numeroInteriorEstablecimiento;
+        $this->alfanumericoInterior = $alfanumericoInterior;
+        $this->asentamientoDomicilio = $asentamientoDomicilio;
+        $this->paisEpisodio = $paisEpisodio;
+        $this->tipoEpisodio = $tipoEpisodio;
+        $this->clues = $clues;
+        $this->tipoVialidad = $tipoVialidad;
+        $this->tipoAsentamiento = $tipoAsentamiento;
+    }
 
     public function getIdentificadorEpisodio() {
         return $this->identificadorEpisodio;
@@ -224,5 +252,10 @@ class episodios_salud {
 
     public function setTipoAsentamiento(TipoAsentamiento $tipoAsentamiento) {
         $this->tipoAsentamiento = $tipoAsentamiento;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Identificador", $this->identificadorEpisodio);
+        $documento->appendChild($segmento);
     }
 }

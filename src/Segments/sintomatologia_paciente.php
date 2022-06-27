@@ -8,6 +8,10 @@ class sintomatologia_paciente {
 
     private string $manifestacionIniciales;
 
+    public function __construct(string $manifestacionIniciales) {
+        $this->getManifestacionIniciales = $manifestacionIniciales;
+    }
+
     public function getManifestacionIniciales() {
         return $this->manifestacionIniciales;
     }
@@ -16,10 +20,8 @@ class sintomatologia_paciente {
         $this->manifestacionIniciales = $manifestacionIniciales;
     }
 
-    // public function toXML(DOMDocument $doc, $manifestacionIniciales) {
-    //     $manifestacionIniciales = $doc->createElement($manifestacionIniciales);
-    //     $text = $doc->createTextNode($this->value);
-    //     $manifestacionIniciales->appendChild($text);
-    //     return $manifestacionIniciales;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Manifestacion", $this->manifestacionIniciales);
+        $documento->appendChild($segmento);
+    }
 }

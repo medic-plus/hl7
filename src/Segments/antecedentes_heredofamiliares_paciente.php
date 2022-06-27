@@ -5,17 +5,24 @@ namespace Medicplus\HL7\Segments;
 use DOMDocument;
 
 class antecedentes_heredofamiliares_paciente {
-    private string $descripcionHeredofamiliares;
+    private string $descripcion;
     private bool $presenciaHipertension;
     private bool $presenciaDislipidemias;
     private bool $presenciaDiabetes;
 
-    public function getDescripcionHeredofamilia() {
-        return $this->descripcionHeredofamiliares;
+    public function __construct(string $descripcion, bool $presenciaHipertension, bool $presenciaDislipidemias, bool $presenciaDiabetes) {
+        $this->descripcion = $descripcion;
+        $this->presenciaHipertension = $presenciaHipertension;
+        $this->presenciaDislipidemias = $presenciaDislipidemias;
+        $this->presenciaDiabetes = $presenciaDiabetes;
     }
 
-    public function setDescripcionHeredofamilia(string $descripcionHeredofamiliares) {
-        $this->descripcionHeredofamiliares = $descripcionHeredofamiliares;
+    public function getDescripcion() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getPresenciaHipertension() {
@@ -42,10 +49,8 @@ class antecedentes_heredofamiliares_paciente {
         $this->presenciaDiabetes = $presenciaDiabetes;
     }
 
-    // public function toXML(DOMDocument $doc, $descripcionHeredofamiliares) {
-    //     $descripcionHeredofamiliares = $doc->createElement($descripcionHeredofamiliares);
-    //     $text = $doc->createTextNode($this->value);
-    //     $descripcionHeredofamiliares->appendChild($text);
-    //     return $descripcionHeredofamiliares;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
+    }
 }

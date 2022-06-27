@@ -4,22 +4,31 @@ namespace Medicplus\HL7\Segments;
 
 use DateTime;
 use DOMDocument;
-use Medicplus\HL7\Catalogos\AntecendentePatologico;
+use Medicplus\HL7\Segments\Catalogos\AntecendentePatologico;
 
 class antecedente_patologicos_paciente {
-    private string $descripcionPatologico;
+    private string $descripcion;
     private ?DateTime $fechaDiabetes;
     private ?DateTime $fechaHipertension;
     private ?DateTime $fechaHipertiroidismo;
     private string $antecedentePersonalPatologico;
     private ?AntecendentePatologico $antecedentePatologico;
 
-    public function getDescripcionPatologico() {
-        return $this->descripcionPatologico;
+    public function __construct(string $descripcion, string $antecedentePersonalPatologico, DateTime $fechaDiabetes = null, DateTime $fechaHipertension = null, DateTime $fechaHipertiroidismo = null, AntecendentePatologico $antecedentePatologico = null) {
+        $this->descripcion = $descripcion;
+        $this->fechaDiabetes = $fechaDiabetes;
+        $this->fechaHipertension = $fechaHipertension;
+        $this->fechaHipertiroidismo = $fechaHipertiroidismo;
+        $this->antecedentePersonalPatologico = $antecedentePersonalPatologico;
+        $this->antecedentePatologico = $antecedentePatologico;
     }
 
-    public function setDescripcionPatologico(string $descripcionPatologico) {
-        $this->descripcionPatologico = $descripcionPatologico;
+    public function getDescripcionAntecedente() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionAntecedente(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getFechaDiabetes() {
@@ -61,10 +70,8 @@ class antecedente_patologicos_paciente {
         $this->antecedentePatologico = $antecedentePatologico;
     }
 
-    // public function toXML(DOMDocument $doc, $descripcionPatologico) {
-    //     $descripcionPatologico = $doc->createElement($descripcionPatologico);
-    //     $text = $doc->createTextNode($this->value);
-    //     $descripcionPatologico->appendChild($text);
-    //     return $descripcionPatologico;
-    // }
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Antecendetes", $this->descripcion);
+        $documento->appendChild($segmento);
+    }
 }

@@ -3,11 +3,12 @@
 namespace Medicplus\HL7\Segments;
 
 use DateTime;
-use Medicplus\HL7\Catalogos\AdministracionFarmacologica;
-use Medicplus\HL7\Catalogos\Medicamento;
+use DOMDocument;
+use Medicplus\HL7\Segments\Catalogos\AdministracionFarmacologica;
+use Medicplus\HL7\Segments\Catalogos\Medicamento;
 
 class medicamento_previos_actuales_paciente {
-    private string $descripcionMedicamentos;
+    private string $descripcion;
     private string $medicamentoAdministrado;
     private string $dosisAdministrada;
     private ?DateTime $fechaIniUsoMedicamento;
@@ -16,12 +17,23 @@ class medicamento_previos_actuales_paciente {
     private ?Medicamento $medicamento;
     private ?AdministracionFarmacologica $administracionFarmacologica;
 
-    public function getDescripcionMedicamentos() {
-        return $this->descripcionMedicamentos;
+    public function __construct(string $descripcion, string $medicamentoAdministrado, string $dosisAdministrada, DateTime $fechaIniUsoMedicamento = null, DateTime $fechaFinUsoMedicamento = null, string $observacionPrescripcion, Medicamento $medicamento = null, AdministracionFarmacologica $administracionFarmacologica = null) {
+        $this->descripcion = $descripcion;
+        $this->medicamentoAdministrado = $medicamentoAdministrado;
+        $this->dosisAdministrada = $dosisAdministrada;
+        $this->fechaIniUsoMedicamento = $fechaIniUsoMedicamento;
+        $this->fechaFinUsoMedicamento = $fechaFinUsoMedicamento;
+        $this->observacionPrescripcion = $observacionPrescripcion;
+        $this->medicamento = $medicamento;
+        $this->administracionFarmacologica = $administracionFarmacologica;
     }
 
-    public function setDescripcionMedicamentos(string $descripcionMedicamentos) {
-        $this->descripcionMedicamentos = $descripcionMedicamentos;
+    public function getDescripcionMedicamentos() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionMedicamentos(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getMedicamentoAdministrado() {
@@ -78,5 +90,10 @@ class medicamento_previos_actuales_paciente {
 
     public function setAdministracionFarmacologica(AdministracionFarmacologica $administracionFarmacologica) {
         $this->administracionFarmacologica = $administracionFarmacologica;
+    }
+
+    public function toXML(DOMDocument $documento) {
+        $segmento = $documento->createElement("Descripcion", $this->descripcion);
+        $documento->appendChild($segmento);
     }
 }
