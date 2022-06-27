@@ -9,6 +9,5 @@ namespace Medicplus\HL7;
  * @author  Omar Acuña
  */
 class Documento {
-    // $arrayName = array('' => , );
-    array $alergias = [0];
+    // array $alergias = [];
 }
