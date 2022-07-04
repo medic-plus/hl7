@@ -217,7 +217,6 @@ class antecedentes_personales_no_patologicos_paciente {
         $documentoElement44 = $documento->createElement('td', 'Cantidad de alcohol consumido por dia');
         $documentoElement45 = $documento->createElement('paragraph', 'Otros antecedentes personales no patologicos en texto libre');
         $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement);
         $documento->appendChild($documentoElement1);
         $documento->appendChild($documentoElement2);
         $documento->appendChild($documentoElement3);
