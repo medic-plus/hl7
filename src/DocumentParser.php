@@ -13,30 +13,46 @@ use Medicplus\HL7\Segments\Alergias;
  */
 class DocumentParser {
 
-    private DOMDocument $documento;
+    private Documento $documento;
+    private DOMDocument $DOM;
     private \Medicplus\HL7\Config $config;
 
     /**
-     * Documento constructor.
+     * DocumentParser constructor
      *
      * @param \Medicplus\HL7\Config $config
      */
-    public function __construct(Config $config) {
-        $this->documento = new DOMDocument('1.0', 'UTF-8');
-        $this->documento->preserveWhiteSpace = false;
-        $this->documento->formatOutput = true;
-        $this->config = $config;
+    public function __construct(?Config $config, ?Documento $documento) {
+        $this->documento = $documento ?? new Documento();
+        $this->config = $config ?? new Config();
+        $this->resetDOM();
+    }
+
+    public function resetDOM() {
+        $this->DOM = new DOMDocument('1.0', 'UTF-8');
+        $this->DOM->preserveWhiteSpace = false;
+        $this->DOM->formatOutput = true;
     }
 
     public function getDOM(): DOMDocument {
+        return $this->DOM;
+    }
+
+    public function getDocumento(): Documento {
         return $this->documento;
     }
 
-    public function addAlergia(Alergias $alergia) {
-        $alergia->toXML($this->getDOM());
+    public function setDocumento(Documento $documento) {
+        $this->documento = $documento;
+        $this->resetDOM();
+    }
+
+    public function parseAlergias() {
+        $this->DOM = Alergias::parseXML($this->DOM, $this->documento->getAlergias());
     }
 
     public function toXML() {
-        return $this->documento->saveXML();
+        $this->parseAlergias();
+        return $this->DOM->saveXML();
     }
 }

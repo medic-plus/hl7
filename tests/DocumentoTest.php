@@ -4,6 +4,7 @@ namespace Medicplus\HL7\Tests;
 
 use Medicplus\HL7\Segments\Alergias;
 use Medicplus\HL7\Config;
+use Medicplus\HL7\Documento;
 use Medicplus\HL7\DocumentParser;
 
 /**
@@ -15,17 +16,25 @@ use Medicplus\HL7\DocumentParser;
  */
 class DocumentoTest extends TestCase {
 
+    static function exportDOM(?Documento $documento) {
+        $config = new Config();
+        $parser = new DocumentParser($config, $documento);
+        return $parser->toXML();
+    }
+
     public function testEmptyXML() {
-        $documento = new DocumentParser(new Config());
+        $documento = DocumentoTest::exportDOM(null);
         $expected = file_get_contents('./tests/files/empty.xml');
-        $this->assertEquals($expected, $documento->toXML());
+        $this->assertEquals($expected, $documento);
     }
 
     public function testAlergias() {
-        $documento = new DocumentParser(new Config());
-        $alergia = new Alergias("Prueba");
-        $documento->addAlergia($alergia);
+        $documento = new Documento();
+        $alergia1 = new Alergias("Alergia prueba 1");
+        $alergia2 = new Alergias("Alergia prueba 2");
+        $documento->addAlergia($alergia1);
+        $documento->addAlergia($alergia2);
         $expected = file_get_contents('./tests/files/segments/alergias.xml');
-        $this->assertEquals($expected, $documento->toXML());
+        $this->assertEquals($expected, DocumentoTest::exportDOM($documento));
     }
 }

@@ -20,55 +20,37 @@ class Alergias {
         $this->alergias = $alergias;
     }
 
-    public function toXML(DOMDocument $documento) {
-        $segmento = $documento->createElement("Alergia", $this->alergias);
-        $documento->appendChild($segmento);
-    }
+    public static function parseXML(DOMDocument $DOM, array $alergias = []) {
+        if (sizeof($alergias) == 0) {
+            return $DOM;
+        }
+        //Component
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+        //Section
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+        //TemplateID
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.22');
+        $section->appendChild($templateId);
+        //Code
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '48765-2');
+        $code->setAttribute('displayName', 'Alergias');
+        $section->appendChild($code);
+        //Title
+        $title = $DOM->createElement('title', 'Alergias y reacciones adversas');
+        $section->appendChild($title);
+        //Text
+        $alergiasContent = array_map(function ($alergia) {
+            return $alergia->getAlergias();
+        }, $alergias);
+        $text = $DOM->createElement('text', implode("\n", $alergiasContent));
+        $section->appendChild($text);
 
-    public static function alergiaXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement2 = $documento->createElement('Section', '');
-        $documentoElement3 = $documento->createElement('Title', 'Alergias y reacciones adversas');
-        $documentoElement4 = $documento->createElement('Thead', '');
-        $documentoElement5 = $documento->createElement('Tr', '');
-        $documentoElement6 = $documento->createElement('Th', 'Alergeno');
-        $documentoElement7 = $documento->createElement('Th', 'Fecha Inicial');
-        $documentoElement8 = $documento->createElement('Th', 'Medico');
-        $documentoElement9 = $documento->createElement('Th', 'Reaccion');
-        $documentoElement10 = $documento->createElement('Th', 'Estado actual');
-        $documentoElement11 = $documento->createElement('Th', 'Observacion');
-        $documentoElement12 = $documento->createElement('Tbody', '');
-        $documentoElement13 = $documento->createElement('Tr', '');
-        $documentoElement14 = $documento->createElement('Td', 'Nombre del alergeno que tiene reaccion el paciente');
-        $documentoElement15 = $documento->createElement('Td', 'Fecha y hora en el cual se realizo la deteccion en formato aaaammddhhiiss');
-        $documentoElement16 = $documento->createElement('Td', 'Nombre del medico que realizo la deteccion');
-        $documentoElement17 = $documento->createElement('Td', 'Descripcion de la reaccion producida por el alergeno en el paciente');
-        $documentoElement18 = $documento->createElement('Td', 'Situacion actual de la alergia');
-        $documentoElement19 = $documento->createElement('Td', 'Otros comentarios acerca de la reaccion que presenta el paciente');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
-        $documento->appendChild($documentoElement15);
-        $documento->appendChild($documentoElement16);
-        $documento->appendChild($documentoElement17);
-        $documento->appendChild($documentoElement18);
-        $documento->appendChild($documentoElement19);
-        echo $documento->saveXML();
+        return $DOM;
     }
 }
-
-Alergias::alergiaXML();

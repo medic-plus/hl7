@@ -11,11 +11,12 @@ use Medicplus\HL7\Segments\Alergias;
  * @author  Omar Acuña
  */
 class Documento {
-    public array $alergias = [];
+
+    private array $alergias = [];
     // public array $padecimiento = [];
 
     public function addAlergia(Alergias $alergia) {
-        array_push($alergias, $alergia);
+        array_push($this->alergias, $alergia);
     }
 
     public function getAlergias() {

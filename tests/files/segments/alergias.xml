@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Alergia>Prueba</Alergia>
+<component>
+  <section>
+    <templateId root="2.16.840.1.113883.10.20.22.2.22"/>
+    <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="48765-2" displayName="Alergias"/>
+    <title>Alergias y reacciones adversas</title>
+    <text>Alergia prueba 1
+Alergia prueba 2</text>
+  </section>
+</component>
