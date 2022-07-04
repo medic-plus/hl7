@@ -24,4 +24,18 @@ class sintomatologia_paciente {
         $segmento = $documento->createElement("Manifestacion", $this->manifestacionIniciales);
         $documento->appendChild($segmento);
     }
+
+    public static function manifestacionXML() {
+        $documento = new DOMDocument('1.0', 'UTF-8');
+        $documento->formatOutput = true;
+        $documento->preserveWhiteSpace = false;
+        $documentoElement = $documento->createElement('component', '');
+        $documentoElement1 = $documento->createElement('title', 'Manifestaciones iniciales');
+        $documentoElement2 = $documento->createElement('text', 'Sintomatologia que origina el episodio descripta por el paciente');
+        $documento->appendChild($documentoElement);
+        $documento->appendChild($documentoElement1);
+        $documento->appendChild($documentoElement2);
+    }
 }
+
+sintomatologia_paciente::manifestacionXML();

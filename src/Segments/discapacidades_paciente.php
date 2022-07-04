@@ -44,4 +44,20 @@ class discapacidad_paciente {
         $segmento = $documento->createElement("Descripcion", $this->descripcion);
         $documento->appendChild($segmento);
     }
+
+    public static function discapacidadXML() {
+        $documento = new DOMDocument('1.0', 'UTF-8');
+        $documento->formatOutput = true;
+        $documento->preserveWhiteSpace = false;
+        $documentoElement = $documento->createElement('component', '');
+        $documentoElement1 = $documento->createElement('section', '');
+        $documentoElement2 = $documento->createElement('title', 'Discapacidades');
+        $documentoElement3 = $documento->createElement('text', 'Descripcion de discapacidades y estado del funcionamiento');
+        $documento->appendChild($documentoElement);
+        $documento->appendChild($documentoElement1);
+        $documento->appendChild($documentoElement2);
+        $documento->appendChild($documentoElement3);
+    }
 }
+
+discapacidad_paciente::discapacidadXML();
