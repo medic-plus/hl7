@@ -65,4 +65,42 @@ class signos_vitales {
         $segmento = $documento->createElement("Descripcion", $this->descripcion);
         $documento->appendChild($segmento);
     }
+
+    public static function signosXML() {
+        $documento = new DOMDocument('1.0', 'UTF-8');
+        $documento->formatOutput = true;
+        $documento->preserveWhiteSpace = false;
+        $documentoElement = $documento->createElement('component', '');
+        $documentoElement1 = $documento->createElement('section', '');
+        $documentoElement2 = $documento->createElement('title', 'Signos Vitales');
+        $documentoElement3 = $documento->createElement('text', '');
+        $documentoElement4 = $documento->createElement('thead', '');
+        $documentoElement5 = $documento->createElement('tr', '');
+        $documentoElement6 = $documento->createElement('th', 'Fecha');
+        $documentoElement7 = $documento->createElement('th', 'Signo');
+        $documentoElement8 = $documento->createElement('th', 'Valor');
+        $documentoElement9 = $documento->createElement('th', 'Observaciones');
+        $documentoElement10 = $documento->createElement('tr', '');
+        $documentoElement11 = $documento->createElement('td', 'Fecha y hora de la toma del signo vital en formato "aaaammddhhiiss"');
+        $documentoElement12 = $documento->createElement('td', 'Nombre / descripcion del signo vital');
+        $documentoElement13 = $documento->createElement('td', 'Valor / resultado del signo vital');
+        $documentoElement14 = $documento->createElement('td', 'Observaciones generales acerca del resultado del signo vital');
+        $documento->appendChild($documentoElement);
+        $documento->appendChild($documentoElement1);
+        $documento->appendChild($documentoElement2);
+        $documento->appendChild($documentoElement3);
+        $documento->appendChild($documentoElement4);
+        $documento->appendChild($documentoElement5);
+        $documento->appendChild($documentoElement6);
+        $documento->appendChild($documentoElement7);
+        $documento->appendChild($documentoElement8);
+        $documento->appendChild($documentoElement9);
+        $documento->appendChild($documentoElement10);
+        $documento->appendChild($documentoElement11);
+        $documento->appendChild($documentoElement12);
+        $documento->appendChild($documentoElement13);
+        $documento->appendChild($documentoElement14);
+    }
 }
+
+signos_vitales::signosXML();

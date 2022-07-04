@@ -25,7 +25,7 @@ class Alergias {
         $documento->appendChild($segmento);
     }
 
-    public static function crearXML() {
+    public static function alergiaXML() {
         $documento = new DOMDocument('1.0', 'UTF-8');
         $documento->formatOutput = true;
         $documento->preserveWhiteSpace = false;
@@ -71,4 +71,4 @@ class Alergias {
     }
 }
 
-Alergias::crearXML();
+Alergias::alergiaXML();

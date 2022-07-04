@@ -96,4 +96,46 @@ class medicamentos_administrados_durante_atencion {
         $segmento = $documento->createElement("Descripcion", $this->descripcion);
         $documento->appendChild($segmento);
     }
+
+    public static function medicamentosAdminXML() {
+        $documento = new DOMDocument('1.0', 'UTF-8');
+        $documento->formatOutput = true;
+        $documento->preserveWhiteSpace = false;
+        $documentoElement = $documento->createElement('component', '');
+        $documentoElement1 = $documento->createElement('section', '');
+        $documentoElement2 = $documento->createElement('title', 'Terapeutica empleada');
+        $documentoElement3 = $documento->createElement('tr', '');
+        $documentoElement4 = $documento->createElement('th', 'Medicamento');
+        $documentoElement5 = $documento->createElement('th', 'Via de administracion');
+        $documentoElement6 = $documento->createElement('th', 'Dosis');
+        $documentoElement7 = $documento->createElement('th', 'Fecha de inicio');
+        $documentoElement8 = $documento->createElement('th', 'Fecha de fin');
+        $documentoElement9 = $documento->createElement('th', 'Obs. prescripcion');
+        $documentoElement10 = $documento->createElement('tbody', '');
+        $documentoElement11 = $documento->createElement('tr', '');
+        $documentoElement12 = $documento->createElement('td', 'Nombre del medicamento / substancia activa');
+        $documentoElement13 = $documento->createElement('td', 'Via de administracion');
+        $documentoElement14 = $documento->createElement('td', 'Dosis por administrar');
+        $documentoElement15 = $documento->createElement('td', 'Fecha y hora de termino de administracion de medicamento');
+        $documentoElement16 = $documento->createElement('td', 'Observaciones adicionales acerca de  la prescripcion');
+        $documento->appendChild($documentoElement);
+        $documento->appendChild($documentoElement1);
+        $documento->appendChild($documentoElement2);
+        $documento->appendChild($documentoElement3);
+        $documento->appendChild($documentoElement4);
+        $documento->appendChild($documentoElement5);
+        $documento->appendChild($documentoElement6);
+        $documento->appendChild($documentoElement7);
+        $documento->appendChild($documentoElement8);
+        $documento->appendChild($documentoElement9);
+        $documento->appendChild($documentoElement10);
+        $documento->appendChild($documentoElement11);
+        $documento->appendChild($documentoElement12);
+        $documento->appendChild($documentoElement13);
+        $documento->appendChild($documentoElement14);
+        $documento->appendChild($documentoElement15);
+        $documento->appendChild($documentoElement16);
+    }
 }
+
+medicamentos_administrados_durante_atencion::medicamentosAdminXML();

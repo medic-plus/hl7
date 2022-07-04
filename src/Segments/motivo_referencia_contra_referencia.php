@@ -24,19 +24,19 @@ class motivo_referencia_contra_referencia {
         $documento->appendChild($segmento);
     }
 
-    // public static function motivoXML() {
-    //     $documento = new DOMDocument('1.0', 'UTF-8');
-    //     $documento->formatOutput = true;
-    //     $documento->preserveWhiteSpace = false;
-    //     $documentElement = $documento->createElement('component', '');
-    //     $documentElement1 = $documento->createElement('section', '');
-    //     $documentElement2 = $documento->createElement('title', 'Motivo de la referencia');
-    //     $documentElement3 = $documento->createElement('text', 'Detalle del motivo de la referencia');
-    //     $documento->appendChild($documentElement);
-    //     $documento->appendChild($documentElement1);
-    //     $documento->appendChild($documentElement2);
-    //     $documento->appendChild($documentElement3);
-    // }
+    public static function motivoXML() {
+        $documento = new DOMDocument('1.0', 'UTF-8');
+        $documento->formatOutput = true;
+        $documento->preserveWhiteSpace = false;
+        $documentElement = $documento->createElement('component', '');
+        $documentElement1 = $documento->createElement('section', '');
+        $documentElement2 = $documento->createElement('title', 'Motivo de la referencia');
+        $documentElement3 = $documento->createElement('text', 'Detalle del motivo de la referencia');
+        $documento->appendChild($documentElement);
+        $documento->appendChild($documentElement1);
+        $documento->appendChild($documentElement2);
+        $documento->appendChild($documentElement3);
+    }
 }
 
-// motivo_referencia_contra_referencia::motivoXML();
+motivo_referencia_contra_referencia::motivoXML();

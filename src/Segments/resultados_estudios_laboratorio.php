@@ -127,4 +127,42 @@ class resultados_estudios_laboratorios {
         $segmento = $documento->createElement("Descripcion", $this->descripcion);
         $documento->appendChild($segmento);
     }
+
+    public static function resultadosXML() {
+        $documento = new DOMDocument('1.0', 'UTF-8');
+        $documento->formatOutput = true;
+        $documento->preserveWhiteSpace = false;
+        $documentoElement = $documento->createElement('component', '');
+        $documentoElement1 = $documento->createElement('section', '');
+        $documentoElement2 = $documento->createElement('title', 'Estudios de laboratorios');
+        $documentoElement3 = $documento->createElement('text', '');
+        $documentoElement4 = $documento->createElement('paragraph', 'Identificacion de la bateria de pruebas o estudios de laboratorio realizados');
+        $documentoElement5 = $documento->createElement('tr', '');
+        $documentoElement6 = $documento->createElement('th', 'Prueba');
+        $documentoElement7 = $documento->createElement('th', 'Fecha de resultado');
+        $documentoElement8 = $documento->createElement('th', 'Resultado');
+        $documentoElement9 = $documento->createElement('th', 'Rango');
+        $documentoElement10 = $documento->createElement('tr', '');
+        $documentoElement11 = $documento->createElement('td', 'Nombre de la prueba o analito');
+        $documentoElement12 = $documento->createElement('td', 'Fecha y hora del resultado');
+        $documentoElement13 = $documento->createElement('td', 'Valor y unidad del resultado');
+        $documentoElement14 = $documento->createElement('td', 'Rango de referencia para el resultado de acuerdo al perfil del paciente');
+        $documento->appendChild($documentoElement);
+        $documento->appendChild($documentoElement1);
+        $documento->appendChild($documentoElement2);
+        $documento->appendChild($documentoElement3);
+        $documento->appendChild($documentoElement4);
+        $documento->appendChild($documentoElement5);
+        $documento->appendChild($documentoElement6);
+        $documento->appendChild($documentoElement7);
+        $documento->appendChild($documentoElement8);
+        $documento->appendChild($documentoElement9);
+        $documento->appendChild($documentoElement10);
+        $documento->appendChild($documentoElement11);
+        $documento->appendChild($documentoElement12);
+        $documento->appendChild($documentoElement13);
+        $documento->appendChild($documentoElement14);
+    }
 }
+
+resultados_estudios_laboratorios::resultadosXML();
