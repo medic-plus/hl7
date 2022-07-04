@@ -51,6 +51,21 @@ class datos_afiliaciones_planos_aseguramiento_paciente {
         $documento->appendChild($documentoElement1);
         $documento->appendChild($documentoElement2);
         $documento->appendChild($documentoElement3);
+        $documento->appendChild($documentoElement4);
+        $documento->appendChild($documentoElement5);
+        $documento->appendChild($documentoElement6);
+        $documento->appendChild($documentoElement7);
+        $documento->appendChild($documentoElement8);
+        $documento->appendChild($documentoElement9);
+        $documento->appendChild($documentoElement10);
+        $documento->appendChild($documentoElement11);
+        $documento->appendChild($documentoElement12);
+        $documento->appendChild($documentoElement13);
+        $documento->appendChild($documentoElement14);
+        $documento->appendChild($documentoElement15);
+        $documento->appendChild($documentoElement16);
+        $documento->appendChild($documentoElement17);
+        $documento->appendChild($documentoElement18);
     }
 }
 
