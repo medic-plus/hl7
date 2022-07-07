@@ -25,19 +25,33 @@ class pronosticos_salud_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function pronosticosSaludXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Pronosticos de salud del paciente');
-        $documentoElement3 = $documento->createElement('text', 'Pronosticos de la salud del paciente en texto libre');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
+    public static function parseXML(DOMDocument $DOM, array $pronosticoSalud = []) {
+        if (sizeof($pronosticoSalud) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code ', '47420-5');
+        $code->setAttribute('displayName', 'Evaluacion del Estado Funcional');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Pronosticos de salud del paciente');
+        $section->appendChild($title);
+
+        $pronosticoSaludContent = array_map(function ($pronosticoSalud) {
+            return $pronosticoSalud->getPronosticoSalud();
+        }, $pronosticoSalud);
+        $text = $DOM->createElement('text', implode("\n", $pronosticoSaludContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-pronosticos_salud_paciente::pronosticosSaludXML();

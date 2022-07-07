@@ -24,19 +24,37 @@ class plan_tratamiento_recomendaciones_terapeuticas {
         $documento->appendChild($segmento);
     }
 
-    public static function planXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Plan de tratamiento y recomendaciones terapeuticas');
-        $documentoElement3 = $documento->createElement('text', 'Indicaciones generales que deben seguir el paciente y/o equipo de atencion, asi como un listado de los medicamentos prescritos al alta del paciente');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
+    public static function parseXML(DOMDocument $DOM, array $planTratamientoTerapeuticas = []) {
+        if (sizeof($planTratamientoTerapeuticas) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('templateId', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.10');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '18776-5');
+        $code->setAttribute('displayName', 'Plan de tratamiento');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Plan de tratamiento y recomendaciones terapeuticas');
+        $section->appendChild($title);
+
+        $planTratamientoTerapeuticasContent = array_map(function ($alergia) {
+            return $alergia->getAlergias();
+        }, $planTratamientoTerapeuticas);
+        $text = $DOM->createElement('text', implode("\n", $planTratamientoTerapeuticasContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-plan_tratamiento_recomendaciones_terapeuticas::planXML();

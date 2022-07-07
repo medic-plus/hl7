@@ -25,17 +25,34 @@ class sintomatologia_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function manifestacionXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('title', 'Manifestaciones iniciales');
-        $documentoElement2 = $documento->createElement('text', 'Sintomatologia que origina el episodio descripta por el paciente');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
+    public static function parseXML(DOMDocument $DOM, array $manifestacionIniciales = []) {
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '1.3.6.1.4.1.19376.1.5.3.1.1.13.2.1');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '10154-3');
+        $code->setAttribute('displayName', 'Manifestaciones Iniciales');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Alergias y reacciones adversas');
+        $section->appendChild($title);
+
+        $manifestacionInicialesContent = array_map(function ($manifestacionInicial) {
+            return $manifestacionInicial->getManifestacionIniciales();
+        }, $manifestacionIniciales);
+
+        $text = $DOM->createElement('text', implode("\n", $manifestacionInicialesContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-sintomatologia_paciente::manifestacionXML();

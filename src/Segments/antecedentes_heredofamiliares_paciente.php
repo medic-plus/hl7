@@ -54,41 +54,37 @@ class antecedentes_heredofamiliares_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function heredofamiliaresXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Antecedentes Heredo-Familiares');
-        $documentoElement3 = $documento->createElement('text', '');
-        $documentoElement4 = $documento->createElement('Table', '');
-        $documentoElement5 = $documento->createElement('thead', '');
-        $documentoElement6 = $documento->createElement('tr', '');
-        $documentoElement7 = $documento->createElement('th', 'Hipertension');
-        $documentoElement8 = $documento->createElement('th', 'Dislipidemias');
-        $documentoElement9 = $documento->createElement('th', 'Diabetes');
-        $documentoElement10 = $documento->createElement('tbody', '');
-        $documentoElement11 = $documento->createElement('tr', '');
-        $documentoElement12 = $documento->createElement('td', 'Si/No/Sin informacion');
-        $documentoElement13 = $documento->createElement('td', 'Si/No/Sin informacion');
-        $documentoElement14 = $documento->createElement('td', 'Si/No/Sin informacion');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
+    public static function ParseXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.1.4');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '10157-6');
+        $code->setAttribute('displayName', 'Antecendentes Familiares');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Antecedentes Heredo-Familiares');
+        $section->appendChild($title);
+
+        $descripcionContent = array_map(function ($descripcion) {
+            return $descripcion->getAlergias();
+        }, $descripcion);
+
+        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $section->appendChild($text);
+        return $DOM;
     }
 }
-
-antecedentes_heredofamiliares_paciente::heredofamiliaresXML();

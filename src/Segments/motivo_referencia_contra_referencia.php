@@ -24,19 +24,37 @@ class motivo_referencia_contra_referencia {
         $documento->appendChild($segmento);
     }
 
-    public static function motivoXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentElement = $documento->createElement('component', '');
-        $documentElement1 = $documento->createElement('section', '');
-        $documentElement2 = $documento->createElement('title', 'Motivo de la referencia');
-        $documentElement3 = $documento->createElement('text', 'Detalle del motivo de la referencia');
-        $documento->appendChild($documentElement);
-        $documento->appendChild($documentElement1);
-        $documento->appendChild($documentElement2);
-        $documento->appendChild($documentElement3);
+    public static function parseXML(DOMDocument $DOM, array $motivoReferencia = []) {
+        if (sizeof($motivoReferencia) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '1.3.6.1.4.1.19376.1.5.3.1.3.1');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '42349-1');
+        $code->setAttribute('displayName', 'Motivo de Referencia');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Motivo de la referencia');
+        $section->appendChild($title);
+
+        $motivoReferenciaContent = array_map(function ($motivoReferencia) {
+            return $motivoReferencia->getMotivoReferencia();
+        }, $motivoReferencia);
+        $text = $DOM->createElement('text', implode("\n", $motivoReferenciaContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-motivo_referencia_contra_referencia::motivoXML();

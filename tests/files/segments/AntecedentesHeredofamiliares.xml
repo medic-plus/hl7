@@ -1,0 +1,103 @@
+<component>
+    <section>
+        <templateId root="2.16.840.1.113883.10.20.1.4"/>
+        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="10157-6" displayName="Antecedentes Familiares"/>
+        <title>Antecedentes Heredo-Familiares</title>
+        <text>PRUEBA</text>
+        <entry typeCode="DRIV">
+            <organizer moodCode="EVN" classCode="CLUSTER">
+                <statusCode code="completed"/>
+                <subject>
+                    <relatedSubject classCode="PRS">
+                        <code codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 FamilyMember" code="FAMMEMB" displayName="Familiar"/>
+                    </relatedSubject>
+                </subject>
+                <component>
+                    <observation classCode="OBS" moodCode="EVN">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="I10X" displayName="Hipertensión"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="I10X" displayName="Hipertensión"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN" nullFlavor="NI">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="I10X" displayName="Hipertensión"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E78" displayName="Dislipidemias"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E78" displayName="Dislipidemias"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN" nullFlavor="NI">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E78" displayName="Dislipidemias"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Diabetes"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Diabetes"/>
+                    </observation>
+
+                    <observation classCode="OBS" moodCode="EVN" nullFlavor="NI">
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                    <statusCode code="completed" />
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Diabetes"/>
+                    </observation>
+
+                    <organizer moodCode="EVN" classCode="CLUSTER">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.45"/>
+                        <statusCode code="completed"/>
+                        <subject>
+                            <relatedSubject classCode="PRS">
+                            <code codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 FamilyMember" code="--Valor del identificador de la relación familiar con el paciente--" displayName="--Nombre de la relación familiar con el paciente--"/>
+                            </relatedSubject>
+                        </subject>
+                        <component>
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="64572001" displayName="Condition"/>
+                                <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="--Valor del identificador de diagnóstico de acuerdo a catálogo, codificado a 4 dígitos--" displayName="--Nombre de diagnóstico de acuerdo a catálogo--" />
+                                <entryRelationship typeCode="CAUS">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code codeSystem="2.16.840.1.113883.5.4" codeSystemName="HL7ActCode" code="ASSERTION"/>
+                                        <statusCode code="completed"/>
+                                        <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="419099009" displayName="Muerte"/>
+                                    </observation>
+                                </entryRelationship>
+                                <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="397659008" displayName="Edad"/>
+                                        <statusCode code="completed"/>
+                                        <value xsi:type="PQ" value="--Edad en años--" unit="a"/>
+                                    </observation>
+                                </entryRelationship>
+                            </observation>
+                        </component>
+                    </organiter>
+                </component>
+            </organizer>
+        </entry>
+    </section>
+</component>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+    <section>
+        <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="29762-2" displayName="Antecedentes no patológicos"/>
+        <title>Antecendentes personales patologicos</title>
+        <text>
+            <paragraph>Relacion de antecendentes perosnales patologicos del paciente</paragraph>
+            <paragraph/>
+        </text>
+        <entry>
+            <observation classCode="OBS" moodCode="ENV">
+            <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="282291009" displayName="Diagnóstico"/>
+            <statusCode code="completed"/>
+            <effectiveTime>
+                <low value="-aaaa-">
+            </effectiveTime>
+            <value xsi:type="CE" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Diabetes"/>
+            </observation>
+        </entry>
+        <entry>
+            <observation classCode="OBS" moodCode="ENV">
+            <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="282291009" displayName="Diagnóstico"/>
+            <statusCode code="completed"/>
+            <effectiveTime>
+                <low value="-aaaa-">
+            </effectiveTime>
+            <value xsi:type="CE" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Hipertension"/>
+            </observation>
+        </entry>
+        <entry>
+            <observation classCode="OBS" moodCode="ENV">
+            <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="282291009" displayName="Diagnóstico"/>
+            <statusCode code="completed"/>
+            <effectiveTime>
+                <low value="-aaaa-">
+            </effectiveTime>
+            <value xsi:type="CE" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Hipertiroidismo"/>
+            </observation>
+        </entry>
+        <entry>
+            <observation classCode="OBS" moodCode="ENV">
+            <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="282291009" displayName="Diagnóstico"/>
+            <text>--Registro de diagnostico en texto libre--</text>
+            <statusCode code="completed"/>
+            <effectiveTime>
+                <low value="-aaaammddhhiiss-">
+            </effectiveTime>
+            <value xsi:type="CE" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="--Valor del identificador del diagnóstico de
+acuerdo a catálogo--" displayName="--Nombre del diagnóstico de acuerdo a catálogo--"/>
+            </observation>
+        </entry>
+    </section>
+</component>
