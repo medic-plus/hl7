@@ -24,49 +24,38 @@ class datos_afiliaciones_planos_aseguramiento_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function datosXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Afiliaciones/Planes de aseguramiento');
-        $documentoElement3 = $documento->createElement('text', '');
-        $documentoElement4 = $documento->createElement('table', '');
-        $documentoElement5 = $documento->createElement('thead', '');
-        $documentoElement6 = $documento->createElement('tr', 'Inicio');
-        $documentoElement7 = $documento->createElement('th', 'Fin');
-        $documentoElement8 = $documento->createElement('th', 'Programa');
-        $documentoElement9 = $documento->createElement('th', 'Poliza');
-        $documentoElement10 = $documento->createElement('th', 'Folio');
-        $documentoElement11 = $documento->createElement('th', 'Tipo de beneficio');
-        $documentoElement12 = $documento->createElement('tbody', '');
-        $documentoElement13 = $documento->createElement('tr', 'Inicio de vigencia N');
-        $documentoElement14 = $documento->createElement('td', 'Fin de vigencia N');
-        $documentoElement15 = $documento->createElement('td', 'Nombre del programa N');
-        $documentoElement16 = $documento->createElement('td', 'Valor del identificador de la poliza N');
-        $documentoElement17 = $documento->createElement('td', 'Valor del identificador del beneficio N');
-        $documentoElement18 = $documento->createElement('td', 'Valor del identificador del tipo de beneficio N');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
-        $documento->appendChild($documentoElement15);
-        $documento->appendChild($documentoElement16);
-        $documento->appendChild($documentoElement17);
-        $documento->appendChild($documentoElement18);
+    public static function parserXML(DOMDocument $DOM, array $datosAfiliaciones = []) {
+        if (sizeof($datosAfiliaciones) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.18');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '48768-6');
+        $code->setAttribute('displayName', 'Pagador');
+        $section->appendChild($templateId);
+
+        $title = $DOM->createElement('title', 'Afiliaciones / Planes de aseguramiento');
+        $section->appendChild($title);
+
+        $datosAfiliacionesContent = array_map(function ($datosAfiliacion) {
+            return $datosAfiliacion->getDatosAfiliaciones();
+        }, $datosAfiliaciones);
+
+        $text = $DOM->createElement('text', implode("\n", $datosAfiliacionesContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-datos_afiliaciones_planos_aseguramiento_paciente::datosXML();

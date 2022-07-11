@@ -1,0 +1,8 @@
+<component>
+    <section>
+        <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1"/>
+        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="42349-1" displayName="Motivo de Referencia"/>
+        <title>Motivo de la referencia</title>
+        <text>--Detalle del motivo de la referencia--</text>
+    </section>
+</component>

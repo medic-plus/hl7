@@ -7,13 +7,12 @@
             --Descripcion de discapacidades y estado del funcionamiento--
         </text>
         <entry typeCode="DRIV">
-            <observacion classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS" moodCode="EVN">
             <id root="--Identificador unico de las discapacidad del paciente--"/>
             <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="248536006" displayName="Discapacidades"/>
             <statusCode code="completed">
-            <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.254" codeSystemName="CIF" code="--Valor del identificador de discapacidad de
-acuerdo a catálogo--" displayName="--Nombre de discapacidad de acuerdo a catálogo--"/>
-            </observacion>
+            <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.254" codeSystemName="CIF" code="--Valor del identificador de discapacidad de acuerdo a catálogo--" displayName="--Nombre de discapacidad de acuerdo a catálogo--"/>
+            </observation>
         </entry>
     </section>
 </component>

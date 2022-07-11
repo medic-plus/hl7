@@ -1,0 +1,8 @@
+<component>
+    <section>
+        <templateId root="2.16.840.1.113883.10.20.22.2.10"/>
+        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="18776-5" displayName="Plan de tratamiento"/>
+        <title>Plan de tratamiento y recomendaciones terapeuticas</title>
+        <text>--Indicaciones generales que deben seguir el paciente y/o equipo de atencion, asi como un listado de los medicamentos prescritos al alta del paciente--</text>
+    </section>
+</component>

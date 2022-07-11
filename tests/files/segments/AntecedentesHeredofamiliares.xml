@@ -66,7 +66,6 @@
                     <statusCode code="completed" />
                     <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="E14" displayName="Diabetes"/>
                     </observation>
-
                     <organizer moodCode="EVN" classCode="CLUSTER">
                         <templateId root="2.16.840.1.113883.10.20.22.4.45"/>
                         <statusCode code="completed"/>

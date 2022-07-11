@@ -17,7 +17,6 @@
                 <value xsi:type="CS" code="--Tipo de sangre y factor RH--"/>
             </observation>
         </entry>
-
         <entry typeCode="DRIV">
             <observation>
                 <id root="--identificador único por cada periodo de consumo de tabaco--" />
@@ -30,7 +29,6 @@
                 <value xsi:type="ST">--Cantidad de cajetillas por día--</value>
             </observation>
         </entry>
-
         <entry typeCode="DRIV">
             <observation classCode="OBS" moodCode="EVN">
                 <id root="--identificador único por cada periodo de consumo de alcohol--" />
@@ -43,7 +41,6 @@
                 <value xsi:type="ST">--Cantidad de consumo de alcohol por día--</value>
             </observation>
         </entry>
-
         <entry typeCode="DRIV">
             <observation classCode="OBS" moodCode="EVN">
                 <id root="--identificador único por cada periodo de consumo de drogas--" />

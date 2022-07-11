@@ -24,19 +24,37 @@ class evolucion_paciente_atencion {
         $documento->appendChild($segmemto);
     }
 
-    public static function evolucionXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Evolucion durante la atencion');
-        $documentoElement3 = $documento->createElement('text', 'Narrativa describiendo brevemente la evolucion que el paciente ha tenido durante esta atencion medica');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
+    public static function parserXML(DOMDocument $DOM, array $evolucionPaciente = []) {
+        if (sizeof($evolucionPaciente) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '1.3.6.1.4.1.19376.1.5.3.1.3.5');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '8648-8');
+        $code->setAttribute('displayName', 'Evolucion');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Evolucion durante la atencion');
+        $section->appendChild($title);
+
+        $evolucionPacienteContent = array_map(function ($evolucionesPaciente) {
+            return $evolucionesPaciente->getEvolucionPaciente();
+        }, $evolucionPaciente);
+        $text = $DOM->createElement('text', implode("\n", $evolucionPacienteContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-evolucion_paciente_atencion::evolucionXML();

@@ -1,0 +1,7 @@
+<component>
+    <section>
+    <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="47420-5" displayName="Evaluación del Estado Funcional"/>
+    <title>Pronostico de salud del paciente</title>
+    <text>--Pronostico de la salud del paciente en texto libre--</text>
+    </section>
+</component>

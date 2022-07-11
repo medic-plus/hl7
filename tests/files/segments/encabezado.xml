@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="cda/CDAMX.xsl"?>
+<clinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+</ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+    <realmCode code="MX"/>
+    <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+    <templateId root="2.16.840.1.113883.3.215.11.1.1"/>
+    <id root="--OID del identificador o sistema generador del documento--" extension="-- Valor del identificador único del documento --" assigningAuthorityName="--Nombre del Sistema--"/>
+    <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="34133-9" displayName="Nota Resumen de Episodio"/>
+    <title>Resumen Clinico</title>
+    <effectiveTime value="--aaaammddhhiiss--"/>
+    <confidentialityCode codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality" code="--Valor del Nivel de confidencialidad de acuerdo al catálogo--" displayName="--Nombre del Nivel de confidencialidad de acuerdo al catálogo--"/>
+    <lenguagueCode code="es-MX"/>
+    <setId root="--OID de identificación del documento base del sistema--" extension="--Identificador único del documento base--" assigningAuthorityName="--Nombre del sistema generador del documento base--"/>
+    <versionNumber value="--Número de versión del documento--"/>
+    <recordTarget>
+    <patientRole>
+        <id root="---OID del Identificador único de paciente--" extension="--Valor único del identificador de paciente--" assigningAuthorityName="--Nombre del identificador usado por el sistema--"/>
+        <id root="2.16.840.1.113883.4.629" extension="--Clave Unica de Registro de Población (CURP) del paciente--" assigningAuthorityName="CURP"/>
+        <id root="--OID Identificador adicional de paciente--" extension="--Identificador adicional de paciente--" assigningAuthorityName="--Nombre del identificador adicional de paciente--"/>
+        <id root="2.16.840.1.113883.3.215.12.15" extension="--Valor de nacionalidad de acuerdo a catálogo--" assigningAuthorityName="Nacionalidad" />
+        <id root="2.16.840.1.113883.3.215.12.501" extension="--Edad del paciente--" assigningAuthorityName="Edad"/>
+        <addr>
+            <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+            <streetName>--Nombre de la vialidad--</streetName>
+            <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+            <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+            <unitID>Numero interior (Numerico)</unitID>
+            <unitType>Numero interior (alfanumerico)</unitType>
+            <deliveryInstallationType>--Valor de tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+            <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+            <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+            <country>--Valor de Municipio de acuerdo al catalogo--</country>
+            <state>--Valor de Entidad de acuerdo al catalogo--</state>
+            <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+            <country>--Pais--</country>
+        </addr>
+        <telecom value="tel:--Número telefónico--"/>
+        <telecom value="mailto:--ejemplo@correo.com--"/>
+        <patient>
+            <name>
+                <given>--Nombre(s)--</given>
+                <family>--Primer apellido--</family>
+                <family>--Segundo apellido--</family>
+            </name>
+            <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" codeSystemName="Administrative Gender" code="--Valor del Sexo de acuerdo a catálogo--" displayName="--Nombre del Sexo de acuerdo a catálogo--"/>
+            <birthTime value="--aaaammddhhiiss--"/>
+            <maritalStatusCode codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatus" code="--Valor del Estado civil de acuerdo a catálogo--" displayName="--Nombre del Estado civil de acuerdo a catálogo--"/>
+            <religiousAffiliationCode codeSystem="2.16.840.1.113883.3.215.12.11" codeSystemName="Religiones INEGI" code="--Valor de la Religión de acuerdo a catálogo--" displayName="--Nombre de la Religión de acuerdo a catálogo--"/>
+            <ethnicGroupCode codeSystem="2.16.840.1.113883.3.215.12.10" codeSystemName="Lenguas Indígenas INEGI" code="--Valor de Lengua indígena de acuerdo a catálogo--" displayName="--Nombre de Lengua indígena de acuerdo a catálogo--"/>
+            <birthplace>
+                <place>
+                    <addr>
+                        <state>--Valor de la entidad de acuerdo al catalogo--</state>
+                    </addr>
+                </place>
+            </birthplace>
+            <guardian>
+                <code codeSystem="2.16.840.1.113883.5.111" codeSystemName="Role Code" code="--Valor del Parentesco de acuerdo al catálogo--" displayName="--Nombre del Parentesco de acuerdo al catálogo--"/>
+                <addr>
+                    <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                    <streetName>--Nombre de la vialidad--</streetName>
+                    <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                    <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                    <unitID>--Numero interior (Numerico)--</unitID>
+                    <unitType>--Numero interior (alfanumerico)--</unitType>
+                    <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                    <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                    <precinct>--Valor de Localidad de acuerdo al catalogo</precinct>
+                    <country>--Valor de Municipio de acuerdo al catalogo</country>
+                    <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                    <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                    <country>--Pais--</country>
+                </addr>
+                <telecom value="tel:--Número telefónico--"/>
+                <telecom value="mailto:--Correo electrónico--"/>
+                <guardianPerson>
+                    <name>
+                        <given>--Nombre(s)--<given/>
+                        <family>--Primer apellido--</family>
+                        <family>--Segundo apellido--</family>
+                    </name>
+                <guardianPerson>
+            </guardian>
+        </patient>
+        <providerOrganization>
+            <id root="2.16.840.1.113883.4.631" extension="--Valor de la CLUES de acuerdo al catálogo--" assigningAuthorityName="CLUES"/>
+            <name>--Nombre del Establecimiento de salud de acuerdo al catalogo de CLUES</name>
+            <telecom value="tel:--Número telefónico--"/>
+            <telecom value="mailto:--Correo electrónico--"/>
+            <addr>
+                <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                <streetName>--Nombre de la vialidad--</streetName>
+                <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                <unitID>--Numero interior (Numerico)--</unitID>
+                <unitType>--Numero interior (alfanumerico)--</unitType>
+                <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                <country>--Pais--</country>
+            </addr>
+        </providerOrganization>
+    </patientRole>
+    </recordTarget>
+    <informationRecipient>
+        <intendedRecipient>
+            <id root='2.16.840.1.113883.3.215.12.18' extension="--Número de cédula profesional--"/>
+            <telecom value="tel:--Número telefónico--"/>
+            <telecom value="mailto:--Correo Electrónico--"/>
+                <addr>
+                    <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                    <streetName>--Nombre de la vialidad--</streetName>
+                    <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                    <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                    <unitID>--Numero interior (Numerico)--</unitID>
+                    <unitType>--Numero interior (alfanumerico)--</unitType>
+                    <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                    <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                    <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                    <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                    <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                    <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                    <country>--Pais--</country>
+                </addr>
+            <informationRecipient>
+                <name>
+                    <given>--Nombre(s)--</given>
+                    <family>--Primer apellido--</family>
+                    <family>--Segundo apellido--</family>
+                </name>
+            </informationRecipient>
+            <receivedOrganization>
+                <id root="--OID de la institución/organización/dependencia a la que pertenece el destinatario"/>
+                <id root="2.16.840.1.113883.4.631" extension="--Valor de la CLUES de acuerdo al catálogo--" assigningAuthorityName="CLUES"/>
+                <name>--Nombre de la institucion/organizacion/dependencia a la que permanece el destinatario--</name>
+            </receivedOrganization>
+        </informationRecipient>
+    </intendedRecipient>
+    <author>
+        <time value="aaaammddhhiiss"/>
+        <assignedAuthor>
+            <id root="---OID del sistema que genera el CDA--"/>
+            <assignedAuthoringDevice>
+                <softwareName>--Software, Dispositivo, Producto--</softwareName>
+                <manufacturerModelName>--Versión del software, modelo del dispositivo o producto--</manufacturerModelName>
+            </assignedAuthoringDevice>
+            <telecom value="tel:--Número telefónico--"/>
+            <telecom value="mailto:--Correo Electrónico--"/>
+            <addr>
+                <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                <streetName>--Nombre de la vialidad--</streetName>
+                <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                <unitID>--Numero interior (Numerico)--</unitID>
+                <unitType>--Numero interior (alfanumerico)--</unitType>
+                <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                <country>--Pais--</country>
+            </addr>
+            <representedOrganization>
+                <id root="-- OID de la Institución responsable de la autoría del documento electrónico --"/>
+                <name>--Nombre de la institucion responsable de la autoria del documento electronico--</name>
+            </representedOrganization>
+        </assignedAuthor>
+    </author>
+    <dataEnterer>
+        <time value="--aaaammddhhiiss--"/>
+        <assignedEntity>
+            <id root="--OID del sistema de identificador único del usuario capturista--" extension="--Valor del identificador único del usuario capturista--"/>
+            <assingnedPerson>
+                <name>
+                    <given>--Nombre(s)--</given>
+                    <family>--Primer apellido--</family>
+                    <family>--Segundo apellido--</family>
+                </name>
+            </assingnedPerson>
+        </assingnedEntity>
+    </dataEnterer>
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <id root="2.16.840.1.113883.4.631" extension="--Valor de la CLUES de acuerdo al catálogo--" assigningAuthorityName="CLUES"/>
+                <name>--Nombre del Establecimiento de salud de acuerdo al catálogo de CLUES--</name>
+                <telecom value="tel:--Número telefónico--"/>
+                <telecom value="mailto:--Correo Electrónico--"/>
+                <addr>
+                    <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                    <streetName>--Nombre de la vialidad--</streetName>
+                    <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                    <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                    <unitID>--Numero interior (Numerico)--</unitID>
+                    <unitType>--Numero interior (alfanumerico)--</unitType>
+                    <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                    <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                    <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                    <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                    <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                    <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                    <country>--Pais--</country>
+                </addr>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+    <legalAuthenticator>
+        <time value="--aaaammddhhiiss--"/>
+        <signatureCode code="--Valor del código para determinar si la firma fue plasmada en el documento--"/>
+        <assignedEntity>
+            <id root="2.16.840.1.113883.3.215.12.18" extension="--Número de cédula profesional--"/>
+            <addr>
+                <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                <streetName>--Nombre de la vialidad--</streetName>
+                <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                <unitID>--Numero interior (Numerico)--</unitID>
+                <unitType>--Numero interior (alfanumerico)--</unitType>
+                <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                <country>--Pais--</country>
+            </addr>
+            <telecom value="tel:--Número telefónico--"/>
+            <telecom value="mailto:--Correo Electrónico--"/>
+            <assignedPerson>
+                <name>
+                    <given>--Nombre(s)--</given>
+                    <family>--Primer apellido--</family>
+                    <family>--Segundo apellido--</family>
+                </name>
+            <assingnedPerson>
+        </assignedEntity>
+    </legalAuthenticator>
+    <documentationOf typeCode="DOC">
+        <serviceEvent classCode="PCPR">
+            <id root="-- OID del identificador de episodios que se esté ocupando --" extension="--Valor del Identificador único del episodio--"/>
+            <code codeSystem="2.16.840.1.113883.5.4" codeSystemName="actCode" code="--Valor del Tipo de episodio de acuerdo al catálogo--" displayName="Nombre del Tipo de episodio de acuerdo al catálogo"/>
+            <effectiveTime>
+                <low value="--aaaammddhhiiss--"/>
+                <high value="--aaaammddhhiiss--"/>
+            </effectiveTime>
+            <performer typeCode="PRF">
+                <functionCode codeSystem="2.16.840.1.113883.12.443" codeSystemName="Provider Role" code="PP" displayName="Primary Care Provider"/>
+                <assignedEntity>
+                    <id root="2.16.840.1.113883.3.215.12.18" extension="--Valor de la Cédula profesional del médico responsable--"/>
+                    <assignedPerson>
+                        <name>
+                            <given>--Nombre(s)--</given>
+                            <family>--Primer apellido--</family>
+                            <family>--Segundo apellido--</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id root="2.16.840.1.113883.4.631" extension="--Clave CLUES de acuerdo al catálogo--" assigningAuthorityName="CLUES"/>
+                        <id root="2.16.840.1.113883.3.215.1.1" extension="--Valor de la Licencia Sanitaria--" assigningAuthorityName="Licencia Sanitaria"/>
+                        <name>--Nombre del establecimiento de salud responsable del episodio--</name>
+                        <telecom value="tel:--Número telefónico--"/>
+                        <telecom value="mailto:--Correo electrónico--"/>
+                        <addr>
+                            <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                            <streetName>--Nombre de la vialidad--</streetName>
+                            <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                            <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                            <unitID>--Numero interior (Numerico)--</unitID>
+                            <unitType>--Numero interior (alfanumerico)--</unitType>
+                            <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                            <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                            <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                            <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                            <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                            <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                            <country>--Pais--</country>
+                        </addr>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+        </serviceEvent>
+    </documentationOf>
+    <componentOF>
+        <encompassingEncounter>
+            <id root="--OID del identificador de encuentros que se esté ocupando--" extension="--Valor del identificador de encuentros que se esté ocupando--"/>
+            <code codeSystem="2.16.840.1.113883.5.4" codeSystemName="actCode" code="--Valor del Tipo de encuentro--" displayName="--Nombre del Tipo de encuentro--"/>
+            <effectiveTime>
+                <low value="--aaaammddhhiiss--"/>
+                <high value="--aaaammddhhiiss--"/>
+            </effectiveTime>
+            <responsibleParty>
+                <assignedEntity>
+                    <id root="2.16.840.1.113883.3.215.12.18" extension="--Valor de la cédula profesional del médico consultado--"/>
+                    <assignedPerson>
+                        <name>
+                            <given>--Nombre(s)--</given>
+                            <family>--Primer apellido--</family>
+                            <family>--Segundo apellido--</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id root="--OID de la organización consultada"/>
+                        <name>--Nombre de la organización consultada--</name>
+                    </representedOrganization>
+                </assignedEntity>
+            </responsibleParty>
+            <dischargeDispositionCode codeSystem="2.16.840.1.113883.12.112" codeSystemName="HL7 Discharge Disposition" code="--Código del motivo de egreso--" displayName="--Descripción del motivo del egreso--"/>
+            <location>
+                <healthCareFacility>
+                    <id root="2.16.840.1.113883.4.631" extension="--Clave CLUES de acuerdo al catálogo--" assigningAuthorityName="CLUES"/>
+                    <id root="2.16.840.1.113883.3.215.1.1" extension="--Valor de la Licencia Sanitaria--" assigningAuthorityName="Licencia Sanitaria"/>
+                    <code codeSystem='2.16.840.1.113883.5.111' codeSystemName='RoleCode' code='--Código del área del encuentro--' displayName="--Nombre del área del encuentro--"/>
+                    <location>
+                        <name>--Nombre del establecimiento de salud consultorio</name>
+                        <addr>
+                            <streetNameType>--Valor de tipo de vialidad de acuerdo al catalogo--</streetNameType>
+                            <streetName>--Nombre de la vialidad--</streetName>
+                            <houseNumberNumeric>--Numero exterior (Numerico)--</houseNumberNumeric>
+                            <houseNumber>--Numero exterior parte alfanumerica--</houseNumber>
+                            <unitID>--Numero interior (Numerico)--</unitID>
+                            <unitType>--Numero interior (alfanumerico)--</unitType>
+                            <deliveryInstallationType>--Valor de Tipo de asentamiento de acuerdo al catalogo--</deliveryInstallationType>
+                            <deliveryInstallationArea>--Nombre del asentamiento--</deliveryInstallationArea>
+                            <precinct>--Valor de Localidad de acuerdo al catalogo--</precinct>
+                            <country>--Valor de Municipio de acuerdo al catalogo--</country>
+                            <state>--Valor de Entidad de acuerdo al catalogo--</state>
+                            <postalCode>--Valor de Codigo Postal de acuerdo al catalogo--</postalCode>
+                            <country>--Pais--</country>
+                        </addr>
+                    </location>
+                </healthCareFacility>
+            </location>
+        </encompassingEncounter>
+    </componentOF>
+</ClinicalDocument>
