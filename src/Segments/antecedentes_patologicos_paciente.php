@@ -100,8 +100,8 @@ class antecedente_patologicos_paciente {
         $title = $DOM->createElement('title', 'Antecedentes Persolanes patologicos');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($antecedentePatologico) {
-            return $antecedentePatologico->getAlergias();
+        $descripcionContent = array_map(function ($descripcionPatologico) {
+            return $descripcionPatologico->getDescripcionAntecedente();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);

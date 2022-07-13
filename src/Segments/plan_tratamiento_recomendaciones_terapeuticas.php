@@ -32,7 +32,7 @@ class plan_tratamiento_recomendaciones_terapeuticas {
         $component = $DOM->createElement('component', '');
         $DOM->appendChild($component);
 
-        $section = $DOM->createElement('templateId', '');
+        $section = $DOM->createElement('section', '');
         $component->appendChild($section);
 
         $templateId = $DOM->createElement('templateId', '');

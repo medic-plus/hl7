@@ -128,41 +128,37 @@ class resultados_estudios_laboratorios {
         $documento->appendChild($segmento);
     }
 
-    public static function resultadosXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Estudios de laboratorios');
-        $documentoElement3 = $documento->createElement('text', '');
-        $documentoElement4 = $documento->createElement('paragraph', 'Identificacion de la bateria de pruebas o estudios de laboratorio realizados');
-        $documentoElement5 = $documento->createElement('tr', '');
-        $documentoElement6 = $documento->createElement('th', 'Prueba');
-        $documentoElement7 = $documento->createElement('th', 'Fecha de resultado');
-        $documentoElement8 = $documento->createElement('th', 'Resultado');
-        $documentoElement9 = $documento->createElement('th', 'Rango');
-        $documentoElement10 = $documento->createElement('tr', '');
-        $documentoElement11 = $documento->createElement('td', 'Nombre de la prueba o analito');
-        $documentoElement12 = $documento->createElement('td', 'Fecha y hora del resultado');
-        $documentoElement13 = $documento->createElement('td', 'Valor y unidad del resultado');
-        $documentoElement14 = $documento->createElement('td', 'Rango de referencia para el resultado de acuerdo al perfil del paciente');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
+    public static function parserXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.3.1');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '30954-2');
+        $code->setAttribute('displayName', 'Estudios de Laboratorio');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Estudios de laboratorio');
+        $section->appendChild($title);
+
+        $descripcionContent = array_map(function ($descripcionResultado) {
+            return $descripcionResultado->getAlergias();
+        }, $descripcion);
+        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-resultados_estudios_laboratorios::resultadosXML();

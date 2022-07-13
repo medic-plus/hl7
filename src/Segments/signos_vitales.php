@@ -66,41 +66,37 @@ class signos_vitales {
         $documento->appendChild($segmento);
     }
 
-    public static function signosXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Signos Vitales');
-        $documentoElement3 = $documento->createElement('text', '');
-        $documentoElement4 = $documento->createElement('thead', '');
-        $documentoElement5 = $documento->createElement('tr', '');
-        $documentoElement6 = $documento->createElement('th', 'Fecha');
-        $documentoElement7 = $documento->createElement('th', 'Signo');
-        $documentoElement8 = $documento->createElement('th', 'Valor');
-        $documentoElement9 = $documento->createElement('th', 'Observaciones');
-        $documentoElement10 = $documento->createElement('tr', '');
-        $documentoElement11 = $documento->createElement('td', 'Fecha y hora de la toma del signo vital en formato "aaaammddhhiiss"');
-        $documentoElement12 = $documento->createElement('td', 'Nombre / descripcion del signo vital');
-        $documentoElement13 = $documento->createElement('td', 'Valor / resultado del signo vital');
-        $documentoElement14 = $documento->createElement('td', 'Observaciones generales acerca del resultado del signo vital');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
+    public static function parserXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.4');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '8716-3');
+        $code->setAttribute('displayName', 'Signos Vitales');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Signos Vitales');
+        $section->appendChild($title);
+
+        $descripcionContent = array_map(function ($descripcionSignoVital) {
+            return $descripcionSignoVital->getDescripcionSignosVitales();
+        }, $descripcion);
+        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-signos_vitales::signosXML();

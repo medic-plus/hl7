@@ -19,8 +19,8 @@ class procedicmientos_realizados_paciente {
     private ?Padecimiento $padecimiento;
     private ?ServicioProcedimiento $servicioProcedimiento;
 
-    public function __construct(string $descripcionProcedimiento, string $descripcionRealizado, DateTime $fechaProcedimiento = null, int $cedulaProfesionalMedico, string $nombreMedicoResponsable, string $apellidoPaternoMedicoResponsable, string $apellidoMaternoMedicoResponsable, string $nombreServicioRealizado, Padecimiento $padecimiento = null, ServicioProcedimiento $servicioProcedimiento = null) {
-        $this->descripcionProcedimiento = $descripcionProcedimiento;
+    public function __construct(string $descripcion, string $descripcionRealizado, DateTime $fechaProcedimiento = null, int $cedulaProfesionalMedico, string $nombreMedicoResponsable, string $apellidoPaternoMedicoResponsable, string $apellidoMaternoMedicoResponsable, string $nombreServicioRealizado, Padecimiento $padecimiento = null, ServicioProcedimiento $servicioProcedimiento = null) {
+        $this->descripcion = $descripcion;
         $this->descripcionRealizado = $descripcionRealizado;
         $this->fechaProcedimiento = $fechaProcedimiento;
         $this->cedulaProfesionalMedico = $cedulaProfesionalMedico;
@@ -33,7 +33,7 @@ class procedicmientos_realizados_paciente {
     }
 
     public function getDescripcionProcedimiento() {
-        return $this->descripcionProcedimiento;
+        return $this->descripcion;
     }
 
     public function setDescripcionProcedimiento(string $descripcionProcedimiento) {
@@ -117,47 +117,37 @@ class procedicmientos_realizados_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function procedimientosXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Procedimientos quirurgicos y terapeuticos');
-        $documentoElement3 = $documento->createElement('text', '');
-        $documentoElement4 = $documento->createElement('table', '');
-        $documentoElement5 = $documento->createElement('thead', '');
-        $documentoElement6 = $documento->createElement('tr', '');
-        $documentoElement7 = $documento->createElement('th', 'CIE9-MC');
-        $documentoElement8 = $documento->createElement('th', 'Procedimiento');
-        $documentoElement9 = $documento->createElement('th', 'Estado');
-        $documentoElement10 = $documento->createElement('th', 'Activo');
-        $documentoElement11 = $documento->createElement('tbody', '');
-        $documentoElement12 = $documento->createElement('tr', '');
-        $documentoElement13 = $documento->createElement('td', 'Valor del identificador del procedimiento de acuerdo a catalogo CIE9-MC');
-        $documentoElement14 = $documento->createElement('td', 'Nombre del procedimiento de acuerdo a catalogo CIE9-MC');
-        $documentoElement15 = $documento->createElement('td', 'Situacion actual en la que se encuentra el procedimiento');
-        $documentoElement16 = $documento->createElement('td', 'Señalamiento si el procedimiento se encuentra activo (Si/No)');
-        $documentoElement17 = $documento->createElement('td', 'Observaciones adicionales acerca del procedimiento');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
-        $documento->appendChild($documentoElement15);
-        $documento->appendChild($documentoElement16);
-        $documento->appendChild($documentoElement17);
+    public static function parseXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.22');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '48765-2');
+        $code->setAttribute('displayName', 'Alergias');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Alergias y reacciones adversas');
+        $section->appendChild($title);
+
+        $descripcionContent = array_map(function ($descripcionProcedimiento) {
+            return $descripcionProcedimiento->getDescripcionProcedimiento();
+        }, $descripcion);
+        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-procedicmientos_realizados_paciente::procedimientosXML();

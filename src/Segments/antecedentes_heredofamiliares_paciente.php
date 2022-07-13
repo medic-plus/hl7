@@ -79,8 +79,8 @@ class antecedentes_heredofamiliares_paciente {
         $title = $DOM->createElement('title', 'Antecedentes Heredo-Familiares');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($descripcion) {
-            return $descripcion->getAlergias();
+        $descripcionContent = array_map(function ($descripcionHeredofamilia) {
+            return $descripcionHeredofamilia->getDescripcion();
         }, $descripcion);
 
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));

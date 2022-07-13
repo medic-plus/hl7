@@ -28,11 +28,11 @@ class medicamento_previos_actuales_paciente {
         $this->administracionFarmacologica = $administracionFarmacologica;
     }
 
-    public function getDescripcionMedicamentos() {
+    public function getDescripcionMedicamentosPrevios() {
         return $this->descripcion;
     }
 
-    public function setDescripcionMedicamentos(string $descripcion) {
+    public function setDescripcionMedicamentosPrevios(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -97,51 +97,37 @@ class medicamento_previos_actuales_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function medicamentosPreviosXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Historial farmacologico');
-        $documentoElement3 = $documento->createElement('text', '');
-        $documentoElement4 = $documento->createElement('thead', '');
-        $documentoElement5 = $documento->createElement('tr', '');
-        $documentoElement6 = $documento->createElement('th', 'Medicamento');
-        $documentoElement7 = $documento->createElement('th', 'Via de administracion');
-        $documentoElement8 = $documento->createElement('th', 'Dosis');
-        $documentoElement9 = $documento->createElement('th', 'Fecha de inicio');
-        $documentoElement10 = $documento->createElement('th', 'Fecha de fin');
-        $documentoElement11 = $documento->createElement('th', 'Obs. prescripcion');
-        $documentoElement12 = $documento->createElement('tbody', '');
-        $documentoElement13 = $documento->createElement('tr', '');
-        $documentoElement14 = $documento->createElement('td', 'Nombre del medicamento/substancia activa');
-        $documentoElement15 = $documento->createElement('td', 'Via de administracion');
-        $documentoElement16 = $documento->createElement('td', 'Dosis pos administrar');
-        $documentoElement17 = $documento->createElement('td', 'Fecha y hora de inicio de administracion de medicamento');
-        $documentoElement18 = $documento->createElement('td', 'Fecha y hora de termino de administracion de medicamento');
-        $documentoElement19 = $documento->createElement('td', 'Observaciones adicionales acerca de la prescripcion');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
-        $documento->appendChild($documentoElement4);
-        $documento->appendChild($documentoElement5);
-        $documento->appendChild($documentoElement6);
-        $documento->appendChild($documentoElement7);
-        $documento->appendChild($documentoElement8);
-        $documento->appendChild($documentoElement9);
-        $documento->appendChild($documentoElement10);
-        $documento->appendChild($documentoElement11);
-        $documento->appendChild($documentoElement12);
-        $documento->appendChild($documentoElement13);
-        $documento->appendChild($documentoElement14);
-        $documento->appendChild($documentoElement15);
-        $documento->appendChild($documentoElement16);
-        $documento->appendChild($documentoElement17);
-        $documento->appendChild($documentoElement18);
-        $documento->appendChild($documentoElement19);
+    public static function parserXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.1');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code->setAttribute('codeSystemName', 'LOINC');
+        $code->setAttribute('code', '10160-0');
+        $code->setAttribute('displayName', 'Antecedentes de medicamentos');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Historial farmacológico');
+        $section->appendChild($title);
+
+        $descripcionContent = array_map(function ($descripcionMedicamentoPrevio) {
+            return $descripcionMedicamentoPrevio->getAlergias();
+        }, $descripcion);
+        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-medicamento_previos_actuales_paciente::medicamentosPreviosXML();

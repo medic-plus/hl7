@@ -45,19 +45,37 @@ class discapacidad_paciente {
         $documento->appendChild($segmento);
     }
 
-    public static function discapacidadXML() {
-        $documento = new DOMDocument('1.0', 'UTF-8');
-        $documento->formatOutput = true;
-        $documento->preserveWhiteSpace = false;
-        $documentoElement = $documento->createElement('component', '');
-        $documentoElement1 = $documento->createElement('section', '');
-        $documentoElement2 = $documento->createElement('title', 'Discapacidades');
-        $documentoElement3 = $documento->createElement('text', 'Descripcion de discapacidades y estado del funcionamiento');
-        $documento->appendChild($documentoElement);
-        $documento->appendChild($documentoElement1);
-        $documento->appendChild($documentoElement2);
-        $documento->appendChild($documentoElement3);
+    public static function parserXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
+            return $DOM;
+        }
+
+        $component = $DOM->createElement('component', '');
+        $DOM->appendChild($component);
+
+        $section = $DOM->createElement('section', '');
+        $component->appendChild($section);
+
+        $templateId = $DOM->createElement('templateId', '');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.14');
+        $section->appendChild($templateId);
+
+        $code = $DOM->createElement('code', '');
+        $code->setAttribute('codeSystem', '2.16.840.1.113883.6.96');
+        $code->setAttribute('codeSystemName', 'SNOMED CT');
+        $code->setAttribute('code', '21134002');
+        $code->setAttribute('displayName', 'Discapacidades');
+        $section->appendChild($code);
+
+        $title = $DOM->createElement('title', 'Discapacidades');
+        $section->appendChild($title);
+
+        $descripcionContent = array_map(function ($descripcionDiscapacidad) {
+            return $descripcionDiscapacidad->getAlergias();
+        }, $descripcion);
+        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $section->appendChild($text);
+
+        return $DOM;
     }
 }
-
-discapacidad_paciente::discapacidadXML();
