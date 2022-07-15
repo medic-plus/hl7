@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class pronosticos_salud_paciente {
+class PronosticosSalud {
 
     private string $pronosticoSalud;
 

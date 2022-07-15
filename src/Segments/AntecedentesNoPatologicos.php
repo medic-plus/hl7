@@ -6,7 +6,7 @@ use DateTime;
 use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\TipoSangre;
 
-class antecedentes_personales_no_patologicos_paciente {
+class AntecedentesNoPatologicos {
     private string $antecedentesPersonales;
     private ?DateTime $fechaTipoSangre;
     private ?TipoSangre $tipoSangre;

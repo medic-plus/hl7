@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class antecedentes_heredofamiliares_paciente {
+class AntecedentesHeredofamiliares {
     private string $descripcion;
     private bool $presenciaHipertension;
     private bool $presenciaDislipidemias;

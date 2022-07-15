@@ -7,7 +7,7 @@ use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\Padecimiento;
 use Medicplus\HL7\Segments\Catalogos\ServicioProcedimiento;
 
-class procedicmientos_realizados_paciente {
+class Procedimientos {
     private string $descripcionProcedimiento;
     private string $descripcionRealizado;
     private ?DateTime $fechaProcedimiento;

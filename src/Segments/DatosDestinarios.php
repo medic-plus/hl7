@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class datos_afiliaciones_planos_aseguramiento_paciente {
+class DatosDestinarios {
     private string $datosAfiliaciones;
 
     public function __construct(string $datosAfiliaciones) {

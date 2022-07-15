@@ -3,21 +3,21 @@
 namespace Medicplus\HL7;
 
 use Medicplus\HL7\Segments\Alergias;
-use Medicplus\HL7\Segments\antecedente_patologicos_paciente;
-use Medicplus\HL7\Segments\antecedentes_heredofamiliares_paciente;
-use Medicplus\HL7\Segments\antecedentes_personales_no_patologicos_paciente;
-use Medicplus\HL7\Segments\datos_afiliaciones_planos_aseguramiento_paciente;
-use Medicplus\HL7\Segments\discapacidad_paciente;
-use Medicplus\HL7\Segments\evolucion_paciente_atencion;
-use Medicplus\HL7\Segments\impresion_diagnostico;
-use Medicplus\HL7\Segments\medicamento_previos_actuales_paciente;
-use Medicplus\HL7\Segments\medicamentos_administrados_durante_atencion;
-use Medicplus\HL7\Segments\plan_tratamiento_recomendaciones_terapeuticas;
-use Medicplus\HL7\Segments\procedicmientos_realizados_paciente;
-use Medicplus\HL7\Segments\pronosticos_salud_paciente;
-use Medicplus\HL7\Segments\resultados_estudios_laboratorios;
-use Medicplus\HL7\Segments\signos_vitales;
-use Medicplus\HL7\Segments\sintomatologia_paciente;
+use Medicplus\HL7\Segments\AntecedentesHeredofamiliares;
+use Medicplus\HL7\Segments\AntecedentesNoPatologicos;
+use Medicplus\HL7\Segments\AntecedentesPatologicos;
+use Medicplus\HL7\Segments\DatosDestinarios;
+use Medicplus\HL7\Segments\Discapacidades;
+use Medicplus\HL7\Segments\Evolucion;
+use Medicplus\HL7\Segments\ImpresionDiagnostica;
+use Medicplus\HL7\Segments\Medicamentos;
+use Medicplus\HL7\Segments\MedicamentosAdministrados;
+use Medicplus\HL7\Segments\PlanTratamiento;
+use Medicplus\HL7\Segments\Procedimientos;
+use Medicplus\HL7\Segments\PronosticosSalud;
+use Medicplus\HL7\Segments\ResultadosEstudios;
+use Medicplus\HL7\Segments\SignosVitales;
+use Medicplus\HL7\Segments\Sintomatologia;
 
 /**
  * Documento HL7
@@ -49,7 +49,7 @@ class Documento {
         $this->alergias = $alergias;
     }
 
-    public function addManifestacionInicial(sintomatologia_paciente $manifestacionInicial) {
+    public function addManifestacionInicial(Sintomatologia $manifestacionInicial) {
         array_push($this->manifestacionIniciales, $manifestacionInicial);
     }
 
@@ -61,7 +61,7 @@ class Documento {
         $this->manifestacionIniciales = $manifestacionIniciales;
     }
 
-    public function addAntecedentesPersonal(antecedentes_personales_no_patologicos_paciente $antecedentesPersonal) {
+    public function addAntecedentesPersonal(AntecedentesNoPatologicos $antecedentesPersonal) {
         array_push($this->antecedentesPersonales, $antecedentesPersonal);
     }
 
@@ -73,7 +73,7 @@ class Documento {
         $this->antecedentesPersonales = $antecedentesPersonales;
     }
 
-    public function addPronosticoSalud(pronosticos_salud_paciente $pronosticosDeSalud) {
+    public function addPronosticoSalud(PronosticosSalud $pronosticosDeSalud) {
         array_push($this->pronosticoSalud, $pronosticosDeSalud);
     }
 
@@ -85,7 +85,7 @@ class Documento {
         $this->pronosticoSalud = $pronosticoSalud;
     }
 
-    public function addDatosAfiliacion(datos_afiliaciones_planos_aseguramiento_paciente $datosAfiliacion) {
+    public function addDatosAfiliacion(DatosDestinarios $datosAfiliacion) {
         array_push($this->datosAfiliaciones, $datosAfiliacion);
     }
 
@@ -97,7 +97,7 @@ class Documento {
         $this->datosAfiliaciones = $datosAfiliaciones;
     }
 
-    public function addEvolucionPaciente(evolucion_paciente_atencion $evolucionesPaciente) {
+    public function addEvolucionPaciente(Evolucion $evolucionesPaciente) {
         array_push($this->evolucionPaciente, $evolucionesPaciente);
     }
 
@@ -109,7 +109,7 @@ class Documento {
         $this->evolucionPaciente = $evolucionPaciente;
     }
 
-    public function addPlanTratamientoTerapeuticas(plan_tratamiento_recomendaciones_terapeuticas $planTratamientos) {
+    public function addPlanTratamientoTerapeuticas(PlanTratamiento $planTratamientos) {
         array_push($this->planTratamientoTerapeuticas, $planTratamientos);
     }
 
@@ -121,7 +121,7 @@ class Documento {
         $this->planTratamientoTerapeuticas = $planTratamientoTerapeuticas;
     }
 
-    public function addImpresionDiagnostica(impresion_diagnostico $impresionesDiagnosticas) {
+    public function addImpresionDiagnostica(ImpresionDiagnostica $impresionesDiagnosticas) {
         array_push($this->impresionDiagnostica, $impresionesDiagnosticas);
     }
 
@@ -133,7 +133,7 @@ class Documento {
         $this->impresionDiagnostica = $impresionDiagnostica;
     }
 
-    public function addAntecedenteHeredofamiliar(antecedentes_heredofamiliares_paciente $descripcionHeredofamilia) {
+    public function addAntecedenteHeredofamiliar(AntecedentesHeredofamiliares $descripcionHeredofamilia) {
         array_push($this->descripcion, $descripcionHeredofamilia);
     }
 
@@ -145,7 +145,7 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-    public function addAntecedentePatologico(antecedente_patologicos_paciente $descripcionPatologico) {
+    public function addAntecedentePatologico(AntecedentesPatologicos $descripcionPatologico) {
         array_push($this->descripcion, $descripcionPatologico);
     }
 
@@ -157,7 +157,7 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-    public function addSignosVitales(signos_vitales $descripcionSignoVital) {
+    public function addSignosVitales(SignosVitales $descripcionSignoVital) {
         array_push($this->descripcion, $descripcionSignoVital);
     }
 
@@ -169,7 +169,7 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-    public function addResultadosEstudios(resultados_estudios_laboratorios $descripcionResultado) {
+    public function addResultadosEstudios(ResultadosEstudios $descripcionResultado) {
         array_push($this->descripcion, $descripcionResultado);
     }
 
@@ -181,7 +181,7 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-    public function addProcedimientos(procedicmientos_realizados_paciente $descripcionProcedimiento) {
+    public function addProcedimientos(Procedimientos $descripcionProcedimiento) {
         array_push($this->descripcion, $descripcionProcedimiento);
     }
 
@@ -193,7 +193,7 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-    public function addDiscapacidades(discapacidad_paciente $descripcionDiscapacidad) {
+    public function addDiscapacidades(Discapacidades $descripcionDiscapacidad) {
         array_push($this->descripcion, $descripcionDiscapacidad);
     }
 
@@ -206,7 +206,7 @@ class Documento {
     }
 
 
-    public function addMedicamentoAdministrativo(medicamentos_administrados_durante_atencion $descripcionMedicamentoAdmin) {
+    public function addMedicamentoAdministrativo(MedicamentosAdministrados $descripcionMedicamentoAdmin) {
         array_push($this->descripcion, $descripcionMedicamentoAdmin);
     }
 
@@ -219,7 +219,7 @@ class Documento {
     }
 
 
-    public function addMedicamentoPrevio(medicamento_previos_actuales_paciente $descripcionMedicamentoPrevio) {
+    public function addMedicamentoPrevio(Medicamentos $descripcionMedicamentoPrevio) {
         array_push($this->descripcion, $descripcionMedicamentoPrevio);
     }
 

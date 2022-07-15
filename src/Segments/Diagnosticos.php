@@ -6,7 +6,7 @@ use DateTime;
 use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\Diagnostico;
 
-class diagnosticos_problemas_salud {
+class Diagnosticos {
     private string $descripcion;
     private ?DateTime $fechaIniProblemaDiagnostico;
     private ?DateTime $fechaFinProblemaDiagnostico;

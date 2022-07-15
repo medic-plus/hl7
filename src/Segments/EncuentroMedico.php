@@ -10,7 +10,7 @@ use Medicplus\HL7\Segments\Catalogos\TipoAsentamiento;
 use Medicplus\HL7\Segments\Catalogos\TipoEncuentro;
 use Medicplus\HL7\Segments\Catalogos\TipoVialidad;
 
-class encuentro_medico {
+class EncuentroMedico {
     private string $identificadorEncuentro;
     private int $valorIdentificadorEncuentro;
     private ?DateTime $fechaIniEncuentro;

@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class impresion_diagnostico {
+class ImpresionDiagnostica {
     private string $impresionDiagnostica;
 
     public function __construct(string $impresionDiagnostica) {

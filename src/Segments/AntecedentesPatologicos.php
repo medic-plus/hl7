@@ -6,7 +6,7 @@ use DateTime;
 use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\AntecendentePatologico;
 
-class antecedente_patologicos_paciente {
+class AntecedentesPatologicos {
     private string $descripcion;
     private ?DateTime $fechaDiabetes;
     private ?DateTime $fechaHipertension;
@@ -111,6 +111,5 @@ class antecedente_patologicos_paciente {
         $section->appendChild($paragraph);
 
         return $DOM;
-
     }
 }

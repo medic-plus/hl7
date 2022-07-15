@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class plan_tratamiento_recomendaciones_terapeuticas {
+class PlanTratamiento {
     private string $planTratamientoTerapeuticas;
 
     public function __construct(string $planTratamientoTerapeuticas) {

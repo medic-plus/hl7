@@ -7,7 +7,7 @@ use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\AdministracionFarmacologica;
 use Medicplus\HL7\Segments\Catalogos\Medicamento;
 
-class medicamentos_administrados_durante_atencion {
+class MedicamentosAdministrados {
     private string $descripcion;
     private string $observacionMedicamento;
     private string $dosisAdministradas;

@@ -6,7 +6,7 @@ use DateTime;
 use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\SignoVital;
 
-class signos_vitales {
+class SignosVitales {
     private string $descripcion;
     private string $nombre;
     private ?DateTime $fechaSignoVital;

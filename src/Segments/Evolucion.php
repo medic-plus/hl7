@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class evolucion_paciente_atencion {
+class Evolucion {
     private string $evolucionPaciente;
 
     public function __construct(string $evolucionPaciente) {

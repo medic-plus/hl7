@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class sintomatologia_paciente {
+class Sintomatologia {
 
     private string $manifestacionIniciales;
 

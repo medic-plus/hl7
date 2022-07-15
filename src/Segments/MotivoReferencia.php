@@ -4,7 +4,7 @@ namespace Medicplus\HL7\Segments;
 
 use DOMDocument;
 
-class motivo_referencia_contra_referencia {
+class MotivoReferencia {
     private string $motivoReferencia;
 
     public function __construct(string $motivoReferencia) {

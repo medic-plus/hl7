@@ -9,7 +9,7 @@ use Medicplus\HL7\Segments\Catalogos\TipoAsentamiento;
 use Medicplus\HL7\Segments\Catalogos\TipoEpisodio;
 use Medicplus\HL7\Segments\Catalogos\TipoVialidad;
 
-class episodios_salud {
+class EpisodioSalud {
     private string $identificadorEpisodio;
     private int $nombreEpisodio;
     private ?DateTime $fechaIniEpisodio;

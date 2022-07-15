@@ -7,7 +7,7 @@ use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\TipoEstudio;
 use Medicplus\HL7\Segments\Catalogos\TipoResultado;
 
-class resultados_estudios_laboratorios {
+class ResultadosEstudios {
 
     private string $descripcion;
     private string $identificadorEstudios;

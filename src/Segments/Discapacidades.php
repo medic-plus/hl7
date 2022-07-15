@@ -5,7 +5,7 @@ namespace Medicplus\HL7\Segments;
 use DOMDocument;
 use Medicplus\HL7\Segments\Catalogos\Discapacidad;
 
-class discapacidad_paciente {
+class Discapacidades {
     private string $descripcion;
     private int $identificadorUnicoDiscapacidad;
     private ?Discapacidad $discapacidad;
