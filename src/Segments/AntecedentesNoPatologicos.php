@@ -23,22 +23,22 @@ class AntecedentesNoPatologicos {
     private ?DateTime $fechaFinConsumoDrogas;
     private string $consumoDrogasDia;
 
-    public function __construct(string $antecedentesPersonales, DateTime $fechaTipoSangre = null, TipoSangre $tipoSangre = null, bool $identificadorTabaquismo, DateTime $fechaIniTabaquismo = null, DateTime $fechaFinTabaquismo = null, int $cajetillasDia, bool $identificadorAlcoholisnmo, DateTime $fechaIniAlcoholismo = null, DateTime $fechaFinAlcoholismo = null, string $consumoAlcoholDia, bool $identificadorConsumoDrogras, DateTime $fechaIniConsumoDrogas = null, DateTime $fechaFinConsumoDrogas = null, string $consumoDrogasDia) {
+    public function __construct(string $antecedentesPersonales, bool $identificadorTabaquismo, int $cajetillasDia, bool $identificadorAlcoholisnmo, string $consumoAlcoholDia, bool $identificadorConsumoDrogras, string $consumoDrogasDia, DateTime $fechaTipoSangre = null, TipoSangre $tipoSangre = null, DateTime $fechaIniTabaquismo = null, DateTime $fechaFinTabaquismo = null,  DateTime $fechaIniAlcoholismo = null, DateTime $fechaFinAlcoholismo = null,  DateTime $fechaIniConsumoDrogas = null, DateTime $fechaFinConsumoDrogas = null) {
         $this->antecedentesPersonales = $antecedentesPersonales;
-        $this->fechaTipoSangre = $fechaTipoSangre;
-        $this->tipoSangre = $tipoSangre;
         $this->identificadorTabaquismo = $identificadorTabaquismo;
-        $this->fechaIniTabaquismo = $fechaIniTabaquismo;
-        $this->fechaFinTabaquismo = $fechaFinTabaquismo;
         $this->cajetillasDia = $cajetillasDia;
         $this->identificadorAlcoholisnmo = $identificadorAlcoholisnmo;
-        $this->fechaIniAlcoholismo = $fechaIniAlcoholismo;
-        $this->fechaFinAlcoholismo = $fechaFinAlcoholismo;
         $this->consumoAlcoholDia = $consumoAlcoholDia;
         $this->identificadorConsumoDrogras = $identificadorConsumoDrogras;
+        $this->consumoDrogasDia = $consumoDrogasDia;
+        $this->fechaTipoSangre = $fechaTipoSangre;
+        $this->tipoSangre = $tipoSangre;
+        $this->fechaIniTabaquismo = $fechaIniTabaquismo;
+        $this->fechaFinTabaquismo = $fechaFinTabaquismo;
+        $this->fechaIniAlcoholismo = $fechaIniAlcoholismo;
+        $this->fechaFinAlcoholismo = $fechaFinAlcoholismo;
         $this->fechaIniConsumoDrogas = $fechaIniConsumoDrogas;
         $this->fechaFinConsumoDrogas = $fechaFinConsumoDrogas;
-        $this->consumoDrogasDia = $consumoDrogasDia;
     }
 
     public function getAntecendetesPersonales() {
@@ -167,6 +167,10 @@ class AntecedentesNoPatologicos {
     }
 
     public static function parseXML(DOMDocument $DOM, array $antecedentesPersonales = []) {
+        if (sizeof($antecedentesPersonales) == 0) {
+            return $DOM;
+        }
+
         $component = $DOM->createElement('component', '');
         $DOM->appendChild($component);
 

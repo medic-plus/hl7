@@ -49,8 +49,8 @@ class MotivoReferencia {
         $title = $DOM->createElement('title', 'Motivo de la referencia');
         $section->appendChild($title);
 
-        $motivoReferenciaContent = array_map(function ($motivoReferencia) {
-            return $motivoReferencia->getMotivoReferencia();
+        $motivoReferenciaContent = array_map(function ($motivosReferencias) {
+            return $motivosReferencias->getMotivoReferencia();
         }, $motivoReferencia);
         $text = $DOM->createElement('text', implode("\n", $motivoReferenciaContent));
         $section->appendChild($text);

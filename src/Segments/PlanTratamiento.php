@@ -49,8 +49,8 @@ class PlanTratamiento {
         $title = $DOM->createElement('title', 'Plan de tratamiento y recomendaciones terapeuticas');
         $section->appendChild($title);
 
-        $planTratamientoTerapeuticasContent = array_map(function ($alergia) {
-            return $alergia->getAlergias();
+        $planTratamientoTerapeuticasContent = array_map(function ($planTratamientos) {
+            return $planTratamientos->getPlanTratamientoTerapeuticas();
         }, $planTratamientoTerapeuticas);
         $text = $DOM->createElement('text', implode("\n", $planTratamientoTerapeuticasContent));
         $section->appendChild($text);

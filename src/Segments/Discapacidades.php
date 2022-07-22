@@ -67,11 +67,11 @@ class Discapacidades {
         $code->setAttribute('displayName', 'Discapacidades');
         $section->appendChild($code);
 
-        $title = $DOM->createElement('title', 'Discapacidades');
+        $title = $DOM->createElement('title', 'Descripción de discapacidades y estado del funcionamiento');
         $section->appendChild($title);
 
         $descripcionContent = array_map(function ($descripcionDiscapacidad) {
-            return $descripcionDiscapacidad->getAlergias();
+            return $descripcionDiscapacidad->getDescripcionDiscapacidades();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);

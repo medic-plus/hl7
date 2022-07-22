@@ -7,11 +7,13 @@ use Medicplus\HL7\Segments\AntecedentesHeredofamiliares;
 use Medicplus\HL7\Segments\AntecedentesNoPatologicos;
 use Medicplus\HL7\Segments\AntecedentesPatologicos;
 use Medicplus\HL7\Segments\DatosDestinarios;
+use Medicplus\HL7\Segments\Diagnosticos;
 use Medicplus\HL7\Segments\Discapacidades;
 use Medicplus\HL7\Segments\Evolucion;
 use Medicplus\HL7\Segments\ImpresionDiagnostica;
 use Medicplus\HL7\Segments\Medicamentos;
 use Medicplus\HL7\Segments\MedicamentosAdministrados;
+use Medicplus\HL7\Segments\MotivoReferencia;
 use Medicplus\HL7\Segments\PlanTratamiento;
 use Medicplus\HL7\Segments\Procedimientos;
 use Medicplus\HL7\Segments\PronosticosSalud;
@@ -36,6 +38,7 @@ class Documento {
     private array $planTratamientoTerapeuticas = [];
     private array $impresionDiagnostica = [];
     private array $descripcion = [];
+    private array $motivoReferencia = [];
 
     public function addAlergia(Alergias $alergia) {
         array_push($this->alergias, $alergia);
@@ -205,7 +208,6 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-
     public function addMedicamentoAdministrativo(MedicamentosAdministrados $descripcionMedicamentoAdmin) {
         array_push($this->descripcion, $descripcionMedicamentoAdmin);
     }
@@ -218,7 +220,6 @@ class Documento {
         $this->descripcion = $descripcion;
     }
 
-
     public function addMedicamentoPrevio(Medicamentos $descripcionMedicamentoPrevio) {
         array_push($this->descripcion, $descripcionMedicamentoPrevio);
     }
@@ -229,5 +230,29 @@ class Documento {
 
     public function setDescripcionMedicamentosPrevios(array $descripcion) {
         $this->descripcion = $descripcion;
+    }
+
+    public function addDiagnosticos(Diagnosticos $descripcionDiagnostico) {
+        array_push($this->descripcion, $descripcionDiagnostico);
+    }
+
+    public function getDescripcionDiagnosticos() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionDiagnosticos(array $descripcion) {
+        $this->descripcion = $descripcion;
+    }
+
+    public function addMotivoRerefencia(MotivoReferencia $motivosReferencias) {
+        array_push($this->motivoReferencia, $motivosReferencias);
+    }
+
+    public function getMotivoReferencia() {
+        return $this->motivoReferencia;
+    }
+
+    public function setMotivoReferencia(array $motivoReferencia) {
+        $this->motivoReferencia = $motivoReferencia;
     }
 }

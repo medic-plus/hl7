@@ -21,7 +21,7 @@ class ResultadosEstudios {
     private ?TipoEstudio $tipoEstudio;
     private ?TipoResultado $tipoResultado;
 
-    public function __construct(string $descripcion, string $identificadorEstudios, string $nombreEstudios, string $identificadorResultados, string $nombreResultados, DateTime $fechaHoraResultado = null, string $valorResultado, string $unidadResultado, string $rangoResultado, TipoEstudio $tipoEstudio = null, TipoResultado $tipoResultado = null) {
+    public function __construct(string $descripcion, string $identificadorEstudios, string $nombreEstudios, string $identificadorResultados, string $nombreResultados, string $valorResultado, string $unidadResultado, string $rangoResultado, DateTime $fechaHoraResultado = null, TipoEstudio $tipoEstudio = null, TipoResultado $tipoResultado = null) {
         $this->descripcion = $descripcion;
         $this->identificadorEstudios = $identificadorEstudios;
         $this->nombreEstudios = $nombreEstudios;

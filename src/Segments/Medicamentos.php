@@ -17,7 +17,7 @@ class Medicamentos {
     private ?Medicamento $medicamento;
     private ?AdministracionFarmacologica $administracionFarmacologica;
 
-    public function __construct(string $descripcion, string $medicamentoAdministrado, string $dosisAdministrada, DateTime $fechaIniUsoMedicamento = null, DateTime $fechaFinUsoMedicamento = null, string $observacionPrescripcion, Medicamento $medicamento = null, AdministracionFarmacologica $administracionFarmacologica = null) {
+    public function __construct(string $descripcion, string $medicamentoAdministrado, string $dosisAdministrada, string $observacionPrescripcion, DateTime $fechaIniUsoMedicamento = null, DateTime $fechaFinUsoMedicamento = null, Medicamento $medicamento = null, AdministracionFarmacologica $administracionFarmacologica = null) {
         $this->descripcion = $descripcion;
         $this->medicamentoAdministrado = $medicamentoAdministrado;
         $this->dosisAdministrada = $dosisAdministrada;

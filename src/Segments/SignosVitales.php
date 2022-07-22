@@ -13,7 +13,7 @@ class SignosVitales {
     private string $resultadoMedicion;
     private ?SignoVital $signoVital;
 
-    public function __construct(string $descripcion, string $nombre, DateTime $fechaSignoVital = null, string $resultadoMedicion, SignoVital $signoVital = null) {
+    public function __construct(string $descripcion, string $nombre, string $resultadoMedicion, DateTime $fechaSignoVital = null, SignoVital $signoVital = null) {
         $this->descripcion = $descripcion;
         $this->nombre = $nombre;
         $this->fechaSignoVital = $fechaSignoVital;

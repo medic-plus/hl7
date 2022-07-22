@@ -16,7 +16,7 @@ class Diagnosticos {
     private string $descripcionProblemaDiagnosticado;
     private ?Diagnostico $diagnostico;
 
-    public function __construct(string $descripcion, DateTime $fechaIniProblemaDiagnostico = null, DateTime $fechaFinProblemaDiagnostico = null, int $identificadorUnicoAfeccion, float $numeroAfeccion, string $nombreTipoDiagnostico, string $descripcionProblemaDiagnosticado, Diagnostico $diagnostico = null) {
+    public function __construct(string $descripcion, int $identificadorUnicoAfeccion, float $numeroAfeccion, string $nombreTipoDiagnostico, string $descripcionProblemaDiagnosticado, DateTime $fechaIniProblemaDiagnostico = null, DateTime $fechaFinProblemaDiagnostico = null, Diagnostico $diagnostico = null) {
         $this->descripcion = $descripcion;
         $this->fechaIniProblemaDiagnostico = $fechaIniProblemaDiagnostico;
         $this->fechaFinProblemaDiagnostico = $fechaFinProblemaDiagnostico;
@@ -108,23 +108,24 @@ class Diagnosticos {
         $component->appendChild($section);
 
         $templateId = $DOM->createElement('templateId', '');
-        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.22');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.5');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.5.1');
         $section->appendChild($templateId);
 
         $code = $DOM->createElement('code', '');
         $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
         $code->setAttribute('codeSystemName', 'LOINC');
-        $code->setAttribute('code', '48765-2');
-        $code->setAttribute('displayName', 'Alergias');
+        $code->setAttribute('code', '11450-4');
+        $code->setAttribute('displayName', 'Lista de Problemas');
         $section->appendChild($code);
 
-        $title = $DOM->createElement('title', 'Alergias y reacciones adversas');
+        $title = $DOM->createElement('title', 'Diagnósticos y problemas de salud');
         $section->appendChild($title);
 
-        $alergiasContent = array_map(function ($alergia) {
-            return $alergia->getAlergias();
+        $descripcionsContent = array_map(function ($descripcionDiagnostico) {
+            return $descripcionDiagnostico->getDescripcionDiagnosticos();
         }, $alergias);
-        $text = $DOM->createElement('text', implode("\n", $alergiasContent));
+        $text = $DOM->createElement('text', implode("\n", $descripcionsContent));
         $section->appendChild($text);
 
         return $DOM;

@@ -50,7 +50,7 @@ class ImpresionDiagnostica {
         $section->appendChild($title);
 
         $impresionDiagnosticaContent = array_map(function ($impresionesDiagnosticas) {
-            return $impresionesDiagnosticas->getAlergias();
+            return $impresionesDiagnosticas->getImpresionDiagnostica();
         }, $impresionDiagnostica);
         $text = $DOM->createElement('text', implode("\n", $impresionDiagnosticaContent));
         $section->appendChild($text);

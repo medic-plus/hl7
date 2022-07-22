@@ -19,7 +19,7 @@ class Procedimientos {
     private ?Padecimiento $padecimiento;
     private ?ServicioProcedimiento $servicioProcedimiento;
 
-    public function __construct(string $descripcion, string $descripcionRealizado, DateTime $fechaProcedimiento = null, int $cedulaProfesionalMedico, string $nombreMedicoResponsable, string $apellidoPaternoMedicoResponsable, string $apellidoMaternoMedicoResponsable, string $nombreServicioRealizado, Padecimiento $padecimiento = null, ServicioProcedimiento $servicioProcedimiento = null) {
+    public function __construct(string $descripcion, string $descripcionRealizado, int $cedulaProfesionalMedico, string $nombreMedicoResponsable, string $apellidoPaternoMedicoResponsable, string $apellidoMaternoMedicoResponsable, string $nombreServicioRealizado, DateTime $fechaProcedimiento = null, Padecimiento $padecimiento = null, ServicioProcedimiento $servicioProcedimiento = null) {
         $this->descripcion = $descripcion;
         $this->descripcionRealizado = $descripcionRealizado;
         $this->fechaProcedimiento = $fechaProcedimiento;
@@ -129,17 +129,17 @@ class Procedimientos {
         $component->appendChild($section);
 
         $templateId = $DOM->createElement('templateId', '');
-        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.22');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.1.12');
         $section->appendChild($templateId);
 
         $code = $DOM->createElement('code', '');
         $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
         $code->setAttribute('codeSystemName', 'LOINC');
-        $code->setAttribute('code', '48765-2');
-        $code->setAttribute('displayName', 'Alergias');
+        $code->setAttribute('code', '47519-4');
+        $code->setAttribute('displayName', 'Historial de procedimientos');
         $section->appendChild($code);
 
-        $title = $DOM->createElement('title', 'Alergias y reacciones adversas');
+        $title = $DOM->createElement('title', 'Procedimientos quirúrgicos y terapéuticos');
         $section->appendChild($title);
 
         $descripcionContent = array_map(function ($descripcionProcedimiento) {

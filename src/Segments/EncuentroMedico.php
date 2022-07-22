@@ -36,7 +36,7 @@ class EncuentroMedico {
     private ?TipoVialidad $tipoVialidad;
     private ?TipoAsentamiento $tipoAsentamiento;
 
-    public function __construct(string $identificadorEncuentro, int $valorIdentificadorEncuentro, DateTime $fechaIniEncuentro = null, DateTime $fechaFinEncuentro = null, int $cedulaProfesionalMedicoConsultorio, string $nombreMedicoConsultorio, string $apellidoPaternoMedicoConsultorio, string $apellidoMaternoMedicoConsultorio, int $organizacionConsultada, string $nombreOrganizacionConsultada, string $licenciaSanitariaConsultorio, string $domicilioEstablecimientoResponsable, string $nombreVialidadConsultorio, float $numeroExteriorDomicilio, string $alfanumericoNumeroExterior, string $parteAlfanumericoExterior, float $numeroInteriorDomicilio, string $parteAlfanumericoInterior, string $asentamientoDomicilio, TipoEncuentro $tipoEncuentro = null, MotivoEgreso $motivoEgreso = null, CLUES $clues = null, TipoVialidad $tipoVialidad = null, TipoAsentamiento $tipoAsentamiento = null) {
+    public function __construct(string $identificadorEncuentro, int $valorIdentificadorEncuentro, int $cedulaProfesionalMedicoConsultorio, string $nombreMedicoConsultorio, string $apellidoPaternoMedicoConsultorio, string $apellidoMaternoMedicoConsultorio, int $organizacionConsultada, string $nombreOrganizacionConsultada, string $licenciaSanitariaConsultorio, string $domicilioEstablecimientoResponsable, string $nombreVialidadConsultorio, float $numeroExteriorDomicilio, string $alfanumericoNumeroExterior, string $parteAlfanumericoExterior, float $numeroInteriorDomicilio, string $parteAlfanumericoInterior, string $asentamientoDomicilio, CLUES $clues = null, DateTime $fechaIniEncuentro = null, DateTime $fechaFinEncuentro = null,  TipoEncuentro $tipoEncuentro = null, MotivoEgreso $motivoEgreso = null, TipoVialidad $tipoVialidad = null, TipoAsentamiento $tipoAsentamiento = null) {
         $this->identificadorEncuentro = $identificadorEncuentro;
         $this->valorIdentificadorEncuentro = $valorIdentificadorEncuentro;
         $this->fechaIniEncuentro = $fechaIniEncuentro;
@@ -54,6 +54,7 @@ class EncuentroMedico {
         $this->alfanumericoNumeroExterior = $alfanumericoNumeroExterior;
         $this->parteAlfanumericoExterior = $parteAlfanumericoExterior;
         $this->numeroInteriorDomicilio = $numeroInteriorDomicilio;
+        $this->parteAlfanumericoInterior = $parteAlfanumericoInterior;
         $this->alfanumericoNumeroExterior = $alfanumericoNumeroExterior;
         $this->asentamientoDomicilio = $asentamientoDomicilio;
         $this->tipoEncuentro = $tipoEncuentro;

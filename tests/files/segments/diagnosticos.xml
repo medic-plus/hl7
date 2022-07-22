@@ -1,4 +1,5 @@
-<component>
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
     <section>
         <templateId root="2.16.840.1.113883.10.20.22.2.5"/>
         <templateId root="2.16.840.1.113883.10.20.22.2.5.1"/>
@@ -19,10 +20,10 @@
                         <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="282291009" displayName="Diagnóstico"/>
                         <text>--Descripción en texto libre del diagnóstico introducido por el médico--</text>
                         <statusCode  code="completed"/>
-                        <value  xsi:type="CE" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="--Valor del identificador del diagnóstico de acuerdo a catálogo--" displayName="--Nombre del diagnóstico de acuerdo a catálogo--"/>
+                        <value xsi:type="CE" codeSystem="2.16.840.1.113883.6.3" codeSystemName="ICD-10" code="--Valor del identificador del diagnóstico de acuerdo a catálogo--" displayName="--Nombre del diagnóstico de acuerdo a catálogo--"/>
                     </observation>
                 </entryRelationship>
-            <act>
+            </act>
         </entry>
     </section>
 </component>
