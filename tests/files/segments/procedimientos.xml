@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
-    <section>
-        <templateId root="2.16.840.1.113883.10.20.1.12"/>
-        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="47519-4" displayName="Historial de procedimientos"/>
-        <title>Procedimientos quirurgicos y terapeuticos</title>
-        <text>Prueba</text>
-        <entry typeCode="DRIV">
-            <procedure classCode="PROC" moodCode="EVN">
-                <code codeSystem="2.16.840.1.113883.6.2" codeSystemName="ICD-9CM" code="--Valor del identificador del procedimiento de acuerdo a catálogo--" displayName="--Nombre del procedimiento de acuerdo a catálogo--">
-                    <originalText>--Procedimiento en texto libre introducido por el medico--</originalText>
-                </code>
-                <statusCode code="completed"/>
-                <effectiveTime value="--aaaammddhhiiss--"/>
-                <performer>
-                    <assignedEntity>
-                        <id root="2.16.840.1.113883.3.215.12.18" extension="--Número de cédula profesional del médico responsable del procedimiento--"/>
-                        <assingnedPerson>
-                            <name>
-                                <given>--Nombre(s) del médico responsable del procedimiento--</given>
-                                <family>--Primer apellido del médico responsable del procedimiento--</family>
-                                <family>--Segundo apellido del médico responsable del procedimiento--</family>
-                            </name>
-                        </assingnedPerson>
-                    </assignedEntity>
-                </performer>
-                <participant typeCode="LOC">
-                    <participantRole classCode="SDLOC">
-                        <code codeSystem="2.16.840.1.113883.6.259" codeSystemName="HealthcareServiceLocation" code="--Clave de la ubicación (serivicio) donde se realizó el procedimiento--" displayName="--ubicación (serivicio) donde se realizó el procedimiento--"/>
-                    </participantRole>
-                </participant>
-            </procedure>
-        </entry>
-    </section>
-</component>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+    <component>
+        <section>
+            <templateId root="2.16.840.1.113883.10.20.1.12"/>
+            <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="47519-4" displayName="Historial de procedimientos"/>
+            <title>Procedimientos quirurgicos y terapeuticos</title>
+            <text>Prueba</text>
+            <entry typeCode="DRIV">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <code codeSystem="2.16.840.1.113883.6.2" codeSystemName="ICD-9CM" code="--Valor del identificador del procedimiento de acuerdo a catálogo--" displayName="--Nombre del procedimiento de acuerdo a catálogo--">
+                        <originalText>--Procedimiento en texto libre introducido por el medico--</originalText>
+                    </code>
+                    <statusCode code="completed"/>
+                    <effectiveTime value="--aaaammddhhiiss--"/>
+                    <performer>
+                        <assignedEntity>
+                            <id root="2.16.840.1.113883.3.215.12.18" extension="--Número de cédula profesional del médico responsable del procedimiento--"/>
+                            <assingnedPerson>
+                                <name>
+                                    <given>--Nombre(s) del médico responsable del procedimiento--</given>
+                                    <family>--Primer apellido del médico responsable del procedimiento--</family>
+                                    <family>--Segundo apellido del médico responsable del procedimiento--</family>
+                                </name>
+                            </assingnedPerson>
+                        </assignedEntity>
+                    </performer>
+                    <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                            <code codeSystem="2.16.840.1.113883.6.259" codeSystemName="HealthcareServiceLocation" code="--Clave de la ubicación (serivicio) donde se realizó el procedimiento--" displayName="--ubicación (serivicio) donde se realizó el procedimiento--"/>
+                        </participantRole>
+                    </participant>
+                </procedure>
+            </entry>
+        </section>
+    </component>
+</ClinicalDocument>

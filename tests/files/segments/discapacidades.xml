@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
-    <section>
-        <templateId root='2.16.840.1.113883.10.20.22.2.14'/>
-        <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="21134002" displayName="Discapacidades"/>
-        <title>Discapacidades</title>
-        <text>
-            --Descripción de discapacidades y estado del funcionamiento--
-        </text>
-        <entry typeCode="DRIV">
-            <observation classCode="OBS" moodCode="EVN">
-                <id root="--Identificador único de la discapacidad del paciente--"/>
-                <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="248536006" displayName="Discapacidades"/>
-                <statusCode code="completed"/>
-                <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.254" codeSystemName="CIF" code="--Valor del identificador de discapacidad de acuerdo a catálogo--" displayName="--Nombre de discapacidad de acuerdo a catálogo--"/>
-            </observation>
-        </entry>
-    </section>
-</component>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+    <component>
+        <section>
+            <templateId root='2.16.840.1.113883.10.20.22.2.14'/>
+            <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="21134002" displayName="Discapacidades"/>
+            <title>Discapacidades</title>
+            <text>
+                --Descripción de discapacidades y estado del funcionamiento--
+            </text>
+            <entry typeCode="DRIV">
+                <observation classCode="OBS" moodCode="EVN">
+                    <id root="--Identificador único de la discapacidad del paciente--"/>
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="248536006" displayName="Discapacidades"/>
+                    <statusCode code="completed"/>
+                    <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.254" codeSystemName="CIF" code="--Valor del identificador de discapacidad de acuerdo a catálogo--" displayName="--Nombre de discapacidad de acuerdo a catálogo--"/>
+                </observation>
+            </entry>
+        </section>
+    </component>
+</ClinicalDocument>

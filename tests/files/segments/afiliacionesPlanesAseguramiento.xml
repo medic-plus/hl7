@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component>
-    <section>
-        <templateId root="2.16.840.1.113883.10.20.22.2.18"/>
-        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="48768-6" displayName="Pagador"/>
-        <title>Afiliaciones / planes de aseguramiento</title>
-        <text>PRUEBA</text>
-        <entry>
-            <act classCode="ACT" moodCode="EVN">
-                <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="48768-6" displayName="Fuentes de financiamiento"/>
-                <statusCode code="completed"/>
-                <entryRelationship typeCode="COMP">
-                    <act classCode="ACT" moodCode="EVN">
-                        <code codeSystem="2.16.840.1.113883.5.110" codeSystemName="RoleClass" code="--Identificador/clave del programa--" displayName="--Nombre del programa--"/>
-                        <statusCode code="completed"/>
-                        <performer typeCode="PRF">
-                            <time nullFlavor="NA"/>
-                            <assingnedEntity>
-                                <id root="--OID de la dependencia--"/>
-                                <code code="PAYOR" codeSystem="2.16.840.1.113883.5.110" codeSystemName="HL7 RoleCode"/>
-                                <representedOrganization>
-                                    <name>--Nombre de la dependencia u organizacion aseguradora--</name>
-                                </representedOrganization>
-                            </assingnedEntity>
-                        </performer>
-                        <participant typeCode="COV">
-                            <time>
-                                <low value="--aaaammddhhiiss--"/>
-                                <high value="--aaaammddhhiiss--"/>
-                            </time>
-                            <participantRole>
-                                <id root="--OID del identificador de personas del programa dentro de la dependencia--" extension="--Identificador único de la persona dentro del programa--"/>
-                                <code codeSystem="2.16.840.1.113883.3.215.12.16" codeSystemName="Tipos de beneficario" code="--Valor del identificador de tipo de beneficiario de acuerdo a catálogo--" displayName="--Tipo de beneficiario de acuerdo a catálogo--"/>
-                            </participantRole>
-                        </participant>
-                        <participant typeCode="HLD">
-                            <participantRole>
-                                <id root="2.16.840.1.113883.3.215.1.2" extension="--Identificador único de la persona dentro de la póliza--"/>
-                            </participantRole>
-                        </participant>
-                    </act>
-                </entryRelationship>
-            </act>
-        </entry>
-    </section>
-</component>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+    <component>
+        <section>
+            <templateId root="2.16.840.1.113883.10.20.22.2.18"/>
+            <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="48768-6" displayName="Pagador"/>
+            <title>Afiliaciones / planes de aseguramiento</title>
+            <text>PRUEBA</text>
+            <entry>
+                <act classCode="ACT" moodCode="EVN">
+                    <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="48768-6" displayName="Fuentes de financiamiento"/>
+                    <statusCode code="completed"/>
+                    <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <code codeSystem="2.16.840.1.113883.5.110" codeSystemName="RoleClass" code="--Identificador/clave del programa--" displayName="--Nombre del programa--"/>
+                            <statusCode code="completed"/>
+                            <performer typeCode="PRF">
+                                <time nullFlavor="NA"/>
+                                <assingnedEntity>
+                                    <id root="--OID de la dependencia--"/>
+                                    <code code="PAYOR" codeSystem="2.16.840.1.113883.5.110" codeSystemName="HL7 RoleCode"/>
+                                    <representedOrganization>
+                                        <name>--Nombre de la dependencia u organizacion aseguradora--</name>
+                                    </representedOrganization>
+                                </assingnedEntity>
+                            </performer>
+                            <participant typeCode="COV">
+                                <time>
+                                    <low value="--aaaammddhhiiss--"/>
+                                    <high value="--aaaammddhhiiss--"/>
+                                </time>
+                                <participantRole>
+                                    <id root="--OID del identificador de personas del programa dentro de la dependencia--" extension="--Identificador único de la persona dentro del programa--"/>
+                                    <code codeSystem="2.16.840.1.113883.3.215.12.16" codeSystemName="Tipos de beneficario" code="--Valor del identificador de tipo de beneficiario de acuerdo a catálogo--" displayName="--Tipo de beneficiario de acuerdo a catálogo--"/>
+                                </participantRole>
+                            </participant>
+                            <participant typeCode="HLD">
+                                <participantRole>
+                                    <id root="2.16.840.1.113883.3.215.1.2" extension="--Identificador único de la persona dentro de la póliza--"/>
+                                </participantRole>
+                            </participant>
+                        </act>
+                    </entryRelationship>
+                </act>
+            </entry>
+        </section>
+    </component>
+</ClinicalDocument>

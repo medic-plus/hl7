@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
-    <section>
-        <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
-        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="29762-2" displayName="Antecedentes no patológicos"/>
-        <title>Antecendentes personales no patologicos</title>
-        <text>
-            <paragraph>Tipo de sangre --Tipo de sangre</paragraph>
-            <paragraph/>
-            <paragraph>Otros antecendentes personales no patologicos en texto libre</paragraph>
-            <paragraph/>
-        </text>
-        <entry>
-            <observation classCode="OBS" moodCode="EVN">
-                <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="882-1" displayName="GRUPO ABO+RH"/>
-                <effectiveTime value="--aaaammddhhiiss--"/>
-                <value xsi:type="CS" code="--Tipo de sangre y factor RH--"/>
-            </observation>
-        </entry>
-        <entry typeCode="DRIV">
-            <observation>
-                <id root="--identificador único por cada periodo de consumo de tabaco--" />
-                <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="229819007" displayName="Uso y exposición al tabaco"/>
-                <statusCode code="completed"/>
-                <effectiveTime>
-                    <low value="--Año de inicio como fumador--"/>
-                    <high value="--Año de término como fumador--"/>
-                </effectiveTime>
-                <value xsi:type="ST">--Cantidad de cajetillas por día--</value>
-            </observation>
-        </entry>
-        <entry typeCode="DRIV">
-            <observation classCode="OBS" moodCode="EVN">
-                <id root="--identificador único por cada periodo de consumo de alcohol--" />
-                <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="160573003" displayName="Ingesta de Alcohol"/>
-                <statusCode code="completed" />
-                <effectiveTime>
-                    <low value="--Año de inicio en el consumo de alcohol--"/>
-                    <high value="--Año de término/cambio en el consumo de alcohol--"/>
-                </effectiveTime>
-                <value xsi:type="ST">--Cantidad de consumo de alcohol por día--</value>
-            </observation>
-        </entry>
-        <entry typeCode="DRIV">
-            <observation classCode="OBS" moodCode="EVN">
-                <id root="--identificador único por cada periodo de consumo de drogas--" />
-                <code codeSystem="2.16.840.1.113883.6.96" code="363908000" displayName="Ingesta de Alcohol"/>
-                <statusCode code="completed" />
-                <effectiveTime>
-                    <low value="--Año de inicio en el consumo de drogas--"/>
-                    <high value="--Año de término/cambio en el consumo de drogas--"/>
-                </effectiveTime>
-                <value xsi:type="ST">--Descripción del consumo de la sustancia--</value>
-            </observation>
-        </entry>
-    </section>
-</component>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+    <component>
+        <section>
+            <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+            <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="29762-2" displayName="Antecedentes no patológicos"/>
+            <title>Antecendentes personales no patologicos</title>
+            <text>
+                <paragraph>Tipo de sangre --Tipo de sangre</paragraph>
+                <paragraph/>
+                <paragraph>Otros antecendentes personales no patologicos en texto libre</paragraph>
+                <paragraph/>
+            </text>
+            <entry>
+                <observation classCode="OBS" moodCode="EVN">
+                    <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="882-1" displayName="GRUPO ABO+RH"/>
+                    <effectiveTime value="--aaaammddhhiiss--"/>
+                    <value xsi:type="CS" code="--Tipo de sangre y factor RH--"/>
+                </observation>
+            </entry>
+            <entry typeCode="DRIV">
+                <observation>
+                    <id root="--identificador único por cada periodo de consumo de tabaco--" />
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="229819007" displayName="Uso y exposición al tabaco"/>
+                    <statusCode code="completed"/>
+                    <effectiveTime>
+                        <low value="--Año de inicio como fumador--"/>
+                        <high value="--Año de término como fumador--"/>
+                    </effectiveTime>
+                    <value xsi:type="ST">--Cantidad de cajetillas por día--</value>
+                </observation>
+            </entry>
+            <entry typeCode="DRIV">
+                <observation classCode="OBS" moodCode="EVN">
+                    <id root="--identificador único por cada periodo de consumo de alcohol--" />
+                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="160573003" displayName="Ingesta de Alcohol"/>
+                    <statusCode code="completed" />
+                    <effectiveTime>
+                        <low value="--Año de inicio en el consumo de alcohol--"/>
+                        <high value="--Año de término/cambio en el consumo de alcohol--"/>
+                    </effectiveTime>
+                    <value xsi:type="ST">--Cantidad de consumo de alcohol por día--</value>
+                </observation>
+            </entry>
+            <entry typeCode="DRIV">
+                <observation classCode="OBS" moodCode="EVN">
+                    <id root="--identificador único por cada periodo de consumo de drogas--" />
+                    <code codeSystem="2.16.840.1.113883.6.96" code="363908000" displayName="Ingesta de Alcohol"/>
+                    <statusCode code="completed" />
+                    <effectiveTime>
+                        <low value="--Año de inicio en el consumo de drogas--"/>
+                        <high value="--Año de término/cambio en el consumo de drogas--"/>
+                    </effectiveTime>
+                    <value xsi:type="ST">--Descripción del consumo de la sustancia--</value>
+                </observation>
+            </entry>
+        </section>
+    </component>
+</ClinicalDocument>

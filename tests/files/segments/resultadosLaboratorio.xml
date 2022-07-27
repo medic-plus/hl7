@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
-    <section>
-        <templateId root="2.16.840.1.113883.10.20.22.2.3.1"/>
-        <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="30954-2" displayName="Estudios de Laboratorio"/>
-        <title>Estudios de laboratorio</title>
-        <text>PRUEBA</text>
-            <paragraph>--Identificación de la batería de pruebas o estudios de laboratorio realizados--</paragraph>
-            <entry>
-                <organizer classCode="BATTERY" moodCode="EVN">
-                    <code codeSystem="--OID del sistema de codificación--" codeSystemName="--Nombre del sistema de codificación--" code="--Clave de la batería realizada--" displayName="--Nombre de la batería"/>
-                    <statusCode code="completed"/>
-                    <component>
-                        <observation classCode="OBS" moodCode="EVN">
-                            <code codeSystem="--OID del sistema de codificación--" codeSystemName="--Nombre del sistema de codificación--" code="--Clave de la prueba realizada--" displayName="--Nombre de la prueba realizada--"/>
-                            <statusCode code="completed"/>
-                            <effectiveTime value="--aaaammddhhiiss--"/>
-                            <value xsi:type="PQ" value="--Resultado de la medición--" unit="--Unidad de expresión del resultado--"/>
-                            <referenceRange>
-                                <observationRange>
-                                    <text>--Rango de referencia para el resultado--</text>
-                                </observationRange>
-                            </referenceRange>
-                        </observation>
-                    </component>
-                </organizer>
-            </entry>
-    </section>
-</component>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 cda/CDA.xsd" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3">
+    <component>
+        <section>
+            <templateId root="2.16.840.1.113883.10.20.22.2.3.1"/>
+            <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="30954-2" displayName="Estudios de Laboratorio"/>
+            <title>Estudios de laboratorio</title>
+            <text>PRUEBA</text>
+                <paragraph>--Identificación de la batería de pruebas o estudios de laboratorio realizados--</paragraph>
+                <entry>
+                    <organizer classCode="BATTERY" moodCode="EVN">
+                        <code codeSystem="--OID del sistema de codificación--" codeSystemName="--Nombre del sistema de codificación--" code="--Clave de la batería realizada--" displayName="--Nombre de la batería"/>
+                        <statusCode code="completed"/>
+                        <component>
+                            <observation classCode="OBS" moodCode="EVN">
+                                <code codeSystem="--OID del sistema de codificación--" codeSystemName="--Nombre del sistema de codificación--" code="--Clave de la prueba realizada--" displayName="--Nombre de la prueba realizada--"/>
+                                <statusCode code="completed"/>
+                                <effectiveTime value="--aaaammddhhiiss--"/>
+                                <value xsi:type="PQ" value="--Resultado de la medición--" unit="--Unidad de expresión del resultado--"/>
+                                <referenceRange>
+                                    <observationRange>
+                                        <text>--Rango de referencia para el resultado--</text>
+                                    </observationRange>
+                                </referenceRange>
+                            </observation>
+                        </component>
+                    </organizer>
+                </entry>
+        </section>
+    </component>
+</ClinicalDocument>
