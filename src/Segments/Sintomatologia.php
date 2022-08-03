@@ -26,6 +26,10 @@ class Sintomatologia {
     }
 
     public static function parseXML(DOMDocument $DOM, array $manifestacionIniciales = []) {
+        if (sizeof($manifestacionIniciales) == 0) {
+            return $DOM;
+        }
+
         $component = $DOM->createElement('component', '');
         $DOM->appendChild($component);
 
@@ -43,7 +47,7 @@ class Sintomatologia {
         $code->setAttribute('displayName', 'Manifestaciones Iniciales');
         $section->appendChild($code);
 
-        $title = $DOM->createElement('title', 'Alergias y reacciones adversas');
+        $title = $DOM->createElement('title', 'Manifestaciones iniciales');
         $section->appendChild($title);
 
         $manifestacionInicialesContent = array_map(function ($manifestacionInicial) {

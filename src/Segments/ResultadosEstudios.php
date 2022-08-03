@@ -128,7 +128,7 @@ class ResultadosEstudios {
         $documento->appendChild($segmento);
     }
 
-    public static function parserXML(DOMDocument $DOM, array $descripcion = []) {
+    public static function parseXML(DOMDocument $DOM, array $descripcion = []) {
         if (sizeof($descripcion) == 0) {
             return $DOM;
         }

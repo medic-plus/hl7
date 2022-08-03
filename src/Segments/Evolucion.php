@@ -24,7 +24,7 @@ class Evolucion {
         $documento->appendChild($segmemto);
     }
 
-    public static function parserXML(DOMDocument $DOM, array $evolucionPaciente = []) {
+    public static function parseXML(DOMDocument $DOM, array $evolucionPaciente = []) {
         if (sizeof($evolucionPaciente) == 0) {
             return $DOM;
         }

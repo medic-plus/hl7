@@ -24,7 +24,7 @@ class DatosDestinarios {
         $documento->appendChild($segmento);
     }
 
-    public static function parserXML(DOMDocument $DOM, array $datosAfiliaciones = []) {
+    public static function parseXML(DOMDocument $DOM, array $datosAfiliaciones = []) {
         if (sizeof($datosAfiliaciones) == 0) {
             return $DOM;
         }
