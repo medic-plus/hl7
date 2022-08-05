@@ -52,6 +52,18 @@ class Documento {
         $this->alergias = $alergias;
     }
 
+    public function addAntecedenteHeredofamilia(AntecedentesHeredofamiliares $descripcionHeredofamilia) {
+        array_push($this->descripcion, $descripcionHeredofamilia);
+    }
+
+    public function getDescripcionHeredofamiliar() {
+        return $this->descripcion;
+    }
+
+    public function setDescripcionHeredofamiliar(array $descripcion) {
+        $this->descripcion = $descripcion;
+    }
+
     public function addManifestacionInicial(Sintomatologia $manifestacionInicial) {
         array_push($this->manifestacionIniciales, $manifestacionInicial);
     }
@@ -138,14 +150,6 @@ class Documento {
 
     public function addAntecedenteHeredofamiliar(AntecedentesHeredofamiliares $descripcionHeredofamilia) {
         array_push($this->descripcion, $descripcionHeredofamilia);
-    }
-
-    public function getDescripcion() {
-        return $this->descripcion;
-    }
-
-    public function setDescripcion(array $descripcion) {
-        $this->descripcion = $descripcion;
     }
 
     public function addAntecedentePatologico(AntecedentesPatologicos $descripcionPatologico) {

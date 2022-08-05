@@ -39,7 +39,7 @@ class PronosticosSalud {
         $code = $DOM->createElement('code', '');
         $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
         $code->setAttribute('codeSystemName', 'LOINC');
-        $code->setAttribute('code ', '47420-5');
+        $code->setAttribute('code', '47420-5');
         $code->setAttribute('displayName', 'Evaluacion del Estado Funcional');
         $section->appendChild($code);
 

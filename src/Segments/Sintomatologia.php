@@ -9,7 +9,7 @@ class Sintomatologia {
     private string $manifestacionIniciales;
 
     public function __construct(string $manifestacionIniciales) {
-        $this->getManifestacionIniciales = $manifestacionIniciales;
+        $this->manifestacionIniciales = $manifestacionIniciales;
     }
 
     public function getManifestacionIniciales() {

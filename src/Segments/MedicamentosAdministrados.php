@@ -123,7 +123,7 @@ class MedicamentosAdministrados {
         $section->appendChild($title);
 
         $descripcionContent = array_map(function ($descripcionMedicamentoAdmin) {
-            return $descripcionMedicamentoAdmin->getAlergias();
+            return $descripcionMedicamentoAdmin->getDescripcionMedicamento();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);

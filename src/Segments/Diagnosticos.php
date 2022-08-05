@@ -96,11 +96,10 @@ class Diagnosticos {
         $documento->appendChild($segmento);
     }
 
-    public static function parseXML(DOMDocument $DOM, array $alergias = []) {
-        if (sizeof($alergias) == 0) {
+    public static function parseXML(DOMDocument $DOM, array $descripcion = []) {
+        if (sizeof($descripcion) == 0) {
             return $DOM;
         }
-
         $component = $DOM->createElement('component', '');
         $DOM->appendChild($component);
 
@@ -124,7 +123,7 @@ class Diagnosticos {
 
         $descripcionsContent = array_map(function ($descripcionDiagnostico) {
             return $descripcionDiagnostico->getDescripcionDiagnosticos();
-        }, $alergias);
+        }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionsContent));
         $section->appendChild($text);
 

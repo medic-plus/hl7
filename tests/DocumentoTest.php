@@ -6,6 +6,7 @@ use Medicplus\HL7\Segments\Alergias;
 use Medicplus\HL7\Config;
 use Medicplus\HL7\Documento;
 use Medicplus\HL7\DocumentParser;
+use Medicplus\HL7\Segments\AntecedentesHeredofamiliares;
 use Medicplus\HL7\Segments\AntecedentesNoPatologicos;
 use Medicplus\HL7\Segments\AntecedentesPatologicos;
 use Medicplus\HL7\Segments\DatosDestinarios;
@@ -54,11 +55,11 @@ class DocumentoTest extends TestCase {
         $this->assertEquals($expected, DocumentoTest::exportDOM($documento));
     }
 
-    public function testAntecedentesPatologicos() {
+    public function testAntecedentesHeredofamiliares() {
         $documento = new Documento();
-        $Patologico = new AntecedentesPatologicos("Prueba 1", "Prueba 2");
-        $documento->addAntecedentePatologico($Patologico);
-        $expected = file_get_contents('./tests/files/segments/antecedentesPatologicos.xml');
+        $AntecedenteHeredo = new AntecedentesHeredofamiliares("Prueba 1", 1, 1, 1);
+        $documento->addAntecedenteHeredofamilia($AntecedenteHeredo);
+        $expected = file_get_contents('./tests/files/segments/AntecedentesHeredofamiliares.xml');
         $this->assertEquals($expected, DocumentoTest::exportDOM($documento));
     }
 
@@ -67,6 +68,14 @@ class DocumentoTest extends TestCase {
         $noPatologico = new AntecedentesNoPatologicos("Prueba 1", "Prueba 2", 1000, "Prueba 4", "Prueba 5", "Prueba 6", "Prueba 7");
         $documento->addAntecedentesPersonal($noPatologico);
         $expected = file_get_contents('./tests/files/segments/antecedentesNoPatologicos.xml');
+        $this->assertEquals($expected, DocumentoTest::exportDOM($documento));
+    }
+
+    public function testAntecedentesPatologicos() {
+        $documento = new Documento();
+        $Patologico = new AntecedentesPatologicos("Prueba 1", "Prueba 2");
+        $documento->addAntecedentePatologico($Patologico);
+        $expected = file_get_contents('./tests/files/segments/antecedentesPatologicos.xml');
         $this->assertEquals($expected, DocumentoTest::exportDOM($documento));
     }
 
@@ -82,7 +91,7 @@ class DocumentoTest extends TestCase {
         $documento = new Documento();
         $diagnostico = new Diagnosticos("Prueba 1", 10, 1000, "Prueba 4", "Prueba 5");
         $documento->addDiagnosticos($diagnostico);
-        $expected = file_get_contents('./tests/files/segments/antecedentesPatologicos.xml');
+        $expected = file_get_contents('./tests/files/segments/diagnosticos.xml');
         $this->assertEquals($expected, DocumentoTest::exportDOM($documento));
     }
 
@@ -96,7 +105,7 @@ class DocumentoTest extends TestCase {
 
     public function testEvolucionPaciente() {
         $documento = new Documento();
-        $evolucion = new Evolucion("Prueba");
+        $evolucion = new Evolucion("Prueba 1");
         $documento->addEvolucionPaciente($evolucion);
         $expected = file_get_contents('./tests/files/segments/evolucion.xml');
         $this->assertEquals($expected, DocumentoTest::exportDOM($documento));

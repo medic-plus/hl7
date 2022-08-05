@@ -51,6 +51,8 @@ class Alergias {
         $text = $DOM->createElement('text', implode("\n", $alergiasContent));
         $section->appendChild($text);
 
+        var_dump($alergias);
+
         return $DOM;
     }
 }

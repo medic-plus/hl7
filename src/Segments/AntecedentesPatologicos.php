@@ -90,7 +90,7 @@ class AntecedentesPatologicos {
         $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.20');
         $section->appendChild($templateId);
 
-        $code = $DOM->createElementNS('code', '');
+        $code = $DOM->createElement('code', '');
         $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
         $code->setAttribute('codeSystemName', 'LOINC');
         $code->setAttribute('code', '11348-0');
@@ -100,15 +100,11 @@ class AntecedentesPatologicos {
         $title = $DOM->createElement('title', 'Antecedentes Persolanes patologicos');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($descripcionPatologico) {
+        $descripcionPatologicosContent = array_map(function ($descripcionPatologico) {
             return $descripcionPatologico->getDescripcionAntecedente();
         }, $descripcion);
-        $text = $DOM->createElement('text', implode("\n", $descripcionContent));
+        $text = $DOM->createElement('text', implode("\n", $descripcionPatologicosContent));
         $section->appendChild($text);
-
-        $paragraph = $DOM->createElement('paragraph', 'Tipo de Sangre --Tipo de sangre--');
-        $paragraph->setAttribute('paragraph', 'Otros antecedentes perosnales no patalogicos en texto libre');
-        $section->appendChild($paragraph);
 
         return $DOM;
     }

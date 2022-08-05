@@ -154,7 +154,7 @@ class ResultadosEstudios {
         $section->appendChild($title);
 
         $descripcionContent = array_map(function ($descripcionResultado) {
-            return $descripcionResultado->getAlergias();
+            return $descripcionResultado->getDescripcionEstudios();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);

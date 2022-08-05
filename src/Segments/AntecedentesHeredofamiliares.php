@@ -17,11 +17,11 @@ class AntecedentesHeredofamiliares {
         $this->presenciaDiabetes = $presenciaDiabetes;
     }
 
-    public function getDescripcion() {
+    public function getDescripcionHeredofamiliar() {
         return $this->descripcion;
     }
 
-    public function setDescripcion(string $descripcion) {
+    public function setDescripcionHeredofamiliar(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -80,7 +80,7 @@ class AntecedentesHeredofamiliares {
         $section->appendChild($title);
 
         $descripcionContent = array_map(function ($descripcionHeredofamilia) {
-            return $descripcionHeredofamilia->getDescripcion();
+            return $descripcionHeredofamilia->getDescripcionHeredofamiliar();
         }, $descripcion);
 
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
