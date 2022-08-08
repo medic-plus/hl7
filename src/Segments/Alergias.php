@@ -26,7 +26,7 @@ class Alergias {
         }
         //Component
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
         //Section
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -50,8 +50,6 @@ class Alergias {
         }, $alergias);
         $text = $DOM->createElement('text', implode("\n", $alergiasContent));
         $section->appendChild($text);
-
-        var_dump($alergias);
 
         return $DOM;
     }

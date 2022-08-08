@@ -49,6 +49,12 @@ class DocumentParser {
         $this->DOM = new DOMDocument('1.0', 'UTF-8');
         $this->DOM->preserveWhiteSpace = false;
         $this->DOM->formatOutput = true;
+        $clinicalDocument = $this->DOM->createElement('ClinicalDocument', '');
+        $clinicalDocument->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+        $clinicalDocument->setAttribute('xsi:schemaLocation', 'urn:hl7-org:v3 cda/CDA.xsd');
+        $clinicalDocument->setAttribute('xmlns:mif', 'urn:hl7-org:v3/mif');
+        $clinicalDocument->setAttribute('xmlns', 'urn:hl7-org:v3');
+        $this->DOM->appendChild($clinicalDocument);
     }
 
     public function getDOM(): DOMDocument {
