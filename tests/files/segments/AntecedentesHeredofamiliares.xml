@@ -5,7 +5,7 @@
             <templateId root="2.16.840.1.113883.10.20.1.4"/>
             <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="10157-6" displayName="Antecedentes Familiares"/>
             <title>Antecedentes Heredo-Familiares</title>
-            <text>PRUEBA</text>
+            <text>Prueba 1</text>
             <entry typeCode="DRIV">
                 <organizer moodCode="EVN" classCode="CLUSTER">
                     <statusCode code="completed"/>

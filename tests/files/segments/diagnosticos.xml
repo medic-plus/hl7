@@ -6,7 +6,7 @@
             <templateId root="2.16.840.1.113883.10.20.22.2.5.1"/>
             <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="11450-4" displayName="Lista de Problemas"/>
             <title>Diagnósticos y problemas de salud</title>
-            <text>PRUEBA</text>
+            <text>Prueba 1</text>
             <entry typeCode="DRIV">
                 <act classCode="ACT" moodCode="EVN">
                     <code codeSystem="2.16.840.1.113883.5.6" code="CONC" displayName="Concern"/>

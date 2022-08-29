@@ -77,8 +77,8 @@ class DocumentParser {
     }
 
     public function parseAntecedentesHeredofamiliares() {
-        if (sizeof($this->documento->getDescripcionHeredofamiliar()) > 0) {
-            $this->DOM = AntecedentesHeredofamiliares::parseXML($this->DOM, $this->documento->getDescripcionHeredofamiliar());
+        if (sizeof($this->documento->getAntecedentesHeredofamiliares()) > 0) {
+            $this->DOM = AntecedentesHeredofamiliares::parseXML($this->DOM, $this->documento->getAntecedentesHeredofamiliares());
         }
     }
 
@@ -89,26 +89,26 @@ class DocumentParser {
     }
 
     public function parseAntecedentesPatologicos() {
-        if (sizeof($this->documento->getDescripcionAntecedente()) > 0) {
-            $this->DOM = AntecedentesPatologicos::parseXML($this->DOM, $this->documento->getDescripcionAntecedente());
+        if (sizeof($this->documento->getAntecedentesPatologicos()) > 0) {
+            $this->DOM = AntecedentesPatologicos::parseXML($this->DOM, $this->documento->getAntecedentesPatologicos());
         }
     }
 
     public function parseDatosDestinarios() {
-        if (sizeof($this->documento->getDatosAfiliaciones()) > 0) {
-            $this->DOM = DatosDestinarios::parseXML($this->DOM, $this->documento->getDatosAfiliaciones());
+        if (sizeof($this->documento->getDatosDestinarios()) > 0) {
+            $this->DOM = DatosDestinarios::parseXML($this->DOM, $this->documento->getDatosDestinarios());
         }
     }
 
     public function parseDiagnostico() {
-        if (sizeof($this->documento->getDescripcionDiagnosticos()) > 0) {
-            $this->DOM = Diagnosticos::parseXML($this->DOM, $this->documento->getDescripcionDiagnosticos());
+        if (sizeof($this->documento->getDiagnosticos()) > 0) {
+            $this->DOM = Diagnosticos::parseXML($this->DOM, $this->documento->getDiagnosticos());
         }
     }
 
     public function parseDiscapacidades() {
-        if (sizeof($this->documento->getDescripcionDiscapacidades()) > 0) {
-            $this->DOM = Discapacidades::parseXML($this->DOM, $this->documento->getDescripcionDiscapacidades());
+        if (sizeof($this->documento->getDiscapacidades()) > 0) {
+            $this->DOM = Discapacidades::parseXML($this->DOM, $this->documento->getDiscapacidades());
         }
     }
 
@@ -131,8 +131,8 @@ class DocumentParser {
     }
 
     public function parseMedicamentosAdministrados() {
-        if (sizeof($this->documento->getDescripcionMedicamento()) > 0) {
-            $this->DOM = MedicamentosAdministrados::parseXML($this->DOM, $this->documento->getDescripcionMedicamento());
+        if (sizeof($this->documento->getMedicamentoAdministrado()) > 0) {
+            $this->DOM = MedicamentosAdministrados::parseXML($this->DOM, $this->documento->getMedicamentoAdministrado());
         }
     }
 
@@ -149,8 +149,8 @@ class DocumentParser {
     }
 
     public function parseProcedimientos() {
-        if (sizeof($this->documento->getDescripcionProcedimiento()) > 0) {
-            $this->DOM = Procedimientos::parseXML($this->DOM, $this->documento->getDescripcionProcedimiento());
+        if (sizeof($this->documento->getProcedimiento()) > 0) {
+            $this->DOM = Procedimientos::parseXML($this->DOM, $this->documento->getProcedimiento());
         }
     }
 
@@ -161,14 +161,14 @@ class DocumentParser {
     }
 
     public function parseResultadosEstudios() {
-        if (sizeof($this->documento->getDescripcionEstudios()) > 0) {
-            $this->DOM = ResultadosEstudios::parseXML($this->DOM, $this->documento->getDescripcionEstudios());
+        if (sizeof($this->documento->getResultados()) > 0) {
+            $this->DOM = ResultadosEstudios::parseXML($this->DOM, $this->documento->getResultados());
         }
     }
 
     public function parseSignosVitales() {
-        if (sizeof($this->documento->getDescripcionSignosVitales()) > 0) {
-            $this->DOM = SignosVitales::parseXML($this->DOM, $this->documento->getDescripcionSignosVitales());
+        if (sizeof($this->documento->getSignosVitales()) > 0) {
+            $this->DOM = SignosVitales::parseXML($this->DOM, $this->documento->getSignosVitales());
         }
     }
 

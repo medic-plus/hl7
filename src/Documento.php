@@ -30,15 +30,24 @@ use Medicplus\HL7\Segments\Sintomatologia;
 class Documento {
 
     private array $alergias = [];
-    private array $manifestacionIniciales = [];
+    private array $antecedentesHeredofamiliares = [];
     private array $antecedentesPersonales = [];
-    private array $pronosticoSalud = [];
-    private array $datosAfiliaciones = [];
+    private array $antecedentesPatologicos = [];
+    private array $datosDestinarios = [];
+    private array $diagnosticos = [];
+    private array $discapacidades = [];
     private array $evolucionPaciente = [];
-    private array $planTratamientoTerapeuticas = [];
     private array $impresionDiagnostica = [];
-    private array $descripcion = [];
+    private array $manifestacionIniciales = [];
+    private array $medicamentos = [];
+    private array $medicamentoAdministrado = [];
     private array $motivoReferencia = [];
+    private array $planTratamientoTerapeuticas = [];
+    private array $procedimientos = [];
+    private array $pronosticoSalud = [];
+    private array $ResultadosEstudios = [];
+    private array $signosVitales = [];
+
 
     public function addAlergia(Alergias $alergia) {
         array_push($this->alergias, $alergia);
@@ -52,28 +61,16 @@ class Documento {
         $this->alergias = $alergias;
     }
 
-    public function addAntecedenteHeredofamilia(AntecedentesHeredofamiliares $descripcionHeredofamilia) {
-        array_push($this->descripcion, $descripcionHeredofamilia);
+    public function addAntecedenteHeredofamilia(AntecedentesHeredofamiliares $antecedente) {
+        array_push($this->antecedentesHeredofamiliares, $antecedente);
     }
 
-    public function getDescripcionHeredofamiliar() {
-        return $this->descripcion;
+    public function getAntecedentesHeredofamiliares() {
+        return $this->antecedentesHeredofamiliares;
     }
 
-    public function setDescripcionHeredofamiliar(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addManifestacionInicial(Sintomatologia $manifestacionInicial) {
-        array_push($this->manifestacionIniciales, $manifestacionInicial);
-    }
-
-    public function getManifestacionIniciales() {
-        return $this->manifestacionIniciales;
-    }
-
-    public function setManifestacionIniciales(array $manifestacionIniciales) {
-        $this->manifestacionIniciales = $manifestacionIniciales;
+    public function setAntecedentesHeredofamiliares(array $antecedentes) {
+        $this->antecedentesHeredofamiliares = $antecedentes;
     }
 
     public function addAntecedentesPersonal(AntecedentesNoPatologicos $antecedentesPersonal) {
@@ -88,28 +85,52 @@ class Documento {
         $this->antecedentesPersonales = $antecedentesPersonales;
     }
 
-    public function addPronosticoSalud(PronosticosSalud $pronosticosDeSalud) {
-        array_push($this->pronosticoSalud, $pronosticosDeSalud);
+    public function addAntecedentePatologico(AntecedentesPatologicos $antecedentePatologico) {
+        array_push($this->antecedentesPatologicos, $antecedentePatologico);
     }
 
-    public function getPronosticoSalud() {
-        return $this->pronosticoSalud;
+    public function getAntecedentesPatologicos() {
+        return $this->antecedentesPatologicos;
     }
 
-    public function setPronosticoSalud(array $pronosticoSalud) {
-        $this->pronosticoSalud = $pronosticoSalud;
+    public function setAntecedentesPatologicos(array $antecedentesPatolo) {
+        $this->antecedentesPatologicos = $antecedentesPatolo;
     }
 
-    public function addDatosAfiliacion(DatosDestinarios $datosAfiliacion) {
-        array_push($this->datosAfiliaciones, $datosAfiliacion);
+    public function addDatosDestinarios(DatosDestinarios $datoDestinario) {
+        array_push($this->datosDestinarios, $datoDestinario);
     }
 
-    public function getDatosAfiliaciones() {
-        return $this->datosAfiliaciones;
+    public function getDatosDestinarios() {
+        return $this->datosDestinarios;
     }
 
-    public function setDatosAfiliaciones(array $datosAfiliaciones) {
-        $this->datosAfiliaciones = $datosAfiliaciones;
+    public function setDatosDestinarios(array $datosDestinarios) {
+        $this->datosDestinarios = $datosDestinarios;
+    }
+
+    public function addDiagnosticos(Diagnosticos $diagnostico) {
+        array_push($this->diagnosticos, $diagnostico);
+    }
+
+    public function getDiagnosticos() {
+        return $this->diagnosticos;
+    }
+
+    public function setDiagnosticos(array $diagnosticos) {
+        $this->diagnosticos = $diagnosticos;
+    }
+
+    public function addDiscapacidades(Discapacidades $discapacidad) {
+        array_push($this->discapacidades, $discapacidad);
+    }
+
+    public function getDiscapacidades() {
+        return $this->discapacidades;
+    }
+
+    public function setDiscapacidades(array $discapacidades) {
+        $this->discapacidades = $discapacidades;
     }
 
     public function addEvolucionPaciente(Evolucion $evolucionesPaciente) {
@@ -124,18 +145,6 @@ class Documento {
         $this->evolucionPaciente = $evolucionPaciente;
     }
 
-    public function addPlanTratamientoTerapeuticas(PlanTratamiento $planTratamientos) {
-        array_push($this->planTratamientoTerapeuticas, $planTratamientos);
-    }
-
-    public function getPlanTratamientoTerapeuticas() {
-        return $this->planTratamientoTerapeuticas;
-    }
-
-    public function setPlanTratamientoTerapeuticas(array $planTratamientoTerapeuticas) {
-        $this->planTratamientoTerapeuticas = $planTratamientoTerapeuticas;
-    }
-
     public function addImpresionDiagnostica(ImpresionDiagnostica $impresionesDiagnosticas) {
         array_push($this->impresionDiagnostica, $impresionesDiagnosticas);
     }
@@ -148,104 +157,40 @@ class Documento {
         $this->impresionDiagnostica = $impresionDiagnostica;
     }
 
-    public function addAntecedenteHeredofamiliar(AntecedentesHeredofamiliares $descripcionHeredofamilia) {
-        array_push($this->descripcion, $descripcionHeredofamilia);
+    public function addManifestacionInicial(Sintomatologia $manifestacionInicial) {
+        array_push($this->manifestacionIniciales, $manifestacionInicial);
     }
 
-    public function addAntecedentePatologico(AntecedentesPatologicos $descripcionPatologico) {
-        array_push($this->descripcion, $descripcionPatologico);
+    public function getManifestacionIniciales() {
+        return $this->manifestacionIniciales;
     }
 
-    public function getDescripcionAntecedente() {
-        return $this->descripcion;
+    public function setManifestacionIniciales(array $manifestacionIniciales) {
+        $this->manifestacionIniciales = $manifestacionIniciales;
     }
 
-    public function setDescripcionAntecedente(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addSignosVitales(SignosVitales $descripcionSignoVital) {
-        array_push($this->descripcion, $descripcionSignoVital);
-    }
-
-    public function getDescripcionSignosVitales() {
-        return $this->descripcion;
-    }
-
-    public function setDescripcionSignosVitales(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addResultadosEstudios(ResultadosEstudios $descripcionResultado) {
-        array_push($this->descripcion, $descripcionResultado);
-    }
-
-    public function getDescripcionEstudios() {
-        return $this->descripcion;
-    }
-
-    public function setDescripcionEstudios(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addProcedimientos(Procedimientos $descripcionProcedimiento) {
-        array_push($this->descripcion, $descripcionProcedimiento);
-    }
-
-    public function getDescripcionProcedimiento() {
-        return $this->descripcion;
-    }
-
-    public function setDescripcionProcedimiento(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addDiscapacidades(Discapacidades $descripcionDiscapacidad) {
-        array_push($this->descripcion, $descripcionDiscapacidad);
-    }
-
-    public function getDescripcionDiscapacidades() {
-        return $this->descripcion;
-    }
-
-    public function setDescripcionDiscapacidades(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addMedicamentoAdministrativo(MedicamentosAdministrados $descripcionMedicamentoAdmin) {
-        array_push($this->descripcion, $descripcionMedicamentoAdmin);
-    }
-
-    public function getDescripcionMedicamento() {
-        return $this->descripcion;
-    }
-
-    public function setDescripcionMedicamento(array $descripcion) {
-        $this->descripcion = $descripcion;
-    }
-
-    public function addMedicamentoPrevio(Medicamentos $descripcionMedicamentoPrevio) {
-        array_push($this->descripcion, $descripcionMedicamentoPrevio);
+    public function addMedicamentoPrevio(Medicamentos $medicamento) {
+        array_push($this->medicamentos, $medicamento);
     }
 
     public function getDescripcionMedicamentosPrevios() {
-        return $this->descripcion;
+        return $this->medicamentos;
     }
 
-    public function setDescripcionMedicamentosPrevios(array $descripcion) {
-        $this->descripcion = $descripcion;
+    public function setDescripcionMedicamentosPrevios(array $medicamentos) {
+        $this->medicamentos = $medicamentos;
     }
 
-    public function addDiagnosticos(Diagnosticos $descripcionDiagnostico) {
-        array_push($this->descripcion, $descripcionDiagnostico);
+    public function addMedicamentoAdministrativo(MedicamentosAdministrados $medicamentoAdmin) {
+        array_push($this->medicamentoAdministrado, $medicamentoAdmin);
     }
 
-    public function getDescripcionDiagnosticos() {
-        return $this->descripcion;
+    public function getMedicamentoAdministrado() {
+        return $this->medicamentoAdministrado;
     }
 
-    public function setDescripcionDiagnosticos(array $descripcion) {
-        $this->descripcion = $descripcion;
+    public function setMedicamentoAdministrado(array $medicamentoAdministrado) {
+        $this->medicamentoAdministrado = $medicamentoAdministrado;
     }
 
     public function addMotivoRerefencia(MotivoReferencia $motivosReferencias) {
@@ -258,5 +203,65 @@ class Documento {
 
     public function setMotivoReferencia(array $motivoReferencia) {
         $this->motivoReferencia = $motivoReferencia;
+    }
+
+    public function addPlanTratamientoTerapeuticas(PlanTratamiento $planTratamientos) {
+        array_push($this->planTratamientoTerapeuticas, $planTratamientos);
+    }
+
+    public function getPlanTratamientoTerapeuticas() {
+        return $this->planTratamientoTerapeuticas;
+    }
+
+    public function setPlanTratamientoTerapeuticas(array $planTratamientoTerapeuticas) {
+        $this->planTratamientoTerapeuticas = $planTratamientoTerapeuticas;
+    }
+
+    public function addProcedimientos(Procedimientos $procedimiento) {
+        array_push($this->procedimientos, $procedimiento);
+    }
+
+    public function getProcedimiento() {
+        return $this->procedimientos;
+    }
+
+    public function setProcedimiento(array $procedimientos) {
+        $this->procedimientos = $procedimientos;
+    }
+
+    public function addPronosticoSalud(PronosticosSalud $pronosticosDeSalud) {
+        array_push($this->pronosticoSalud, $pronosticosDeSalud);
+    }
+
+    public function getPronosticoSalud() {
+        return $this->pronosticoSalud;
+    }
+
+    public function setPronosticoSalud(array $pronosticoSalud) {
+        $this->pronosticoSalud = $pronosticoSalud;
+    }
+
+    public function addResultadosEstudios(ResultadosEstudios $resultado) {
+        array_push($this->ResultadosEstudios, $resultado);
+    }
+
+    public function getResultados() {
+        return $this->ResultadosEstudios;
+    }
+
+    public function setResultados(array $resultados) {
+        $this->ResultadosEstudios = $resultados;
+    }
+
+    public function addSignosVitales(SignosVitales $signoVital) {
+        array_push($this->signosVitales, $signoVital);
+    }
+
+    public function getSignosVitales() {
+        return $this->signosVitales;
+    }
+
+    public function setSignosVitales(array $signosVitales) {
+        $this->signosVitales = $signosVitales;
     }
 }

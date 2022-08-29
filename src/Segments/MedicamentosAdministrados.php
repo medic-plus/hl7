@@ -28,11 +28,11 @@ class MedicamentosAdministrados {
         $this->medicamento = $medicamento;
     }
 
-    public function getDescripcionMedicamento() {
+    public function getMedicamentoAdministrado() {
         return $this->descripcion;
     }
 
-    public function setDescripcionMedicamentos(string $descripcion) {
+    public function setMedicamentoAdministrado(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -103,7 +103,7 @@ class MedicamentosAdministrados {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -122,11 +122,66 @@ class MedicamentosAdministrados {
         $title = $DOM->createElement('title', 'Terapéutica empleada');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($descripcionMedicamentoAdmin) {
-            return $descripcionMedicamentoAdmin->getDescripcionMedicamento();
+        $descripcionContent = array_map(function ($medicamentoAdmin) {
+            return $medicamentoAdmin->getMedicamentoAdministrado();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);
+
+        $entry = $DOM->createElement('entry', '');
+        $section->appendChild($entry);
+
+        $substanceAdministration = $DOM->createElement('substanceAdministration', '');
+        $entry->appendChild($substanceAdministration);
+
+        $text = $DOM->createElement('text', '--Observaciones generales del medicamento administrado--');
+        $substanceAdministration->appendChild($text);
+
+        $statusCode = $DOM->createElement('statusCode', '');
+        $statusCode->setAttribute('code', 'completed');
+        $substanceAdministration->appendChild($statusCode);
+
+        $routeCode = $DOM->createElement('routeCode', '');
+        $routeCode->setAttribute('codeSystem', '2.16.840.1.113883.3.215.12.12');
+        $routeCode->setAttribute('codeSystemName', 'Vía de Administración CBM');
+        $routeCode->setAttribute('code', '--Valor del identificador de Vía de administración--');
+        $routeCode->setAttribute('displayName', '--Nombre de Vía de administración--');
+        $substanceAdministration->appendChild($routeCode);
+
+        $doseQuantity = $DOM->createElement('doseQuantity', '');
+        $substanceAdministration->appendChild($doseQuantity);
+
+        $center = $DOM->createElement('center', '');
+        $center->setAttribute('value', '--Cantidad administrada y frecuencia--');
+        $doseQuantity->appendChild($center);
+
+        $effectiveTime = $DOM->createElement('effectiveTime', '');
+        $substanceAdministration->appendChild($effectiveTime);
+
+        $low = $DOM->createElement('low', '');
+        $low->setAttribute('value', '--aaaammddhhiiss--');
+        $effectiveTime->appendChild($low);
+
+        $high = $DOM->createElement('high', '');
+        $high->setAttribute('value', '--aaaammddhhiiss--');
+        $effectiveTime->appendChild($high);
+
+        $comsumable = $DOM->createElement('comsumable', '');
+        $substanceAdministration->appendChild($comsumable);
+
+        $manufacturedProduct = $DOM->createElement('manufacturedProduct', '');
+        $manufacturedProduct->setAttribute('classCode', 'MANU');
+        $comsumable->appendChild($manufacturedProduct);
+
+        $manufacturedMaterial = $DOM->createElement('manufacturedMaterial', '');
+        $manufacturedProduct->appendChild($manufacturedMaterial);
+
+        $code1 = $DOM->createElement('code', '');
+        $code1->setAttribute('codeSystem', '2.16.840.1.113883.3.215.12.8');
+        $code1->setAttribute('codeSystemName', 'Cuadro Básico de Medicamentos');
+        $code1->setAttribute('code', '--Valor del identificador del Medicamento de acuerdo a catálogo--');
+        $code1->setAttribute('displayName', '--Nombre del medicamento de acuerdo a catálogo--');
+        $manufacturedMaterial->appendChild($code1);
 
         return $DOM;
     }

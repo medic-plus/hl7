@@ -5,7 +5,7 @@
             <templateId root="2.16.840.1.113883.10.20.22.2.1"/>
             <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="10160-0" displayName="Antecedentes de medicamentos"/>
             <title>Historial farmacológico</title>
-            <text>Prueba</text>
+            <text>Prueba 1</text>
             <entry>
                 <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
                     <text>--Observaciones generales del medicamento relevante al episodio--</text>

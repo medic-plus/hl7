@@ -5,7 +5,7 @@
             <templateId root="2.16.840.1.113883.10.20.1.12"/>
             <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="47519-4" displayName="Historial de procedimientos"/>
             <title>Procedimientos quirurgicos y terapeuticos</title>
-            <text>Prueba</text>
+            <text>Prueba 1</text>
             <entry typeCode="DRIV">
                 <procedure classCode="PROC" moodCode="EVN">
                     <code codeSystem="2.16.840.1.113883.6.2" codeSystemName="ICD-9CM" code="--Valor del identificador del procedimiento de acuerdo a catálogo--" displayName="--Nombre del procedimiento de acuerdo a catálogo--">

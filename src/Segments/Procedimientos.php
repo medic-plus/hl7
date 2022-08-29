@@ -32,11 +32,11 @@ class Procedimientos {
         $this->servicioProcedimiento = $servicioProcedimiento;
     }
 
-    public function getDescripcionProcedimiento() {
+    public function getProcedimiento() {
         return $this->descripcion;
     }
 
-    public function setDescripcionProcedimiento(string $descripcionProcedimiento) {
+    public function setProcedimiento(string $descripcionProcedimiento) {
         $this->descripcionProcedimiento = $descripcionProcedimiento;
     }
 
@@ -123,7 +123,7 @@ class Procedimientos {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -139,14 +139,82 @@ class Procedimientos {
         $code->setAttribute('displayName', 'Historial de procedimientos');
         $section->appendChild($code);
 
-        $title = $DOM->createElement('title', 'Procedimientos quirúrgicos y terapéuticos');
+        $title = $DOM->createElement('title', 'Procedimientos quirurgicos y terapeuticos');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($descripcionProcedimiento) {
-            return $descripcionProcedimiento->getDescripcionProcedimiento();
+        $descripcionContent = array_map(function ($procedimiento) {
+            return $procedimiento->getProcedimiento();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);
+
+        $entry = $DOM->createElement('entry', '');
+        $entry->setAttribute('typeCode', 'DRIV');
+        $section->appendChild($entry);
+
+        $procedure = $DOM->createElement('procedure', '');
+        $procedure->setAttribute('classCode', 'PROC');
+        $procedure->setAttribute('moodCode', 'EVN');
+        $entry->appendChild($procedure);
+
+        $code1 = $DOM->createElement('code', '');
+        $code1->setAttribute('codeSystem', '2.16.840.1.113883.6.2');
+        $code1->setAttribute('codeSystemName', 'ICD-9CM');
+        $code1->setAttribute('code', '--Valor del identificador del procedimiento de acuerdo a catálogo--');
+        $code1->setAttribute('displayName', '--Nombre del procedimiento de acuerdo a catálogo--');
+        $procedure->appendChild($code1);
+
+        $originalText = $DOM->createElement('originalText', '--Procedimiento en texto libre introducido por el medico--');
+        $code1->appendChild($originalText);
+
+        $statusCode = $DOM->createElement('statusCode', '');
+        $statusCode->setAttribute('code', 'completed');
+        $procedure->appendChild($statusCode);
+
+        $effectiveTime = $DOM->createElement('effectiveTime', '');
+        $effectiveTime->setAttribute('value', '--aaaammddhhiiss--');
+        $procedure->appendChild($effectiveTime);
+
+        $performer = $DOM->createElement('performer', '');
+        $procedure->appendChild($performer);
+
+        $assignedEntity = $DOM->createElement('assignedEntity', '');
+        $performer->appendChild($assignedEntity);
+
+        $id = $DOM->createElement('id', '');
+        $id->setAttribute('root', '2.16.840.1.113883.3.215.12.18');
+        $id->setAttribute('extension', '--Número de cédula profesional del médico responsable del procedimiento--');
+        $assignedEntity->appendChild($id);
+
+        $assingnedPerson = $DOM->createElement('assingnedPerson', '');
+        $assignedEntity->appendChild($assingnedPerson);
+
+        $name = $DOM->createElement('name', '');
+        $assingnedPerson->appendChild($name);
+
+        $given = $DOM->createElement('given', '--Nombre(s) del médico responsable del procedimiento--');
+        $name->appendChild($given);
+
+        $family = $DOM->createElement('family', '--Primer apellido del médico responsable del procedimiento--');
+        $name->appendChild($family);
+
+        $family1 = $DOM->createElement('family', '--Segundo apellido del médico responsable del procedimiento--');
+        $name->appendChild($family1);
+
+        $participant = $DOM->createElement('participant', '');
+        $participant->setAttribute('typeCode', 'LOC');
+        $procedure->appendChild($participant);
+
+        $participantRole = $DOM->createElement('participantRole', '');
+        $participantRole->setAttribute('classCode', 'SDLOC');
+        $participant->appendChild($participantRole);
+
+        $code2 = $DOM->createElement('code', '');
+        $code2->setAttribute('codeSystem', '2.16.840.1.113883.6.259');
+        $code2->setAttribute('codeSystemName', 'HealthcareServiceLocation');
+        $code2->setAttribute('code', '--Clave de la ubicación (serivicio) donde se realizó el procedimiento--');
+        $code2->setAttribute('displayName', '--ubicación (serivicio) donde se realizó el procedimiento--');
+        $participantRole->appendChild($code2);
 
         return $DOM;
     }

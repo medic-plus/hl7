@@ -21,11 +21,11 @@ class SignosVitales {
         $this->signoVital = $signoVital;
     }
 
-    public function getDescripcionSignosVitales() {
+    public function getSignosVitales() {
         return $this->descripcion;
     }
 
-    public function setDescripcionSignosVitales(string $descripcion) {
+    public function setSignosVitales(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -72,7 +72,7 @@ class SignosVitales {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -91,11 +91,57 @@ class SignosVitales {
         $title = $DOM->createElement('title', 'Signos Vitales');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($descripcionSignoVital) {
-            return $descripcionSignoVital->getDescripcionSignosVitales();
+        $descripcionContent = array_map(function ($signoVital) {
+            return $signoVital->getSignosVitales();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);
+
+        $entry = $DOM->createElement('entry', '');
+        $section->appendChild($entry);
+
+        $organizer = $DOM->createElement('organizer', '');
+        $entry->appendChild($organizer);
+
+        $code1 = $DOM->createElement('code', '');
+        $code1->setAttribute('codeSystem', '2.16.840.1.113883.6.96');
+        $code1->setAttribute('codeSystemName', 'SNOMED CT');
+        $code1->setAttribute('code', '46680005');
+        $code1->setAttribute('displayName', 'Signos vitales');
+        $organizer->appendChild($code1);
+
+        $statusCode = $DOM->createElement('statusCode', '');
+        $statusCode->setAttribute('code', 'completed');
+        $organizer->appendChild($statusCode);
+
+        $component1 = $DOM->createElement('component', '');
+        $organizer->appendChild($component1);
+
+        $observation = $DOM->createElement('observation', '');
+        $observation->setAttribute('classCode', 'OBS');
+        $observation->setAttribute('moodCode', 'EVN');
+        $component1->appendChild($observation);
+
+        $code2 = $DOM->createElement('code', '');
+        $code2->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
+        $code2->setAttribute('codeSystemName', 'LOINC');
+        $code2->setAttribute('code', '--Valor del identificador del signo vital a medir--');
+        $code2->setAttribute('displayName', '--Nombre del signo vital a medir--');
+        $observation->appendChild($code2);
+
+        $statusCode1 = $DOM->createElement('statusCode', '');
+        $statusCode1->setAttribute('code', 'completed');
+        $observation->appendChild($statusCode1);
+
+        $effectiveTime = $DOM->createElement('effectiveTime', '');
+        $effectiveTime->setAttribute('value', '--aaaammddhhiiss--');
+        $observation->appendChild($effectiveTime);
+
+        $value = $DOM->createElement('value', '');
+        $value->setAttribute('xsi:type', 'PQ');
+        $value->setAttribute('value', '--Resultado de la medición--');
+        $value->setAttribute('unit', '--Unidad de expresión del resultado--');
+        $observation->appendChild($value);
 
         return $DOM;
     }

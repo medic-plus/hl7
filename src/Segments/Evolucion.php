@@ -30,7 +30,7 @@ class Evolucion {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -43,7 +43,7 @@ class Evolucion {
         $code->setAttribute('codeSystem', '2.16.840.1.113883.6.1');
         $code->setAttribute('codeSystemName', 'LOINC');
         $code->setAttribute('code', '8648-8');
-        $code->setAttribute('displayName', 'Evolucion');
+        $code->setAttribute('displayName', 'Evolución');
         $section->appendChild($code);
 
         $title = $DOM->createElement('title', 'Evolucion durante la atencion');

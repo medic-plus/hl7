@@ -5,7 +5,7 @@
             <templateId root="2.16.840.1.113883.10.20.22.2.38"/>
             <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="29549-3" displayName="Medicamentos administrados"/>
             <title>Terapéutica empleada</title>
-            <text>Prueba</text>
+            <text>Prueba 1</text>
             <entry>
                 <substanceAdministration>
                     <text>--Observaciones generales del medicamento administrado--</text>

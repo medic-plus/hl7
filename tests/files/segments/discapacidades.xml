@@ -4,10 +4,8 @@
         <section>
             <templateId root='2.16.840.1.113883.10.20.22.2.14'/>
             <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="21134002" displayName="Discapacidades"/>
-            <title>Discapacidades</title>
-            <text>
-                --Descripción de discapacidades y estado del funcionamiento--
-            </text>
+            <title>Descripción de discapacidades y estado del funcionamiento</title>
+            <text>Prueba 1</text>
             <entry typeCode="DRIV">
                 <observation classCode="OBS" moodCode="EVN">
                     <id root="--Identificador único de la discapacidad del paciente--"/>

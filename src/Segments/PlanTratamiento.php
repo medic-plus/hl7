@@ -30,7 +30,7 @@ class PlanTratamiento {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);

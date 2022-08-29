@@ -4,17 +4,18 @@
         <section>
             <templateId root="2.16.840.1.113883.10.20.22.2.4"/>
             <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="8716-3" displayName="Signos Vitales"/>
-            <text>Signos Vitales</text>
+            <title>Signos Vitales</title>
+            <text>Prueba 1</text>
             <entry>
                 <organizer>
                     <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="46680005" displayName="Signos vitales"/>
                     <statusCode code="completed"/>
                     <component>
                         <observation classCode="OBS" moodCode="EVN">
-                            <code  codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="--Valor del identificador del signo vital a medir--" displayName="--Nombre del signo vital a medir--"/>
+                            <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="--Valor del identificador del signo vital a medir--" displayName="--Nombre del signo vital a medir--"/>
                             <statusCode code="completed"/>
                             <effectiveTime value="--aaaammddhhiiss--"/>
-                            <value  xsi:type="PQ" value="--Resultado de la medición--" unit="--Unidad de expresión del resultado--"/>
+                            <value xsi:type="PQ" value="--Resultado de la medición--" unit="--Unidad de expresión del resultado--"/>
                         </observation>
                     </component>
                 </organizer>

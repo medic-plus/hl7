@@ -35,11 +35,11 @@ class ResultadosEstudios {
         $this->tipoResultado = $tipoResultado;
     }
 
-    public function getDescripcionEstudios() {
+    public function getResultados() {
         return $this->descripcion;
     }
 
-    public function setDescripcionEstudios(string $descripcion) {
+    public function setResultados(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -134,7 +134,7 @@ class ResultadosEstudios {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -153,11 +153,71 @@ class ResultadosEstudios {
         $title = $DOM->createElement('title', 'Estudios de laboratorio');
         $section->appendChild($title);
 
-        $descripcionContent = array_map(function ($descripcionResultado) {
-            return $descripcionResultado->getDescripcionEstudios();
+        $descripcionContent = array_map(function ($resultado) {
+            return $resultado->getResultados();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);
+
+        $paragraph = $DOM->createElement('paragraph', '--Identificación de la batería de pruebas o estudios de laboratorio realizados--');
+        $section->appendChild($paragraph);
+
+        $entry = $DOM->createElement('entry', '');
+        $section->appendChild($entry);
+
+        $organizer = $DOM->createElement('organizer', '');
+        $organizer->setAttribute('classCode', 'BATTERY');
+        $organizer->setAttribute('moodCode', 'EVN');
+        $entry->appendChild($organizer);
+
+        $code1 = $DOM->createElement('code', '');
+        $code1->setAttribute('codeSystem', '--OID del sistema de codificación--');
+        $code1->setAttribute('codeSystemName', '--Nombre del sistema de codificación--');
+        $code1->setAttribute('code', '--Clave de la batería realizada--');
+        $code1->setAttribute('displayName', '--Nombre de la batería');
+        $organizer->appendChild($code1);
+
+        $statusCode = $DOM->createElement('statusCode', '');
+        $statusCode->setAttribute('code', 'completed');
+        $organizer->appendChild($statusCode);
+
+        $component = $DOM->createElement('component', '');
+        $organizer->appendChild($component);
+
+        $observation = $DOM->createElement('observation', '');
+        $observation->setAttribute('classCode', 'OBS');
+        $observation->setAttribute('moodCode', 'EVN');
+        $component->appendChild($observation);
+
+        $code2 = $DOM->createElement('code', '');
+        $code2->setAttribute('codeSystem', '--OID del sistema de codificación--');
+        $code2->setAttribute('codeSystemName', '--Nombre del sistema de codificación--');
+        $code2->setAttribute('code', '--Clave de la prueba realizada--');
+        $code2->setAttribute('displayName', '--Nombre de la prueba realizada--');
+        $observation->appendChild($code2);
+
+        $statusCode1 = $DOM->createElement('statusCode', '');
+        $statusCode1->setAttribute('code', 'completed');
+        $observation->appendChild($statusCode1);
+
+        $effectiveTime = $DOM->createElement('effectiveTime', '');
+        $effectiveTime->setAttribute('value', '--aaaammddhhiiss--');
+        $observation->appendChild($effectiveTime);
+
+        $value = $DOM->createElement('value', '');
+        $value->setAttribute('xsi:type', 'PQ');
+        $value->setAttribute('value', '--Resultado de la medición--');
+        $value->setAttribute('unit', '--Unidad de expresión del resultado--');
+        $observation->appendChild($value);
+
+        $referenceRange = $DOM->createElement('referenceRange', '');
+        $observation->appendChild($referenceRange);
+
+        $observationRange = $DOM->createElement('observationRange', '');
+        $referenceRange->appendChild($observationRange);
+
+        $text = $DOM->createElement('text', '--Rango de referencia para el resultado--');
+        $observationRange->appendChild($text);
 
         return $DOM;
     }

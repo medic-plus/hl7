@@ -31,7 +31,7 @@ class Sintomatologia {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -47,7 +47,7 @@ class Sintomatologia {
         $code->setAttribute('displayName', 'Manifestaciones Iniciales');
         $section->appendChild($code);
 
-        $title = $DOM->createElement('title', 'Manifestaciones iniciales');
+        $title = $DOM->createElement('title', 'Manifestaciones Iniciales');
         $section->appendChild($title);
 
         $manifestacionInicialesContent = array_map(function ($manifestacionInicial) {

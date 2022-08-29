@@ -16,11 +16,11 @@ class Discapacidades {
         $this->discapacidad = $discapacidad;
     }
 
-    public function getDescripcionDiscapacidades() {
+    public function getDiscapacidades() {
         return $this->descripcion;
     }
 
-    public function setDescripcionDiscapacidades(string $descripcion) {
+    public function setDiscapacidades(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -51,7 +51,7 @@ class Discapacidades {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
@@ -71,10 +71,42 @@ class Discapacidades {
         $section->appendChild($title);
 
         $descripcionContent = array_map(function ($descripcionDiscapacidad) {
-            return $descripcionDiscapacidad->getDescripcionDiscapacidades();
+            return $descripcionDiscapacidad->getDiscapacidades();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionContent));
         $section->appendChild($text);
+
+        $entry = $DOM->createElement('entry', '');
+        $entry->setAttribute('typeCode', 'DRIV');
+        $section->appendChild($entry);
+
+        $observation = $DOM->createElement('observation', '');
+        $observation->setAttribute('classCode', 'OBS');
+        $observation->setAttribute('moodCode', 'EVN');
+        $entry->appendChild($observation);
+
+        $id = $DOM->createElement('id', '');
+        $id->setAttribute('root', '--Identificador único de la discapacidad del paciente--');
+        $observation->appendChild($id);
+
+        $code1 = $DOM->createElement('code', '');
+        $code1->setAttribute('codeSystem', '2.16.840.1.113883.6.96');
+        $code1->setAttribute('codeSystemName', 'SNOMED CT');
+        $code1->setAttribute('code', '248536006');
+        $code1->setAttribute('displayName', 'Discapacidades');
+        $observation->appendChild($code1);
+
+        $statusCode = $DOM->createElement('statusCode', '');
+        $statusCode->setAttribute('code', 'completed');
+        $observation->appendChild($statusCode);
+
+        $value = $DOM->createElement('value', '');
+        $value->setAttribute('xsi:type', 'CD');
+        $value->setAttribute('codeSystem', '2.16.840.1.113883.6.254');
+        $value->setAttribute('codeSystemName', 'CIF');
+        $value->setAttribute('code', '--Valor del identificador de discapacidad de acuerdo a catálogo--');
+        $value->setAttribute('displayName', '--Nombre de discapacidad de acuerdo a catálogo--');
+        $observation->appendChild($value);
 
         return $DOM;
     }

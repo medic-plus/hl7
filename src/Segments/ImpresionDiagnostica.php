@@ -30,13 +30,13 @@ class ImpresionDiagnostica {
         }
 
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
 
         $templateId = $DOM->createElement('templateId', '');
-        $templateId->setAttribute('root', '1.3.6.1.4.1.19376.1.5.3.1.1.13.2.1');
+        $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.8');
         $section->appendChild($templateId);
 
         $code = $DOM->createElement('code', '');

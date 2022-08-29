@@ -27,11 +27,11 @@ class Diagnosticos {
         $this->diagnostico = $diagnostico;
     }
 
-    public function getDescripcionDiagnosticos() {
+    public function getDiagnosticos() {
         return $this->descripcion;
     }
 
-    public function setDescripcionDiagnosticos(string $descripcion) {
+    public function setDiagnosticos(string $descripcion) {
         $this->descripcion = $descripcion;
     }
 
@@ -101,13 +101,16 @@ class Diagnosticos {
             return $DOM;
         }
         $component = $DOM->createElement('component', '');
-        $DOM->appendChild($component);
+        $DOM->getElementsByTagName('ClinicalDocument')[0]->appendChild($component);
 
         $section = $DOM->createElement('section', '');
         $component->appendChild($section);
 
         $templateId = $DOM->createElement('templateId', '');
         $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.5');
+        $section->appendChild($templateId);
+
+        $templateId = $DOM->createElement('templateId', '');
         $templateId->setAttribute('root', '2.16.840.1.113883.10.20.22.2.5.1');
         $section->appendChild($templateId);
 
@@ -122,10 +125,76 @@ class Diagnosticos {
         $section->appendChild($title);
 
         $descripcionsContent = array_map(function ($descripcionDiagnostico) {
-            return $descripcionDiagnostico->getDescripcionDiagnosticos();
+            return $descripcionDiagnostico->getDiagnosticos();
         }, $descripcion);
         $text = $DOM->createElement('text', implode("\n", $descripcionsContent));
         $section->appendChild($text);
+
+        $entry = $DOM->createElement('entry', '');
+        $entry->setAttribute('typeCode', 'DRIV');
+        $section->appendChild($entry);
+
+        $act = $DOM->createElement('act', '');
+        $act->setAttribute('classCode', 'ACT');
+        $act->setAttribute('moodCode', 'EVN');
+        $entry->appendChild($act);
+
+        $code1 = $DOM->createElement('code', '');
+        $code1->setAttribute('codeSystem', '2.16.840.1.113883.5.6');
+        $code1->setAttribute('code', 'CONC');
+        $code1->setAttribute('displayName', 'Concern');
+        $act->appendChild($code1);
+
+        $statusCode = $DOM->createElement('statusCode', '');
+        $statusCode->setAttribute('code', 'completed');
+        $act->appendChild($statusCode);
+
+        $effectiveTime = $DOM->createElement('effectiveTime', '');
+        $act->appendChild($effectiveTime);
+
+        $low = $DOM->createElement('low', '');
+        $low->setAttribute('value', '--Fecha y hora de inicio de la afección / problema--');
+        $effectiveTime->appendChild($low);
+
+        $high = $DOM->createElement('high', '');
+        $high->setAttribute('value', '--Fecha y hora de término de la afección / problema--');
+        $effectiveTime->appendChild($high);
+
+        $entryRelationship = $DOM->createElement('entryRelationship', '');
+        $entryRelationship->setAttribute('typeCode', 'SUBJ');
+        $act->appendChild($entryRelationship);
+
+        $observation = $DOM->createElement('observation', '');
+        $observation->setAttribute('classCode', 'OBS');
+        $observation->setAttribute('moodCode', 'EVN');
+        $entryRelationship->appendChild($observation);
+
+        $id = $DOM->createElement('id', '');
+        $id->setAttribute('root', '--Identificador único de la afección--');
+        $id->setAttribute('extension', '--Número de la afección--');
+        $observation->appendChild($id);
+
+        $code2 = $DOM->createElement('code', '');
+        $code2->setAttribute('codeSystem', '2.16.840.1.113883.6.96');
+        $code2->setAttribute('codeSystemName', 'SNOMED CT');
+        $code2->setAttribute('code', '282291009');
+        $code2->setAttribute('displayName', 'Diagnóstico');
+        $observation->appendChild($code2);
+
+        $text = $DOM->createElement('text', '--Descripción en texto libre del diagnóstico introducido por el médico--');
+        $observation->appendChild($text);
+
+        $statusCode1 = $DOM->createElement('statusCode', '');
+        $statusCode1->setAttribute('code', 'completed');
+        $observation->appendChild($statusCode1);
+
+        $value = $DOM->createElement('value', '');
+        $value->setAttribute('xsi:type', 'CE');
+        $value->setAttribute('codeSystem', '2.16.840.1.113883.6.3');
+        $value->setAttribute('codeSystemName', 'ICD-10');
+        $value->setAttribute('code', '--Valor del identificador del diagnóstico de acuerdo a catálogo--');
+        $value->setAttribute('displayName', '--Nombre del diagnóstico de acuerdo a catálogo--');
+        $observation->appendChild($value);
 
         return $DOM;
     }
