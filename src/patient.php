@@ -1,15 +1,15 @@
 <?php
 
-foreach (glob(__DIR__ . "/Secciones/*.php") as $archivo) {
+foreach (glob(__DIR__ . "/Sections/*.php") as $archivo) {
     require_once $archivo;
 }
 
-foreach (glob(__DIR__ . "/Catalogos/*.php") as $archivo) {
+foreach (glob(__DIR__ . "/Catalogues/*.php") as $archivo) {
     require_once $archivo;
 }
 
-require_once 'Atributos.php';
-require 'vendor/autoload.php';
+require_once 'attributes.php';
+require '../vendor/autoload.php';
 
 use Spatie\ArrayToXml\ArrayToXml;
 
@@ -47,13 +47,10 @@ class Patient {
     protected function deleteNulls($array) {
         foreach ($array as $key => $value) {
     
-            // Limpia los sub-arrays (como address)
             if (is_array($value)) {
     
-                // Modifica el array original
                 $array[$key] = $this->deleteNulls($value);
                 
-                // Elimina si todos los valores del subarray son nulos
                 if (empty($array[$key])) {
                     unset($array[$key]);
                 }

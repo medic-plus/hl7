@@ -26,7 +26,7 @@ class SeccionPaciente extends Patient
                         [
                             '_attributes' => [
                                 'root' => null,
-                                'extension' => $attributes->patient['adtitionalId'],
+                                'extension' => $attributes->patient['aditionalId'],
                                 'assigningAuthorityName' => $attributes->patient['aditionalId']
                             ]
                         ],
