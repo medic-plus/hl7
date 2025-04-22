@@ -1,28 +1,28 @@
 <?php
 
-class DataEntererSection extends Patient {
+class DataEntererSection {
     static function getDataEntererSection(Patient $patient) {
         $attributes = $patient->attributes;
         $dataEnterer = [
             'dataEnterer' => [
                 'time' => [
                     '_attributes' => [
-                        'value' => $attributes->entererTime
+                        'value' => $attributes->enterer['time']
                     ]
                 ],
                 'assignedEntity' => [
                     'id' => [
                         '_attributes' => [
-                            'root' => null,
-                            'extension' => $attributes->entererEntityId
+                            'root' => $attributes->enterer['id'],
+                            'extension' => $attributes->enterer['id']
                         ]
                     ],
                     'assignedPerson' => [
                         'name' => [
-                            'given' => $attributes->entererPersonName['given'],
+                            'given' => $attributes->enterer['person']['given'],
                             'family' => [
-                                [$attributes->entererPersonName['first_surname']],
-                                [$attributes->entererPersonName['second_surname']]
+                                [$attributes->enterer['person']['first_surname']],
+                                [$attributes->enterer['person']['second_surname']]
                             ],
                         ],
                     ],
@@ -30,7 +30,7 @@ class DataEntererSection extends Patient {
             ],
         ];
 
-        return $patient->deleteNulls($dataEnterer);
+        return $dataEnterer;
 
     }
 

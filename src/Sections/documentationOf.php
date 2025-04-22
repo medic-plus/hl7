@@ -1,115 +1,129 @@
-<?php 
+<?php
 
-class DocumentationOfSection extends Patient {
-    static function getDocumentOfSection(Patient $patient){
-        $attributes = $patient->attributes;
-        $documentationOf = [
-            'documentationOf' => [
-                '_attributes' => ['typeCode' => 'DOC'],
-                'serviceEvent' => [
-                    '_attributes' => ['classCode' => 'PCPR'],
-                    'id' => [
-                        '_attributes' => [
-                            'root' => null,
-                            'extension' => $attributes->documentationId
-                        ]
+class DocumentationOfSection
+{
+    static function getDocumentOfSection(Patient $patient)
+    {
+        $doc = $patient->attributes->documentationOf;
+
+        $allNull = array_walk_recursive($doc, function ($value) use (&$allNull) {
+            if (!is_null($value)) {
+                $allNull = false;
+            }
+        });
+
+        $documentationOf = [];
+
+        if (!$allNull) {
+            $documentationOf = [
+                'documentationOf' => [
+                    '_attributes' => [
+                        'typeCode' => 'DOC'
                     ],
-                    'code' => [
-                        '_attributes' => [
-                            'codeSystem' => null,
-                            'codeSystemName' => 'actCode',
-                            'code' => $attributes->documentationCode,
-                            'displayName' => $attributes->documentationCode
-                        ]
-                    ],
-                    'effectiveTime' => [
-                        'low' => [
+                    'serviceEvent' => [
+                        '_attributes' => ['classCode' => 'PCPR'],
+                        'id' => [
                             '_attributes' => [
-                                'value' => $attributes->documentationEffectiveTime['low']
-                            ],
-                        ],
-                        'high' => [
-                            '_attributes' => [
-                                'value' => $attributes->documentationEffectiveTime['high']
-                            ],
-                        ]
-                    ],
-                    'performer' => [
-                        '_attributes' => [
-                            'typeCode' => 'PRF'
-                        ],
-                        'functionCode' => [
-                            '_attributes' => [
-                                'codeSystem' => null,
-                                'codeSystemName' => 'Provider Role',
-                                'code' => 'PP',
-                                'displayName' => 'Primary Care Provider'
+                                'root' => $doc['id'],
+                                'extension' => $doc['id']
                             ]
                         ],
-                        'assignedEntity' => [
-                            'id' => [
+                        'code' => [
+                            '_attributes' => [
+                                'codeSystem' => is_null($doc['code']) ? null : '2.16.840.1.113883.5.4',
+                                'codeSystemName' => is_null($doc['code']) ? null : 'actCode',
+                                'code' => $doc['code']['value'] ?? null,
+                                'displayName' => $doc['code']['name'] ?? null
+                            ]
+                        ],
+                        'effectiveTime' => [
+                            'low' => [
                                 '_attributes' => [
-                                    'root' => null,
-                                    'extension' => $attributes->documentationPerformer['professionalId']
+                                    'value' => $doc['time']['low'] ?? null
+                                ],
+                            ],
+                            'high' => [
+                                '_attributes' => [
+                                    'value' => $doc['time']['high'] ?? null
+                                ],
+                            ]
+                        ],
+                        'performer' => [
+                            '_attributes' => [
+                                'typeCode' => 'PRF'
+                            ],
+                            'functionCode' => [
+                                '_attributes' => [
+                                    'codeSystem' => '2.16.840.1.113883.12.443',
+                                    'codeSystemName' => 'Provider Role',
+                                    'code' => 'PP',
+                                    'displayName' => 'Primary Care Provider',
                                 ]
                             ],
-                            'assignedPerson' => [
-                                'name' => [
-                                    'given' => $attributes->documentationPerformer['name']['given'],
-                                    'family' => [
-                                        [$attributes->documentationPerformer['name']['first_surname']],
-                                        [$attributes->documentationPerformer['name']['second_surname']]
-                                    ],
-                                ],
-                            ],
-                            'representedOrganization' => [
+                            'assignedEntity' => [
                                 'id' => [
-                                    [
-                                        '_attributes' => [
-                                            'root' => null,
-                                            'extension' => $attributes->documentationPerformer['organization']['organizationClues'],
-                                            'assignningAuthorityName' => 'CLUES'
-                                        ]
-                                    ],
-                                    [
-                                        '_attributes' => [
-                                            'root' => null,
-                                            'extension' => $attributes->documentationPerformer['organization']['organizationSanitaryLicence'],
-                                            'assignningAuthorityName' => 'Licencia Sanitaria'
-                                        ]
+                                    '_attributes' => [
+                                        'root' => is_null($doc['professionalId']) ? null : '2.16.840.1.113883.3.215.12.18',
+                                        'extension' => $doc['professionalId']
                                     ]
                                 ],
-                                'name' => $attributes->documentationPerformer['organization']['name'],
-                                'telecom' => [
-                                    [$attributes->documentationPerformer['organization']['phone']],
-                                    [$attributes->documentationPerformer['organization']['email']]
+                                'assignedPerson' => [
+                                    'name' => [
+                                        'given' => $doc['person']['name'] ?? null,
+                                        'family' => array_filter([
+                                            $doc['person']['first_surname'] ?? null,
+                                            $doc['person']['second_surname'] ?? null
+                                        ])
+                                    ],
                                 ],
-                                'addr' => [
-                                    'fullAddress' => [$attributes->documentationPerformer['organization']['address']['fullAddress']],
-                                    'streetNameType' => [$attributes->documentationPerformer['organization']['address']['streetNameType']],
-                                    'streetName' => [$attributes->documentationPerformer['organization']['address']['streetName']],
-                                    'houseNumberNumeric' => [$attributes->documentationPerformer['organization']['address']['houseNumberNumeric']],
-                                    'houseNumber' => [$attributes->documentationPerformer['organization']['address']['houseNumber']],
-                                    'unitID' => [$attributes->documentationPerformer['organization']['address']['unitId']],
-                                    'unitType' => [$attributes->documentationPerformer['organization']['address']['unitType']],
-                                    'deliveryInstallationType' => [$attributes->documentationPerformer['organization']['address']['deliveryInstallationType']],
-                                    'deliveryInstallationArea' => [$attributes->documentationPerformer['organization']['address']['deliveryInstallationArea']],
-                                    'precint' => [$attributes->documentationPerformer['organization']['address']['precint']],
-                                    'county' => [$attributes->documentationPerformer['organization']['address']['county']],
-                                    'state' => [$attributes->documentationPerformer['organization']['address']['state']],
-                                    'postalCode' => [$attributes->documentationPerformer['organization']['address']['postalCode']],
-                                    'country' => [$attributes->documentationPerformer['organization']['address']['country']],
+                                'representedOrganization' => [
+                                    'id' => [
+                                        [
+                                            '_attributes' => [
+                                                'root' => is_null($doc['organization']['clues']) ? null : '2.16.840.1.113883.4.631',
+                                                'extension' => $doc['organization']['clues'] ?? null,
+                                                'assignningAuthorityName' => is_null($doc['organization']['clues']) ? null : 'CLUES'
+                                            ]
+                                        ],
+                                        [
+                                            '_attributes' => [
+                                                'root' => is_null($doc['organization']['sanitaryLicense']) ? null : '2.16.840.1.113883.3.215.1',
+                                                'extension' => $doc['organization']['sanitaryLicense'] ?? null,
+                                                'assignningAuthorityName' => is_null($doc['organization']['sanitaryLicense']) ? null : 'Licencia Sanitaria'
+                                            ]
+                                        ]
+                                    ],
+                                    'name' => $doc['organization']['name'] ?? null,
+                                    'telecom' => array_filter([
+                                        $doc['organization']['phone'] ?? null,
+                                        $doc['organization']['email'] ?? null
+                                    ]),
+                                    'addr' => [
+                                        'fullAddress' => [$doc['organization']['address']['fullAddress'] ?? null],
+                                        'streetNameType' => [$doc['organization']['address']['streetNameType'] ?? null],
+                                        'streetName' => [$doc['organization']['address']['streetName'] ?? null],
+                                        'houseNumberNumeric' => [$doc['organization']['address']['houseNumberNumeric'] ?? null],
+                                        'houseNumber' => [$doc['organization']['address']['houseNumber'] ?? null],
+                                        'unitID' => [$doc['organization']['address']['unitId'] ?? null],
+                                        'unitType' => [$doc['organization']['address']['unitType'] ?? null],
+                                        'deliveryInstallationType' => [$doc['organization']['address']['deliveryInstallationType'] ?? null],
+                                        'deliveryInstallationArea' => [$doc['organization']['address']['deliveryInstallationArea'] ?? null],
+                                        'precint' => [$doc['organization']['address']['precint'] ?? null],
+                                        'county' => [$doc['organization']['address']['county'] ?? null],
+                                        'state' => [$doc['organization']['address']['state'] ?? null],
+                                        'postalCode' => [$doc['organization']['address']['postalCode'] ?? null],
+                                        'country' => [$doc['organization']['address']['country'] ?? null],
+                                    ],
                                 ],
                             ],
                         ],
                     ],
                 ],
-            ],
-        ];
+            ];
+        } else {
+            return $documentationOf;
+        }
 
-        return $patient->deleteNulls($documentationOf);
-    } 
-
+        return $documentationOf;
+    }
 }
-
-?>

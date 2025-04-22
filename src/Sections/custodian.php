@@ -1,6 +1,6 @@
 <?php
 
-class CustodianSection extends Patient {
+class CustodianSection {
     static function getCustodianSection(Patient $patient) {
         $attributes = $patient->attributes;
         $custodian = [
@@ -9,38 +9,38 @@ class CustodianSection extends Patient {
                     'representedCustodianOrganization' => [
                         'id' => [
                             '_attributes' => [
-                                'root' => null,
-                                'extension' => $attributes->custodianOrganizationClues,
-                                'assigningAuthorityName' => 'CLUES'
+                                'root' => is_null($attributes->custodian['id']) ? null : '2.16.840.1.113883.4.631',
+                                'extension' => $attributes->custodian['id'],
+                                'assigningAuthorityName' => is_null($attributes->custodian['id']) ? null : 'CLUES'
                             ]
                         ],
-                        'name' => $attributes->custodianOrganizationName,
+                        'name' => $attributes->custodian['name'],
                         'telecom' => [
-                            ['_attributes' => ['value' => $attributes->custodianOrganizationPhone]],
-                            ['_attributes' => ['value' => $attributes->custodianOrganizationEmail]]
+                            ['_attributes' => ['value' => $attributes->custodian['phone']]],
+                            ['_attributes' => ['value' => $attributes->custodian['email']]]
                         ],
                         'addr' => [
-                            'fullAddress' => $attributes->custodianOrganizationAddress['fullAddress'],
-                            'streetNameType' => $attributes->custodianOrganizationAddress['streetNameType'],
-                            'streetName' => $attributes->custodianOrganizationAddress['streetName'],
-                            'houseNumberNumeric' => $attributes->custodianOrganizationAddress['houseNumberNumeric'],
-                            'houseNumber' => $attributes->custodianOrganizationAddress['houseNumber'],
-                            'unitID' => $attributes->custodianOrganizationAddress['unitId'],
-                            'unitType' => $attributes->custodianOrganizationAddress['unitType'],
-                            'deliveryInstallationType' => $attributes->custodianOrganizationAddress['deliveryInstallationType'],
-                            'deliveryInstallationArea' => $attributes->custodianOrganizationAddress['deliveryInstallationArea'],
-                            'precint' => $attributes->custodianOrganizationAddress['precint'],
-                            'county' => $attributes->custodianOrganizationAddress['county'],
-                            'state' => $attributes->custodianOrganizationAddress['state'],
-                            'postalCode' => $attributes->custodianOrganizationAddress['postalCode'],
-                            'country' => $attributes->custodianOrganizationAddress['country'],
+                            'fullAddress' => $attributes->custodian['address']['fullAddress'],
+                            'streetNameType' => $attributes->custodian['address']['streetNameType'],
+                            'streetName' => $attributes->custodian['address']['streetName'],
+                            'houseNumberNumeric' => $attributes->custodian['address']['houseNumberNumeric'],
+                            'houseNumber' => $attributes->custodian['address']['houseNumber'],
+                            'unitID' => $attributes->custodian['address']['unitId'],
+                            'unitType' => $attributes->custodian['address']['unitType'],
+                            'deliveryInstallationType' => $attributes->custodian['address']['deliveryInstallationType'],
+                            'deliveryInstallationArea' => $attributes->custodian['address']['deliveryInstallationArea'],
+                            'precint' => $attributes->custodian['address']['precint'],
+                            'county' => $attributes->custodian['address']['county'],
+                            'state' => $attributes->custodian['address']['state'],
+                            'postalCode' => $attributes->custodian['address']['postalCode'],
+                            'country' => $attributes->custodian['address']['country'],
                         ],
                     ],
                 ],
             ],
         ];
 
-        return $patient->deleteNulls($custodian);
+        return $custodian;
     }
 
 }

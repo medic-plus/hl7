@@ -1,62 +1,64 @@
 <?php
 
-class ComponentOfSection extends Patient
+class ComponentOfSection
 {
     static function getComponentOfSection(Patient $patient)
     {
-        $attributes = $patient->attributes;
+        $componentOf = $patient->attributes->componentOf;
         $componentOf = [
             'componentOf' => [
                 'encompasingEncounter' => [
                     'id' => [
                         '_attributes' => [
-                            'root' => null,
-                            'extension' => $attributes->encounter['id']
+                            'root' => $componentOf['id'],
+                            'extension' => $componentOf['id']
                         ]
                     ],
                     'code' => [
                         '_attributes' => [
-                            'codeSystem' => null,
-                            'codeSystemName' => 'actCode',
-                            'code' => $attributes->encounter['code'],
-                            'displayName' => $attributes->encounter['code']
+                            'codeSystem' => is_null($componentOf['encounterType']) ? null : '2.16.840.1.113883.5.4',
+                            'codeSystemName' => is_null($componentOf['encounterType']) ?  null : 'actCode',
+                            'code' => $componentOf['encounterType']['value'] ?? null,
+                            'displayName' => $componentOf['encounterType']['name'] ?? null
                         ]
                     ],
                     'effectiveTime' => [
                         'low' => [
-                            '_attributes' => ['value' => $attributes->encounterTime['low']] 
+                            '_attributes' => ['value' => $componentOf['time']['low']]
                         ],
                         'high' => [
-                            '_attributes' => ['value' => $attributes->encounterTime['high']] 
+                            '_attributes' => ['value' => $componentOf['time']['high']]
                         ],
                     ],
                     'responsibleParty' => [
                         'assignedEntity' => [
                             'id' => [
                                 '_attributes' => [
-                                    'root' => null,
-                                    'extension' => $attributes->encounterResponsible['professionalId']
+                                    'root' => is_null($componentOf['professionalId']) ? null : '2.16.840.1.113883.3.215.12.18',
+                                    'extension' => $componentOf['professionalId']
                                 ]
                             ],
                             'assignedPerson' => [
                                 'name' => [
-                                    'given' => $attributes->encounterResponsible['name']['given'],
-                                    'family' => $attributes->encounterResponsible['name']['first_surname'],
-                                    'family' => $attributes->encounterResponsible['name']['second_surname'],
+                                    'given' => $componentOf['personName']['given'],
+                                    'family' => [
+                                        [$componentOf['personName']['first_surname']],
+                                        [$componentOf['personName']['second_surname']]
+                                    ]
                                 ],
                             ],
                             'representedOrganization' => [
-                                'id' => ['_attributes' => ['root' => $attributes->encounterResponsibleOrganization['id']]],
-                                'name' => $attributes->encounterResponsibleOrganization['name'],
+                                'id' => ['_attributes' => ['root' => $componentOf['organization']['id']]],
+                                'name' => $componentOf['organization']['name'],
                             ],
                         ],
                     ],
                     'dischargeDispositionCode' => [
                         '_attributes' => [
-                            'codeSystem' => null,
-                            'codeSystemName' => 'HL7 Discharge Disposition',
-                            'code' => $attributes->encounterResponsibleDispositionCode,
-                            'displayName' => $attributes->encounterResponsibleDispositionCode
+                            'codeSystem' => is_null($componentOf['dischargeDispositionCode']) ?  null : '2.16.840.1.113883.12.112',
+                            'codeSystemName' => is_null($componentOf['dischargeDispositionCode']) ? null : 'HL7D Discharge Disposition',
+                            'code' => $componentOf['dischargeDispositionCode']['value'] ?? null,
+                            'displayName' => $componentOf['dischargeDispositionCode']['name'] ?? null
                         ]
                     ],
                     'location' => [
@@ -64,44 +66,44 @@ class ComponentOfSection extends Patient
                             'id' => [
                                 [
                                     '_attributes' => [
-                                        'root' => null,
-                                        'extension' => $attributes->encounterResponsibleHealthcareFacility['cluesId'],
-                                        'assigningAuthorityName' => null
+                                        'root' => is_null($componentOf['location']['clues']) ? null : '2.16.840.1.113883.4.631',
+                                        'extension' => $componentOf['location']['clues'],
+                                        'assigningAuthorityName' => is_null($componentOf['location']['clues']) ? null : 'CLUES'
                                     ]
-                                ], 
+                                ],
                                 [
                                     '_attributes' => [
-                                        'root' => null,
-                                        'extension' => $attributes->encounterResponsibleHealthcareFacility['sanitaryLicence'],
-                                        'assigningAuthorityName' => null
+                                        'root' => is_null($componentOf['location']['sanitaryLicense']) ? null : '2.16.840.1.113883.3.215.1.1',
+                                        'extension' => $componentOf['location']['sanitaryLicense'],
+                                        'assigningAuthorityName' => is_null($componentOf['location']['sanitaryLicense']) ? null : 'Licencia Sanitaria'
                                     ]
                                 ]
                             ],
                             'code' => [
                                 '_attributes' => [
-                                    'codeSystem' => null,
-                                    'codeSystemName' => 'RoleCode',
-                                    'code' => $attributes->encounterResponsibleHealthcareFacility['areaCode'],
-                                    'displayName' => $attributes->encounterResponsibleHealthcareFacility['areaCode']
+                                    'codeSystem' => is_null($componentOf['location']['areaCode']) ? null : '2.16.840.1.113883.5.11',
+                                    'codeSystemName' => is_null($componentOf['location']['areaCode']) ? null : 'RoleCode',
+                                    'code' => $componentOf['location']['areaCode']['value'] ?? null,
+                                    'displayName' => $componentOf['location']['areaCode']['name'] ?? null
                                 ]
                             ],
                             'location' => [
-                                'name' => [$attributes->encounterResponsibleHealthcareFacility['name']],
+                                'name' => [$componentOf['organization']['name']],
                                 'addr' => [
-                                    'fullAddress' => [$attributes->encounterResponsibleHealthcareFacility['address']['fullAddress']],
-                                    'streetNameType' => [$attributes->encounterResponsibleHealthcareFacility['address']['streetNameType']],
-                                    'streetName' => [$attributes->encounterResponsibleHealthcareFacility['address']['streetName']],
-                                    'houseNumberNumeric' => [$attributes->encounterResponsibleHealthcareFacility['address']['houseNumberNumeric']],
-                                    'houseNumber' => [$attributes->encounterResponsibleHealthcareFacility['address']['houseNumber']],
-                                    'unitID' => [$attributes->encounterResponsibleHealthcareFacility['address']['unitId']],
-                                    'unitType' => [$attributes->encounterResponsibleHealthcareFacility['address']['unitType']],
-                                    'deliveryInstallationType' => [$attributes->encounterResponsibleHealthcareFacility['address']['deliveryInstallationType']],
-                                    'deliveryInstallationArea' => [$attributes->encounterResponsibleHealthcareFacility['address']['deliveryInstallationArea']],
-                                    'precint' => [$attributes->encounterResponsibleHealthcareFacility['address']['precint']],
-                                    'county' => [$attributes->encounterResponsibleHealthcareFacility['address']['county']],
-                                    'state' => [$attributes->encounterResponsibleHealthcareFacility['address']['state']],
-                                    'postalCode' => [$attributes->encounterResponsibleHealthcareFacility['address']['postalCode']],
-                                    'country' => [$attributes->encounterResponsibleHealthcareFacility['address']['country']],
+                                    'fullAddress' => [$componentOf['location']['address']['fullAddress']],
+                                    'streetNameType' => [$componentOf['location']['address']['streetNameType']],
+                                    'streetName' => [$componentOf['location']['address']['streetName']],
+                                    'houseNumberNumeric' => [$componentOf['location']['address']['houseNumberNumeric']],
+                                    'houseNumber' => [$componentOf['location']['address']['houseNumber']],
+                                    'unitID' => [$componentOf['location']['address']['unitId']],
+                                    'unitType' => [$componentOf['location']['address']['unitType']],
+                                    'deliveryInstallationType' => [$componentOf['location']['address']['deliveryInstallationType']],
+                                    'deliveryInstallationArea' => [$componentOf['location']['address']['deliveryInstallationArea']],
+                                    'precint' => [$componentOf['location']['address']['precint']],
+                                    'county' => [$componentOf['location']['address']['county']],
+                                    'state' => [$componentOf['location']['address']['state']],
+                                    'postalCode' => [$componentOf['location']['address']['postalCode']],
+                                    'country' => [$componentOf['location']['address']['country']],
                                 ],
                             ],
                         ],
@@ -110,6 +112,6 @@ class ComponentOfSection extends Patient
             ],
         ];
 
-        return $patient->deleteNulls($componentOf);
+        return $componentOf;
     }
 }

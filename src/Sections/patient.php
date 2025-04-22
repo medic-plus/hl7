@@ -1,127 +1,127 @@
 <?php
 
-class SeccionPaciente extends Patient
+class SeccionPaciente
 {
-    static function getPatientSection(Patient $patient)
+    static function getPatientSection(Patient $patientC)
     { 
-        $attributes = $patient->attributes;
+        $patient = $patientC->attributes->patient;
         $patientSection = [
             'recordTarget' => [
                 'patientRole' => [
                     'id' => [
                         [
                             '_attributes' => [
-                                'root' => null,
-                                'extension' => $attributes->patient['id'],
-                                'assigningAuthorityName' => $attributes->patient['id']
+                                'root' => $patient['id'],
+                                'extension' => $patient['id'],
+                                'assigningAuthorityName' => $patient['id']
+                            ]
+                        ],
+                        [
+                            '_attributes' => [
+                                'root' => is_null($patient['curp']) ? null : '2.16.840.1.113883.4.629',
+                                'extension' => $patient['curp'],
+                                'assigningAuthorityName' => is_null($patient['curp']) ? null : 'CURP' 
+                            ]
+                        ],
+                        [
+                            '_attributes' => [
+                                'root' => $patient['aditionalId'],
+                                'extension' => $patient['aditionalId'],
+                                'assigningAuthorityName' => $patient['aditionalId']
+                            ]
+                        ],
+                        [
+                            '_attributes' => [
+                                'root' => is_null($patient['nationality']) ? null : '2.16.1.113883.3.215.12.15',
+                                'extension' => $patient['nationality']['name'] ?? null,
+                                'assigningAuthorityName' => is_null($patient['nationality']) ? null : 'Nacionalidad',
                             ]
                         ],
                         [
                             '_attributes' => [
                                 'root' => null,
-                                'extension' => $attributes->patient['curp'],
-                                'assigningAuthorityName' => $attributes->patient['curp']
-                            ]
-                        ],
-                        [
-                            '_attributes' => [
-                                'root' => null,
-                                'extension' => $attributes->patient['aditionalId'],
-                                'assigningAuthorityName' => $attributes->patient['aditionalId']
-                            ]
-                        ],
-                        [
-                            '_attributes' => [
-                                'root' => null,
-                                'extension' => $attributes->patient['nationality'],
-                                'assigningAuthorityName' => $attributes->patient['nationality']
-                            ]
-                        ],
-                        [
-                            '_attributes' => [
-                                'root' => null,
-                                'extension' => $attributes->patient['age'],
-                                'assigningAuthorityName' => $attributes->patient['age']
+                                'extension' => $patient['age'],
+                                'assigningAuthorityName' => is_null($patient['age']) ? null : 'Edad'
                             ]
                         ]
                     ],
                     'addr' => [
-                        'fullAddress' => [$attributes->patient['address']['fullAddress']],
-                        'streetName' => [$attributes->patient['address']['streetName']],
-                        'streetNameType' => [$attributes->patient['address']['streetNameType']],
-                        'houseNumberNumeric' => [$attributes->patient['address']['houseNumberNumeric']],
-                        'houseNumber' => [$attributes->patient['address']['houseNumber']],
-                        'unitID' => [$attributes->patient['address']['unitId']],
-                        'unitType' => [$attributes->patient['address']['unitType']],
-                        'deliveryInstallationType' => [$attributes->patient['address']['deliveryInstallationType']],
-                        'deliveryInstallationArea' => [$attributes->patient['address']['deliveryInstallationArea']],
-                        'precint' => [$attributes->patient['address']['precint']],
-                        'county' => [$attributes->patient['address']['county']],
-                        'state' => [$attributes->patient['address']['state']],
-                        'postalCode' => [$attributes->patient['address']['postalCode']],
-                        'country' => [$attributes->patient['address']['county']],
+                        'fullAddress' => [$patient['address']['fullAddress']],
+                        'streetName' => [$patient['address']['streetName']],
+                        'streetNameType' => [$patient['address']['streetNameType']],
+                        'houseNumberNumeric' => [$patient['address']['houseNumberNumeric']],
+                        'houseNumber' => [$patient['address']['houseNumber']],
+                        'unitID' => [$patient['address']['unitId']],
+                        'unitType' => [$patient['address']['unitType']],
+                        'deliveryInstallationType' => [$patient['address']['deliveryInstallationType']],
+                        'deliveryInstallationArea' => [$patient['address']['deliveryInstallationArea']],
+                        'precint' => [$patient['address']['precint']],
+                        'county' => [$patient['address']['county']],
+                        'state' => [$patient['address']['state']],
+                        'postalCode' => [$patient['address']['postalCode']],
+                        'country' => [$patient['address']['county']],
                     ],
                     'telecom' => [
                         [
                             '_attributes' => [
-                                'value' => $attributes->patient['phone']
+                                'value' => $patient['phone']
                             ]
                         ], 
                         [
                             '_attributes' => [
-                                'value' => $attributes->patient['email']
+                                'value' => $patient['email']
                             ]
                         ]
                     ],
                     'patient' => [
                         'name' => [
-                            'given' => $attributes->patient['name']['given'],
+                            'given' => $patient['name']['given'],
                             'family' => [
-                                [$attributes->patient['name']['first_surname']],
-                                [$attributes->patient['name']['second_surname']]
+                                [$patient['name']['first_surname']],
+                                [$patient['name']['second_surname']]
                             ]
                         ],
                         'administrativeGenderCode' => [
                             '_attributes' => [
                                 'codeSystem' => null,
-                                'codeSystemName' => 'Administrative Gender',
-                                'code' => $attributes->patient['gender'],
-                                'displayName' => $attributes->patient['gender']
+                                'codeSystemName' => is_null($patient['gender']) ? null : 'Administrative Gender',
+                                'code' => $patient['gender']['value'] ?? null,
+                                'displayName' => $patient['gender']['name'] ?? null
                             ]
                         ],
                         'birthTime' => [
                             '_attributes' => [
-                                'value' => $attributes->patient['birtTime'],
+                                'value' => $patient['birtTime'],
                             ]
                         ],
                         'maritalStatusCode' => [                            
                             '_attributes' => [
                                 'codeSystem' => null,
-                                'codeSystemName' => 'MaritalStatus',
-                                'code' => $attributes->patient['maritalStatus'],
-                                'displayName' => $attributes->patient['maritalStatus']
+                                'codeSystemName' => is_null($patient['maritalStatus']) ? null : 'MaritalStatus',
+                                'code' => $patient['maritalStatus']['value'] ?? null,
+                                'displayName' => $patient['maritalStatus']['name'] ?? null
                             ]
                         ],
                         'religiousAffiliationCode' => [  
                             '_attributes' => [
                                 'codeSystem' => null,
-                                'codeSystemName' => 'Religiones INEGI',
-                                'code' => $attributes->patient['religion'],
-                                'displayName' => $attributes->patient['religion']
+                                'codeSystemName' => is_null($patient['religion']) ? null : 'Religiones INEGI',
+                                'code' => $patient['religion']['value'] ?? null,
+                                'displayName' => $patient['religion']['name'] ?? null
                             ]
                         ],
                         'ethnicGroupCode' => [                            
                             '_attributes' => [
                                 'codeSystem' => null,
-                                'codeSystemName' => 'Lenguas Indigenas INEGI',
-                                'code' => $attributes->patient['ethnicity'],
-                                'displayName' => $attributes->patient['ethnicity']
+                                'codeSystemName' => is_null($patient['ethnicity']) ? null : 'Lenguas Indigenas INEGI',
+                                'code' => $patient['ethnicity']['value'] ?? null,
+                                'displayName' => $patient['ethnicity']['name'] ?? null
                             ]
                         ],
                         'birthplace' => [
                             'place' => [
                                 'addr' => [
-                                    'state' => [$attributes->patient['birtplace']],
+                                    'state' => [$patient['birtplace']],
                                 ],
                             ],
                         ],
@@ -129,44 +129,46 @@ class SeccionPaciente extends Patient
                             'code' => [
                                 '_attributes' => [
                                     'codeSystem' => null,
-                                    'codeSystemName' => 'Lenguas Indigenas INEGI',
-                                    'code' => $attributes->patient['guardian']['code'],
-                                    'displayName' => $attributes->patient['guardian']['code']
+                                    'codeSystemName' => is_null($patient['guardian']['code']) ? null : 'Role Code',
+                                    'code' => $patient['guardian']['code']['value'] ?? null,
+                                    'displayName' => $patient['guardian']['code']['name'] ?? null
                                 ]
                             ],
                             'addr' => [
-                                'fullAddress' => [$attributes->patient['guardian']['address']['fullAddress']],
-                                'streetNameType' => [$attributes->patient['guardian']['address']['streetNameType']],
-                                'streetName' => [$attributes->patient['guardian']['address']['streetName']],
-                                'houseNumberNumeric' => [$attributes->patient['guardian']['address']['houseNumberNumeric']],
-                                'houseNumber' => [$attributes->patient['guardian']['address']['houseNumber']],
-                                'unitID' => [$attributes->patient['guardian']['address']['unitId']],
-                                'unitType' => [$attributes->patient['guardian']['address']['unitType']],
-                                'deliveryInstallationType' => [$attributes->patient['guardian']['address']['deliveryInstallationType']],
-                                'deliveryInstallationArea' => [$attributes->patient['guardian']['address']['deliveryInstallationArea']],
-                                'precint' => [$attributes->patient['guardian']['address']['precint']],
-                                'county' => [$attributes->patient['guardian']['address']['county']],
-                                'state' => [$attributes->patient['guardian']['address']['state']],
-                                'postalCode' => [$attributes->patient['guardian']['address']['postalCode']],
-                                'country' => [$attributes->patient['guardian']['address']['country']],
+                                'fullAddress' => [$patient['guardian']['address']['fullAddress']],
+                                'streetNameType' => [$patient['guardian']['address']['streetNameType']],
+                                'streetName' => [$patient['guardian']['address']['streetName']],
+                                'houseNumberNumeric' => [$patient['guardian']['address']['houseNumberNumeric']],
+                                'houseNumber' => [$patient['guardian']['address']['houseNumber']],
+                                'unitID' => [$patient['guardian']['address']['unitId']],
+                                'unitType' => [$patient['guardian']['address']['unitType']],
+                                'deliveryInstallationType' => [$patient['guardian']['address']['deliveryInstallationType']],
+                                'deliveryInstallationArea' => [$patient['guardian']['address']['deliveryInstallationArea']],
+                                'precint' => [$patient['guardian']['address']['precint']],
+                                'county' => [$patient['guardian']['address']['county']],
+                                'state' => [$patient['guardian']['address']['state']],
+                                'postalCode' => [$patient['guardian']['address']['postalCode']],
+                                'country' => [$patient['guardian']['address']['country']],
                             ],
                             'telecom' => [
                                 [
                                     '_attributes' => [
-                                        'value' => $attributes->patient['guardian']['phone']
+                                        'value' => $patient['guardian']['phone']
                                     ]
                                 ], 
                                 [
                                     '_attributes' => [
-                                        'value' => $attributes->patient['guardian']['email']
+                                        'value' => $patient['guardian']['email']
                                     ]
                                 ]
                             ],
                             'guardianPerson' => [
                                 'name' => [
-                                    'given' => $attributes->patient['guardian']['name']['given'],
-                                    'family' => $attributes->patient['guardian']['name']['first_surname'],
-                                    'family' => $attributes->patient['guardian']['name']['second_surname'],
+                                    'given' => $patient['guardian']['name']['given'],
+                                    'family' => [ 
+                                        $patient['guardian']['name']['first_surname'],
+                                        $patient['guardian']['name']['second_surname']
+                                    ],
                                 ],
                             ]
                         ],
@@ -174,45 +176,45 @@ class SeccionPaciente extends Patient
                     'providerOrganization' => [
                         'id' => [
                             '_attributes' => [
-                                'root' => null,
-                                'extension' => $attributes->patient['provider']['id'],
-                                'assigningAuthorityName' => 'CLUES'
+                                'root' => is_null($patient['provider']['id']) ? null : '2.16.840.1.113883.4.631',
+                                'extension' => $patient['provider']['id']['value'] ?? null,
+                                'assigningAuthorityName' => is_null($patient['provider']['id']) ? null : 'CLUES'
                             ]
                         ],
-                        'name' => $attributes->patient['provider']['name'],
+                        'name' => $patient['provider']['name'],
                         'telecom' => [
                             [
                                 '_attributes' => [
-                                    'value' => $attributes->patient['provider']['phone']
+                                    'value' => $patient['provider']['phone']
                                 ]
                             ],
                             [
                                 '_attributes' => [
-                                    'value' => $attributes->patient['provider']['email']
+                                    'value' => $patient['provider']['email']
                                 ]
                             ]
                         ],
                         'addr' => [
-                            'fullAddress' => [$attributes->patient['provider']['address']['fullAddress']],
-                            'streetNameType' => [$attributes->patient['provider']['address']['streetNameType']],
-                            'streetName' => [$attributes->patient['provider']['address']['streetName']],
-                            'houseNumberNumeric' => [$attributes->patient['provider']['address']['houseNumberNumeric']],
-                            'houseNumber' => [$attributes->patient['provider']['address']['houseNumber']],
-                            'unitID' => [$attributes->patient['provider']['address']['unitId']],
-                            'unitType' => [$attributes->patient['provider']['address']['unitType']],
-                            'deliveryInstallationType' => [$attributes->patient['provider']['address']['deliveryInstallationType']],
-                            'deliveryInstallationArea' => [$attributes->patient['provider']['address']['deliveryInstallationArea']],
-                            'precint' => [$attributes->patient['provider']['address']['precint']],
-                            'county' => [$attributes->patient['provider']['address']['county']],
-                            'state' => [$attributes->patient['provider']['address']['state']],
-                            'postalCode' => [$attributes->patient['provider']['address']['postalCode']],
-                            'country' => [$attributes->patient['provider']['address']['country']],
+                            'fullAddress' => [$patient['provider']['address']['fullAddress']],
+                            'streetNameType' => [$patient['provider']['address']['streetNameType']],
+                            'streetName' => [$patient['provider']['address']['streetName']],
+                            'houseNumberNumeric' => [$patient['provider']['address']['houseNumberNumeric']],
+                            'houseNumber' => [$patient['provider']['address']['houseNumber']],
+                            'unitID' => [$patient['provider']['address']['unitId']],
+                            'unitType' => [$patient['provider']['address']['unitType']],
+                            'deliveryInstallationType' => [$patient['provider']['address']['deliveryInstallationType']],
+                            'deliveryInstallationArea' => [$patient['provider']['address']['deliveryInstallationArea']],
+                            'precint' => [$patient['provider']['address']['precint']],
+                            'county' => [$patient['provider']['address']['county']],
+                            'state' => [$patient['provider']['address']['state']],
+                            'postalCode' => [$patient['provider']['address']['postalCode']],
+                            'country' => [$patient['provider']['address']['country']],
                         ],
                     ]
                 ]
             ]           
         ];
 
-        return $patient->deleteNulls($patientSection);
+        return $patientSection;
     }
 }

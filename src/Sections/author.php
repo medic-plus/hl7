@@ -1,56 +1,60 @@
 <?php
 
-class AuthorSection extends Patient
+class AuthorSection
 {
     static function getAuthorSection(Patient $patient)
     {
-        $attributes = $patient->attributes;
+        $author = $patient->attributes->author;
         $author = [
             'author' => [
                 'time' => [
                     '_attributes' => [
-                        'value' => $attributes->authorTime
+                        'value' => $author['time'],
                     ]
                 ],
                 'assignedAuthor' => [
                     'id' => [
-                        '_attributes' => [
-                            'root' => $attributes->assignedAuthorId
-                        ]
+                        '_attributes' => ['root' => $author['id']]
                     ],
                     'assignedAuthoringDevice' => [
-                        'softwareName' => $attributes->authorSoftwareName,
-                        'manufacturerModelName' => $attributes->authorManufacturerModelName,
+                        'softwareName' => $author['softwareName'],
+                        'manufacturerModelName' => $author['manufacturer'],
                     ]
                 ],
                 'telecom' => [
-                    ['_attributes' => ['value' => $attributes->authorPhone]],
-                    ['_attributes' => ['value' => $attributes->authorEmail]],
+                    [
+                        '_attributes' => ['value' => $author['phone']]
+                    ],
+                    [
+                        '_attributes' => ['value' => $author['email']]
+                    ],
                 ],
                 'addr' => [
-                    'fullAddress' => [$attributes->authorAddress['fullAddress']],
-                    'streetNameType' => [$attributes->authorAddress['streetNameType']],
-                    'streetName' => [$attributes->authorAddress['streetName']],
-                    'houseNumberNumeric' => [$attributes->authorAddress['houseNumberNumeric']],
-                    'houseNumber' => [$attributes->authorAddress['houseNumber']],
-                    'unitID' => [$attributes->authorAddress['unitId']],
-                    'unitType' => [$attributes->authorAddress['unitType']],
-                    'deliveryInstallationType' => [$attributes->authorAddress['deliveryInstallationType']],
-                    'deliveryInstallationArea' => [$attributes->authorAddress['deliveryInstallationArea']],
-                    'precint' => [$attributes->authorAddress['precint']],
-                    'county' => [$attributes->authorAddress['county']],
-                    'state' => [$attributes->authorAddress['state']],
-                    'postalCode' => [$attributes->authorAddress['postalCode']],
-                    'country' => [$attributes->authorAddress['country']],
+                    'fullAddress' => [$author['address']['fullAddress']],
+                    'streetNameType' => [$author['address']['streetNameType']],
+                    'streetName' => [$author['address']['streetName']],
+                    'houseNumberNumeric' => [$author['address']['houseNumberNumeric']],
+                    'houseNumber' => [$author['address']['houseNumber']],
+                    'unitID' => [$author['address']['unitId']],
+                    'unitType' => [$author['address']['unitType']],
+                    'deliveryInstallationType' => [$author['address']['deliveryInstallationType']],
+                    'deliveryInstallationArea' => [$author['address']['deliveryInstallationArea']],
+                    'precint' => [$author['address']['precint']],
+                    'county' => [$author['address']['county']],
+                    'state' => [$author['address']['state']],
+                    'postalCode' => [$author['address']['postalCode']],
+                    'country' => [$author['address']['country']],
                 ],
                 'representedOrganization' => [
-                    'id' => ['_attributes' => ['root' => $attributes->authorRepresentedOrganizationId]],
-                    'name' => $attributes->authorRepresentedOrganizationName,
+                    'id' => [
+                        '_attributes' => ['root' => $author['organizationId']]
+                    ],
+                    'name' => $author['organizationName'],
                 ]
 
             ],
         ];
 
-        return $patient->deleteNulls($author);
+        return $author;
     }
 }
